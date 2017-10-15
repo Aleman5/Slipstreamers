@@ -9,27 +9,39 @@ import flixel.FlxObject;
  * ...
  * @author Aleman5
  */
+
+ enum States
+ {
+	MOVE;
+	SPACED;
+	DEATH;
+ }
+ 
 class Player extends FlxSprite 
 {
 	private var whichPlayer:Int;
 	private var movHor:Bool;
 	private var movVer:Bool;
-	private var framesBtwMove:Int;
+	private var velHor:Float;
+	private var velVer:Float;
+	private var timer:Int;
+	private var currentState:States;
 	
 	public function new(?X:Float=0, ?Y:Float=0, WhichPlayer:Int) 
 	{
 		super(X, Y);
-		whichPlayer = WhichPlayer;
-		movHor = false;
-		movVer = true;
-		framesBtwMove = 0;
+		whichPlayer = WhichPlayer; // Determines the Player we are talking about
+		movHor = false; // Exists to ask if PlayerX change movement horizontal
+		movVer = true;  // Exists to ask if PlayerX change movement vertical
+		velHor = 0;		// Receives the actually velocity.x
+		velVer = 0;		// Receives the actually velocity.y
+		timer = 0;		// Used in States 'MOVE' and 'SPACED'
 		setFacingFlip(FlxObject.RIGHT, true, false);
 		setFacingFlip(FlxObject.LEFT, false, false);
 		
-		animation.add("move", [0, 1, 2], 6, true);
-		animation.add("spaced", [3], 6, false); // Si apreta espacio se deja de mover por unos frames
-												// pero puede atravesar las estelas
-		animation.add("death", [5, 6, 7, 8, 9], 6, false);
+		animation.add("move", [0, 1, 2], 6, true); 	// Movement
+		animation.add("spaced", [3], 6, false); 	// When State.SPACED is actived
+		animation.add("death", [5, 6, 7, 8, 9], 3, false);	// Death animation
 		
 		switch (whichPlayer) 
 		{
@@ -46,57 +58,77 @@ class Player extends FlxSprite
 				animation.play("move");
 				velocity.x = -Reg.speed;
 		}
-		
-		
+		currentState = States.MOVE;
 	}
 	
 	override public function update(elapsed:Float):Void
 	{
+		stateMachine();
 		super.update(elapsed);
-		framesBtwMove++;
+	}
+	
+	function stateMachine() 
+	{
+		switch (currentState) 
+		{
+			case States.MOVE:
+				movementAndOthers();
+				ghosted();
+			case States.SPACED:
+				animation.play("spaced");
+				velocity.x = velHor;
+				velocity.y = velVer;
+				timer++;
+				if (timer >= 60)
+				{
+					timer = 0;
+					currentState = States.MOVE;
+				}
+			case States.DEATH:
+				animation.play("death");
+				if (animation.name == "death" && animation.finished)
+					destroy();
+		}
+	}
+	function ghosted() 
+	{
+		if (FlxG.keys.justPressed.Q)
+		{
+			timer = 0;
+			velHor = velocity.x;
+			velVer = velocity.y;
+			currentState = States.SPACED;
+		}
+	}
+	function movementAndOthers() 
+	{
+		timer++;
 		
 		switch (whichPlayer) 
 		{
 			case 1:
-				if(framesBtwMove >= 5)
+				if(timer >= 5)
 					movementPlayer1();
 				rotationPlayer();
 			case 2:
-				if(framesBtwMove >= 5)
+				if(timer >= 5)
 					movementPlayer2();
 				rotationPlayer();
 		}
 	}
-	
 	function movementPlayer1():Void 
 	{
 		if (FlxG.keys.justPressed.D && movHor == true){
-			velocity.x = Reg.speed;
-			velocity.y = 0;
-			movVer = true;
-			movHor = false;
-			framesBtwMove = 0;
+			moveRight();
 		}
 		if (FlxG.keys.justPressed.A && movHor == true){
-			velocity.x = -Reg.speed;
-			velocity.y = 0;
-			movVer = true;
-			movHor = false;
-			framesBtwMove = 0;
+			moveLeft();
 		}
 		if (FlxG.keys.justPressed.W && movVer == true){
-			velocity.x = 0;
-			velocity.y = -Reg.speed;
-			movVer = false;
-			movHor = true;
-			framesBtwMove = 0;
+			moveUp();
 		}
 		if (FlxG.keys.justPressed.S && movVer == true){
-			velocity.x = 0;
-			velocity.y = Reg.speed;
-			movVer = false;
-			movHor = true;
-			framesBtwMove = 0;
+			moveDown();
 		}
 		
 		
@@ -104,35 +136,50 @@ class Player extends FlxSprite
 	function movementPlayer2():Void 
 	{
 		if (FlxG.keys.justPressed.RIGHT && movHor == true){
-			velocity.x = Reg.speed;
-			velocity.y = 0;
-			movVer = true;
-			movHor = false;
-			framesBtwMove = 0;
+			moveRight();
 		}
 		if (FlxG.keys.justPressed.LEFT && movHor == true){
-			velocity.x = -Reg.speed;
-			velocity.y = 0;
-			movVer = true;
-			movHor = false;
-			framesBtwMove = 0;
+			moveLeft();
 		}
 		if (FlxG.keys.justPressed.UP && movVer == true){
-			velocity.x = 0;
-			velocity.y = -Reg.speed;
-			movVer = false;
-			movHor = true;
-			framesBtwMove = 0;
+			moveUp();
 		}
 		if (FlxG.keys.justPressed.DOWN && movVer == true){
-			velocity.x = 0;
-			velocity.y = Reg.speed;
-			movVer = false;
-			movHor = true;
-			framesBtwMove = 0;
+			moveDown();
 		}
 	}
-	
+	function moveRight():Void 
+	{
+		velocity.x = Reg.speed;
+		velocity.y = 0;
+		movVer = true;
+		movHor = false;
+		timer = 0;
+	}
+	function moveLeft():Void 
+	{
+		velocity.x = -Reg.speed;
+		velocity.y = 0;
+		movVer = true;
+		movHor = false;
+		timer = 0;
+	}
+	function moveUp():Void 
+	{
+		velocity.x = 0;
+		velocity.y = -Reg.speed;
+		movVer = false;
+		movHor = true;
+		timer = 0;
+	}
+	function moveDown():Void 
+	{
+		velocity.x = 0;
+		velocity.y = Reg.speed;
+		movVer = false;
+		movHor = true;
+		timer = 0;
+	}
 	function rotationPlayer():Void // In process
 	{
 		if (velocity.x > 0)

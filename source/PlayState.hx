@@ -26,7 +26,7 @@ class PlayState extends FlxState
 		
 		players.add(player1);
 		//players.add(player2);
-		players.add(player3);
+		//players.add(player3);
 		//players.add(player4);
 		add(players);
 	}
