@@ -36,12 +36,6 @@ class Player extends FlxSprite
 		velHor = 0;		// Receives the actually velocity.x
 		velVer = 0;		// Receives the actually velocity.y
 		timer = 0;		// Used in States 'MOVE' and 'SPACED'
-		setFacingFlip(FlxObject.RIGHT, true, false);
-		setFacingFlip(FlxObject.LEFT, false, false);
-		
-		animation.add("move", [0, 1, 2], 6, true); 	// Movement
-		animation.add("spaced", [3], 6, false); 	// When State.SPACED is actived
-		animation.add("death", [5, 6, 7, 8, 9], 3, false);	// Death animation
 		
 		switch (whichPlayer) 
 		{
@@ -58,7 +52,14 @@ class Player extends FlxSprite
 				animation.play("move");
 				velocity.x = -Reg.speed;
 		}
+		setFacingFlip(FlxObject.RIGHT, true, false);
+		setFacingFlip(FlxObject.LEFT, false, false);
+		setFacingFlip(FlxObject.UP, true, false);
+		setFacingFlip(FlxObject.DOWN, false, true);
 		currentState = States.MOVE;
+		animation.add("move", [0, 1, 2], 6, true); 	// Movement
+		animation.add("spaced", [3], 6, false); 	// When State.SPACED is actived
+		animation.add("death", [5, 6, 7, 8, 9], 5, false);	// Death animation
 	}
 	
 	override public function update(elapsed:Float):Void
@@ -72,23 +73,38 @@ class Player extends FlxSprite
 		switch (currentState) 
 		{
 			case States.MOVE:
+				animation.play("move");
 				movementAndOthers();
 				ghosted();
+				checkBoundaries();
 			case States.SPACED:
 				animation.play("spaced");
 				velocity.x = velHor;
 				velocity.y = velVer;
 				timer++;
-				if (timer >= 60)
+				if (timer >= 50)
 				{
 					timer = 0;
 					currentState = States.MOVE;
 				}
+				checkBoundaries();
 			case States.DEATH:
-				animation.play("death");
+				velocity.set(0, 0);
 				if (animation.name == "death" && animation.finished)
-					destroy();
+					kill();
 		}
+	}
+	function checkBoundaries() 
+	{
+		if (x <= 1)					 		die();
+		if (x >= camera.width - width)		die();
+		if (y <= 3)							die();
+		if (y >= camera.height - height) 	die();
+	}
+	public function die() 
+	{
+		currentState = States.DEATH;
+			animation.play("death");
 	}
 	function ghosted() 
 	{
@@ -186,7 +202,9 @@ class Player extends FlxSprite
 			facing = FlxObject.RIGHT;
 		else if(velocity.x < 0)
 			facing = FlxObject.LEFT;
-		//if (velocity.y > 0)
-		//else if (velocity.y < 0)
+		else if (velocity.y > 0)
+			facing = FlxObject.DOWN;
+		else if (velocity.y < 0)
+			facing = FlxObject.UP;
 	}
 }
