@@ -15,7 +15,7 @@ class PowerUp extends FlxSprite
 	{
 		super(X, Y);
 		whichPowerUp = WhichPowerUp;
-		loadGraphic(AssetPaths.powerUps__png, false, 11, 9);
+		loadGraphic(AssetPaths.powerUps__png, true, 11, 9);
 		animation.add("maxSpeed", [0]);
 		animation.add("minSpeed", [1]);
 		animation.add("shield", [2]);
@@ -28,8 +28,10 @@ class PowerUp extends FlxSprite
 			case 2:
 				animation.play("shield");
 		}
+		scale.set(2, 2);
+		updateHitbox();
 	}
-	function get_whichPowerUp():Int 
+	public function get_whichPowerUp():Int 
 	{
 		return whichPowerUp;
 	}

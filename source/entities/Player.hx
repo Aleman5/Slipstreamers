@@ -20,7 +20,7 @@ class Player extends FlxSprite
 	// Player things
 	private var whichPlayer:Int; // Determines the Player we are talking about
 	private var movHor:Bool; 	 // Exists to ask if PlayerX change movement horizontal
-	private var movVer:Bool; 	 // Exists to ask if PlayerX change movement vertical
+	private var movVer:Bool; 	 // Exists to ask if PlayerY change movement vertical
 	private var velHor:Float; 	 // Receives the actually velocity.x
 	private var velVer:Float; 	 // Receives the actually velocity.y
 	private var timer:Int; 		 // Used in States 'MOVE' and 'SPACED'
@@ -370,15 +370,15 @@ class Player extends FlxSprite
 		movHor = true;
 		timer = 0;
 	}
-	function get_boost():Bool 
+	public function get_boost():Bool 
 	{
 		return boost;
 	}
-	function get_unBoost():Bool 
+	public function get_unBoost():Bool 
 	{
 		return unBoost;
 	}
-	function get_shield():Bool 
+	public function get_shield():Bool 
 	{
 		return shield;
 	}
