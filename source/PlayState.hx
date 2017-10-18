@@ -64,8 +64,8 @@ class PlayState extends FlxState
 		timeTimed++;
 		if (timeTimed >= timer)
 		{
-			posX = r.int(3, 1021);
-			posY = r.int(3, 765);
+			posX = r.int(3, 1005);
+			posY = r.int(3, 750);
 			whichPUp = r.int(0, 2);
 			pUp = new PowerUp(posX, posY, whichPUp);
 			pUps.add(pUp);
@@ -79,18 +79,19 @@ class PlayState extends FlxState
 	{
 		FlxG.overlap(players, pUps, powered);
 	}
-	
-	public function powered() 
+	public function powered(players, pUps):Void // In process
 	{
 		whichPUp = pUp.get_whichPowerUp();
 		switch (whichPUp) 
 		{
 			case 0:
-				
+				Reg.playerRef.get_boost(true);
 			case 1:
-				
+				Reg.playerRef.get_unBoost(true);
 			case 2:
-				
+				Reg.playerRef.get_shield(true);
 		}
+		//pUps.kill();
+		pUp.kill();
 	}
 }

@@ -37,7 +37,7 @@ class Player extends FlxSprite
 	{
 		super(X, Y);
 		
-		// Variable inicialization
+		// Variables inicialization
 		whichPlayer = WhichPlayer;
 		velHor = 0;
 		velVer = 0;
@@ -49,10 +49,7 @@ class Player extends FlxSprite
 		unBoost = false;
 		shield = false;
 		setFacingFlip(FlxObject.RIGHT, true, false);
-		setFacingFlip(FlxObject.LEFT, false, false);
-		setFacingFlip(FlxObject.UP, true, false);
-		setFacingFlip(FlxObject.DOWN, false, true);
-		
+		setFacingFlip(FlxObject.LEFT, false, false);		
 		// Player creator
 		switch (whichPlayer) 
 		{
@@ -94,7 +91,6 @@ class Player extends FlxSprite
 				facing = FlxObject.DOWN;
 		}
 		currentState = States.MOVE;
-		
 		// Animation creator
 		animation.add("move", [0, 1, 2], 6, true); 	// Movement
 		animation.add("moveBoost", [3, 4, 5], 6, true);
@@ -242,23 +238,27 @@ class Player extends FlxSprite
 		velVer = velocity.y;
 		currentState = States.SPACED;
 	}
-	function movementPlayer1() // ↑ W 	↓ S 	← A 	→ D		 # Q		// In process
+	function movementPlayer1() // ↑ W 	↓ S 	← A 	→ D		 # Q
 	{
 		if (FlxG.keys.justPressed.D && movHor == true){
 			moveRight();
 			facing = FlxObject.RIGHT;
+			set_angle(0);
 		}
 		if (FlxG.keys.justPressed.A && movHor == true){
 			moveLeft();
 			facing = FlxObject.LEFT;
+			set_angle(0);
 		}
 		if (FlxG.keys.justPressed.W && movVer == true){
 			moveUp();
-			facing = FlxObject.UP; // In process
+			facing = FlxObject.LEFT;
+			set_angle(90);
 		}
 		if (FlxG.keys.justPressed.S && movVer == true){
 			moveDown();
-			facing = FlxObject.DOWN; // In process
+			facing = FlxObject.RIGHT;
+			set_angle(90);
 		}
 	}
 	function movementPlayer2() // ↑ UP 	↓ DOWN 	← LEFT 	→ RIGHT  # COMMA
@@ -266,18 +266,22 @@ class Player extends FlxSprite
 		if (FlxG.keys.justPressed.RIGHT && movHor == true){
 			moveRight();
 			facing = FlxObject.RIGHT;
+			set_angle(0);
 		}
 		if (FlxG.keys.justPressed.LEFT && movHor == true){
 			moveLeft();
 			facing = FlxObject.LEFT;
+			set_angle(0);
 		}
 		if (FlxG.keys.justPressed.UP && movVer == true){
 			moveUp();
-			facing = FlxObject.UP;
+			facing = FlxObject.LEFT;
+			set_angle(90);
 		}
 		if (FlxG.keys.justPressed.DOWN && movVer == true){
 			moveDown();
-			facing = FlxObject.DOWN;
+			facing = FlxObject.RIGHT;
+			set_angle(90);
 		}
 	}
 	function movementPlayer3() // ↑ U 	↓ J 	← H 	→ K		 # G
@@ -285,18 +289,22 @@ class Player extends FlxSprite
 		if (FlxG.keys.justPressed.K && movHor == true){
 			moveRight();
 			facing = FlxObject.RIGHT;
+			set_angle(0);
 		}
 		if (FlxG.keys.justPressed.H && movHor == true){
 			moveLeft();
 			facing = FlxObject.LEFT;
+			set_angle(0);
 		}
 		if (FlxG.keys.justPressed.U && movVer == true){
 			moveUp();
-			facing = FlxObject.UP;
+			facing = FlxObject.LEFT;
+			set_angle(90);
 		}
 		if (FlxG.keys.justPressed.J && movVer == true){
 			moveDown();
-			facing = FlxObject.DOWN;
+			facing = FlxObject.RIGHT;
+			set_angle(90);
 		}
 	}
 	function movementPlayer4() // ↑ 8 	↓ 5 	← 4 	→ 6 	 # 1		(from the 'pad')
@@ -304,18 +312,22 @@ class Player extends FlxSprite
 		if (FlxG.keys.justPressed.NUMPADSIX && movHor == true){
 			moveRight();
 			facing = FlxObject.RIGHT;
+			set_angle(0);
 		}
 		if (FlxG.keys.justPressed.NUMPADFOUR && movHor == true){
 			moveLeft();
 			facing = FlxObject.LEFT;
+			set_angle(0);
 		}
 		if (FlxG.keys.justPressed.NUMPADEIGHT && movVer == true){
 			moveUp();
-			facing = FlxObject.UP;
+			facing = FlxObject.LEFT;
+			set_angle(90);
 		}
 		if (FlxG.keys.justPressed.NUMPADFIVE && movVer == true){
 			moveDown();
-			facing = FlxObject.DOWN;
+			facing = FlxObject.RIGHT;
+			set_angle(90);
 		}
 	}
 	function moveRight()
@@ -372,14 +384,62 @@ class Player extends FlxSprite
 	}
 	public function get_boost():Bool 
 	{
-		return boost;
+		if (!boost)
+			return boost = value;
+		else
+		{
+			timerBoost = 0;
+			return boost = value;
+		}
 	}
 	public function get_unBoost():Bool 
 	{
-		return unBoost;
+		if (!unBoost)
+			return unBoost = value;
+		else
+		{
+			timerUnBoost = 0;
+			return unBoost = value;
+		}
 	}
 	public function get_shield():Bool 
 	{
-		return shield;
+		if(!shield)
+			return shield = value;
+		else 
+		{
+			timerShield = 0;
+			return shield = value;
+		}
 	}
+	/*public function set_boost(value:Bool):Bool 
+	{
+		if (!boost)
+			return boost = value;
+		else
+		{
+			timerBoost = 0;
+			return boost = value;
+		}
+	}
+	public function set_unBoost(value:Bool):Bool 
+	{
+		if (!unBoost)
+			return unBoost = value;
+		else
+		{
+			timerUnBoost = 0;
+			return unBoost = value;
+		}
+	}
+	public function set_shield(value:Bool):Bool 
+	{
+		if(!shield)
+			return shield = value;
+		else 
+		{
+			timerShield = 0;
+			return shield = value;
+		}
+	}*/
 }
