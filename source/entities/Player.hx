@@ -29,9 +29,9 @@ class Player extends FlxSprite
 	private var timerBoost:Int; 	// It´s the lifetime of 'boost'
 	private var timerUnBoost:Int; 	// It´s the lifetime of 'unBoost'
 	private var timerShield:Int; 	// It´s the lifetime of 'shield'
-	public var boost(get, null):Bool; 	// Determines if PowerUp 'boost' is actived
-	public var unBoost(get, null):Bool; // Determines if PowerUp 'unBoost' is actived
-	public var shield(get, null):Bool; 	// Determines if PowerUp 'shield' is actived
+	public var boost(default, set):Bool; 	// Determines if PowerUp 'boost' is actived
+	public var unBoost(default, set):Bool; // Determines if PowerUp 'unBoost' is actived
+	public var shield(default, set):Bool; 	// Determines if PowerUp 'shield' is actived
 	
 	public function new(?X:Float=0, ?Y:Float=0, WhichPlayer:Int) 
 	{
@@ -201,6 +201,7 @@ class Player extends FlxSprite
 	public function die()
 	{
 		currentState = States.DEATH;
+		set_angle(0);
 		animation.play("death");
 	}
 	function movementAndOthers()
@@ -382,37 +383,7 @@ class Player extends FlxSprite
 		movHor = true;
 		timer = 0;
 	}
-	public function get_boost():Bool 
-	{
-		if (!boost)
-			return boost = value;
-		else
-		{
-			timerBoost = 0;
-			return boost = value;
-		}
-	}
-	public function get_unBoost():Bool 
-	{
-		if (!unBoost)
-			return unBoost = value;
-		else
-		{
-			timerUnBoost = 0;
-			return unBoost = value;
-		}
-	}
-	public function get_shield():Bool 
-	{
-		if(!shield)
-			return shield = value;
-		else 
-		{
-			timerShield = 0;
-			return shield = value;
-		}
-	}
-	/*public function set_boost(value:Bool):Bool 
+	public function set_boost(value:Bool):Bool 
 	{
 		if (!boost)
 			return boost = value;
@@ -441,5 +412,5 @@ class Player extends FlxSprite
 			timerShield = 0;
 			return shield = value;
 		}
-	}*/
+	}
 }

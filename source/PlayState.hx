@@ -58,6 +58,12 @@ class PlayState extends FlxState
 		super.update(elapsed);
 		powerUpCreator();
 		checkCollisions();
+		levelReset();
+	}
+	function levelReset() 
+	{
+		if (FlxG.keys.justPressed.R)
+			FlxG.resetState();
 	}
 	function powerUpCreator() 
 	{
@@ -79,19 +85,19 @@ class PlayState extends FlxState
 	{
 		FlxG.overlap(players, pUps, powered);
 	}
-	public function powered(players, pUps):Void // In process
+	public function powered(p:Player, pU:PowerUp):Void // In process
 	{
-		whichPUp = pUp.get_whichPowerUp();
+		whichPUp = pU.get_whichPowerUp();
 		switch (whichPUp) 
 		{
 			case 0:
-				Reg.playerRef.get_boost(true);
+				p.set_boost(true);
 			case 1:
-				Reg.playerRef.get_unBoost(true);
+				p.set_unBoost(true);
 			case 2:
-				Reg.playerRef.get_shield(true);
+				p.set_shield(true);
 		}
 		//pUps.kill();
-		pUp.kill();
+		pU.kill();
 	}
 }
