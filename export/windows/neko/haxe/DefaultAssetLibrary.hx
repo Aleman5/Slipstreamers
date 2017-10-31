@@ -57,6 +57,12 @@ class DefaultAssetLibrary extends AssetLibrary {
 		
 		
 		
+		Font.registerFont (__ASSET__assets_images_elements_ttf);
+		
+		
+		
+		
+		
 		
 		
 		
@@ -72,6 +78,12 @@ class DefaultAssetLibrary extends AssetLibrary {
 		#if (windows || mac || linux)
 		
 		var useManifest = false;
+		useManifest = true;
+		useManifest = true;
+		useManifest = true;
+		useManifest = true;
+		useManifest = true;
+		useManifest = true;
 		useManifest = true;
 		useManifest = true;
 		useManifest = true;
@@ -509,11 +521,13 @@ class DefaultAssetLibrary extends AssetLibrary {
 
 
 
+@:keep class __ASSET__assets_images_elements_ttf extends openfl.text.Font { public function new () { super (); __fontPath = "assets/images/ELEMENTS.TTF"; fontName = "BN Elements"; }}
 
 
 #else
 
 
+class __ASSET__assets_images_elements_ttf extends openfl.text.Font { public function new () { super (); __fontPath = "assets/images/ELEMENTS.TTF"; fontName = "BN Elements";  }}
 class __ASSET__flixel_fonts_nokiafc22_ttf extends openfl.text.Font { public function new () { super (); __fontPath = "flixel/fonts/nokiafc22.ttf"; fontName = "Nokia Cellphone FC Small";  }}
 class __ASSET__flixel_fonts_monsterrat_ttf extends openfl.text.Font { public function new () { super (); __fontPath = "flixel/fonts/monsterrat.ttf"; fontName = "Monsterrat";  }}
 
@@ -579,6 +593,12 @@ class DefaultAssetLibrary extends AssetLibrary {
 		#if (openfl && !flash)
 		
 		
+		openfl.text.Font.registerFont (__ASSET__OPENFL__assets_images_elements_ttf);
+		
+		
+		
+		
+		
 		
 		
 		
@@ -594,8 +614,12 @@ class DefaultAssetLibrary extends AssetLibrary {
 		
 		#if flash
 		
-		path.set ("assets/images/powerUps.png", "assets/images/powerUps.png");
-		type.set ("assets/images/powerUps.png", AssetType.IMAGE);
+		path.set ("assets/images/blue.png", "assets/images/blue.png");
+		type.set ("assets/images/blue.png", AssetType.IMAGE);
+		path.set ("assets/images/ELEMENTS.TTF", "assets/images/ELEMENTS.TTF");
+		type.set ("assets/images/ELEMENTS.TTF", AssetType.FONT);
+		path.set ("assets/images/green.png", "assets/images/green.png");
+		type.set ("assets/images/green.png", AssetType.IMAGE);
 		path.set ("assets/images/player1.png", "assets/images/player1.png");
 		type.set ("assets/images/player1.png", AssetType.IMAGE);
 		path.set ("assets/images/player2.png", "assets/images/player2.png");
@@ -604,6 +628,14 @@ class DefaultAssetLibrary extends AssetLibrary {
 		type.set ("assets/images/player3.png", AssetType.IMAGE);
 		path.set ("assets/images/player4.png", "assets/images/player4.png");
 		type.set ("assets/images/player4.png", AssetType.IMAGE);
+		path.set ("assets/images/powerUps.png", "assets/images/powerUps.png");
+		type.set ("assets/images/powerUps.png", AssetType.IMAGE);
+		path.set ("assets/images/powerups2.png", "assets/images/powerups2.png");
+		type.set ("assets/images/powerups2.png", AssetType.IMAGE);
+		path.set ("assets/images/red.png", "assets/images/red.png");
+		type.set ("assets/images/red.png", AssetType.IMAGE);
+		path.set ("assets/images/yellow.png", "assets/images/yellow.png");
+		type.set ("assets/images/yellow.png", AssetType.IMAGE);
 		className.set ("flixel/sounds/beep.ogg", __ASSET__flixel_sounds_beep_ogg);
 		type.set ("flixel/sounds/beep.ogg", AssetType.SOUND);
 		className.set ("flixel/sounds/flixel.ogg", __ASSET__flixel_sounds_flixel_ogg);
@@ -621,7 +653,13 @@ class DefaultAssetLibrary extends AssetLibrary {
 		#elseif html5
 		
 		var id;
-		id = "assets/images/powerUps.png";
+		id = "assets/images/blue.png";
+		path.set (id, id);
+		type.set (id, AssetType.IMAGE);
+		id = "assets/images/ELEMENTS.TTF";
+		path.set (id, id);
+		type.set (id, AssetType.FONT);
+		id = "assets/images/green.png";
 		path.set (id, id);
 		type.set (id, AssetType.IMAGE);
 		id = "assets/images/player1.png";
@@ -634,6 +672,18 @@ class DefaultAssetLibrary extends AssetLibrary {
 		path.set (id, id);
 		type.set (id, AssetType.IMAGE);
 		id = "assets/images/player4.png";
+		path.set (id, id);
+		type.set (id, AssetType.IMAGE);
+		id = "assets/images/powerUps.png";
+		path.set (id, id);
+		type.set (id, AssetType.IMAGE);
+		id = "assets/images/powerups2.png";
+		path.set (id, id);
+		type.set (id, AssetType.IMAGE);
+		id = "assets/images/red.png";
+		path.set (id, id);
+		type.set (id, AssetType.IMAGE);
+		id = "assets/images/yellow.png";
 		path.set (id, id);
 		type.set (id, AssetType.IMAGE);
 		id = "flixel/sounds/beep.ogg";
@@ -677,6 +727,14 @@ class DefaultAssetLibrary extends AssetLibrary {
 		#if (windows || mac || linux)
 		
 		var useManifest = false;
+		useManifest = true;
+		
+		className.set ("assets/images/ELEMENTS.TTF", __ASSET__assets_images_elements_ttf);
+		type.set ("assets/images/ELEMENTS.TTF", AssetType.FONT);
+		useManifest = true;
+		useManifest = true;
+		useManifest = true;
+		useManifest = true;
 		useManifest = true;
 		useManifest = true;
 		useManifest = true;
@@ -1423,6 +1481,12 @@ class DefaultAssetLibrary extends AssetLibrary {
 
 
 
+
+
+
+
+
+
 @:keep @:bind #if display private #end class __ASSET__flixel_sounds_beep_ogg extends null { }
 @:keep @:bind #if display private #end class __ASSET__flixel_sounds_flixel_ogg extends null { }
 @:keep @:bind #if display private #end class __ASSET__flixel_fonts_nokiafc22_ttf extends null { }
@@ -1432,6 +1496,12 @@ class DefaultAssetLibrary extends AssetLibrary {
 
 
 #elseif html5
+
+
+@:keep #if display private #end class __ASSET__assets_images_elements_ttf extends lime.text.Font { public function new () { super (); name = "BN Elements"; } } 
+
+
+
 
 
 
@@ -1448,6 +1518,7 @@ class DefaultAssetLibrary extends AssetLibrary {
 
 #else
 
+@:keep #if display private #end class __ASSET__assets_images_elements_ttf extends lime.text.Font { public function new () { __fontPath = #if ios "assets/" + #end "assets/images/ELEMENTS.TTF"; name = "BN Elements"; super (); }}
 
 
 #if (windows || mac || linux || cpp)
@@ -1466,6 +1537,7 @@ class DefaultAssetLibrary extends AssetLibrary {
 #end
 
 #if (openfl && !flash)
+@:keep #if display private #end class __ASSET__OPENFL__assets_images_elements_ttf extends openfl.text.Font { public function new () { __fontPath = #if ios "assets/" + #end "assets/images/ELEMENTS.TTF"; name = "BN Elements"; super (); }}
 @:keep #if display private #end class __ASSET__OPENFL__flixel_fonts_nokiafc22_ttf extends openfl.text.Font { public function new () { var font = new __ASSET__flixel_fonts_nokiafc22_ttf (); src = font.src; name = font.name; super (); }}
 @:keep #if display private #end class __ASSET__OPENFL__flixel_fonts_monsterrat_ttf extends openfl.text.Font { public function new () { var font = new __ASSET__flixel_fonts_monsterrat_ttf (); src = font.src; name = font.name; super (); }}
 
