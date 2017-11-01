@@ -20,18 +20,18 @@ class Player extends FlxSprite
 	// Player things
 	private var whichPlayer:Int; // Determines the Player we are talking about
 	private var movHor:Bool; 	 // Exists to ask if PlayerX change movement horizontal
-	private var movVer:Bool; 	 // Exists to ask if PlayerY change movement vertical
+	private var movVer:Bool; 	 // 				 PlayerY				 vertical
 	private var velHor:Float; 	 // Receives the actually velocity.x
-	private var velVer:Float; 	 // Receives the actually velocity.y
+	private var velVer:Float; 	 // 					  velocity.y
 	private var timer:Int; 		 // Used in States 'MOVE' and 'SPACED'
 	private var currentState:States;
 	// Boost things
 	private var timerBoost:Int; 	// It´s the lifetime of 'boost'
-	private var timerUnBoost:Int; 	// It´s the lifetime of 'unBoost'
-	private var timerShield:Int; 	// It´s the lifetime of 'shield'
+	private var timerUnBoost:Int; 	// 						'unBoost'
+	private var timerShield:Int; 	// 						'shield'
 	public var boost(default, set):Bool; 	// Determines if PowerUp 'boost' is actived
-	public var unBoost(default, set):Bool; // Determines if PowerUp 'unBoost' is actived
-	public var shield(default, set):Bool; 	// Determines if PowerUp 'shield' is actived
+	public var unBoost(default, set):Bool;  // 						 'unBoost'
+	public var shield(default, set):Bool; 	// 						 'shield'
 	
 	public function new(?X:Float=0, ?Y:Float=0, WhichPlayer:Int) 
 	{
@@ -79,7 +79,8 @@ class Player extends FlxSprite
 				movVer = false;
 				animation.play("move");
 				velocity.y = Reg.speed;
-				facing = FlxObject.UP;
+				facing = FlxObject.LEFT;
+				set_angle(90);
 			case 4:
 				loadGraphic(AssetPaths.player4__png, true, 16, 8);
 				scale.set(2, 2);
@@ -88,7 +89,8 @@ class Player extends FlxSprite
 				movVer = false;
 				animation.play("move");
 				velocity.y = -Reg.speed;
-				facing = FlxObject.DOWN;
+				facing = FlxObject.RIGHT;
+				set_angle(90);
 		}
 		currentState = States.MOVE;
 		// Animation creator

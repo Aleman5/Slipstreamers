@@ -24,8 +24,6 @@ class PlayState extends FlxState
 	private var r:FlxRandom;
 	private var pUp:PowerUp;
 	private var pUps:FlxTypedGroup<PowerUp>;
-	// Collision Getted things
-	
 	
 	override public function create():Void
 	{
@@ -85,7 +83,7 @@ class PlayState extends FlxState
 	{
 		FlxG.overlap(players, pUps, powered);
 	}
-	public function powered(p:Player, pU:PowerUp):Void // In process
+	public function powered(p:Player, pU:PowerUp):Void
 	{
 		whichPUp = pU.get_whichPowerUp();
 		switch (whichPUp) 
@@ -97,7 +95,6 @@ class PlayState extends FlxState
 			case 2:
 				p.set_shield(true);
 		}
-		//pUps.kill();
 		pU.kill();
 	}
 }
