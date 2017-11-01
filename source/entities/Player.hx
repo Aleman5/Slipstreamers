@@ -54,8 +54,7 @@ class Player extends FlxSprite
 		switch (whichPlayer) 
 		{
 			case 1:
-				loadGraphic(AssetPaths.player1__png, true, 16, 8);
-				scale.set(2, 2);
+				loadGraphic(AssetPaths.red__png, true, 40, 32);
 				updateHitbox();
 				movHor = false;
 				movVer = true;
@@ -63,8 +62,7 @@ class Player extends FlxSprite
 				velocity.x = Reg.speed;
 				facing = FlxObject.RIGHT;
 			case 2:
-				loadGraphic(AssetPaths.player2__png, true, 16, 8);
-				scale.set(2, 2);
+				loadGraphic(AssetPaths.blue__png, true, 16, 8);
 				updateHitbox();
 				movHor = false;
 				movVer = true;
@@ -72,8 +70,7 @@ class Player extends FlxSprite
 				velocity.x = -Reg.speed;
 				facing = FlxObject.LEFT;
 			case 3:
-				loadGraphic(AssetPaths.player3__png, true, 16, 8);
-				scale.set(2, 2);
+				loadGraphic(AssetPaths.green__png, true, 16, 8);
 				updateHitbox();
 				movHor = true;
 				movVer = false;
@@ -82,8 +79,7 @@ class Player extends FlxSprite
 				facing = FlxObject.LEFT;
 				set_angle(90);
 			case 4:
-				loadGraphic(AssetPaths.player4__png, true, 16, 8);
-				scale.set(2, 2);
+				loadGraphic(AssetPaths.yellow__png, true, 16, 8);
 				updateHitbox();
 				movHor = true;
 				movVer = false;
@@ -94,14 +90,14 @@ class Player extends FlxSprite
 		}
 		currentState = States.MOVE;
 		// Animation creator
-		animation.add("move", [0, 1, 2], 6, true); 	// Movement
-		animation.add("moveBoost", [3, 4, 5], 6, true);
-		animation.add("moveUnBoost", [6, 7, 8], 6, true);
-		animation.add("moveShield", [9, 10, 11], 6, true);
-		animation.add("moveShieldBoost", [12, 13, 14], 6, true);
-		animation.add("moveShieldUnBoost", [15, 16, 17], 6, true);
+		animation.add("move", [7, 1, 20], 8, true); 	// Movement
+		animation.add("moveBoost", [21, 15, 9], 8, true);
+		animation.add("moveUnBoost", [10, 4, 23], 8, true);
+		animation.add("moveShield", [14, 8, 2], 8, true);
+		animation.add("moveShieldBoost", [3, 22, 16], 8, true);
+		animation.add("moveShieldUnBoost", [17, 11, 5], 8, true);
 		animation.add("spaced", [18], 6, false); 	// When State.SPACED is actived
-		animation.add("death", [19, 20, 21, 22, 23], 5, false);	// Death animation
+		animation.add("death", [12, 6, 0, 19, 13], 8, false);	// Death animation
 	}
 	override public function update(elapsed:Float)
 	{
