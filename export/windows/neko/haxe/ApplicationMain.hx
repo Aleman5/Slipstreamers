@@ -58,7 +58,7 @@ class ApplicationMain {
 				#if mobile
 				
 				forceWidth = 1024;
-				forceHeight = 640;
+				forceHeight = 608;
 				
 				container = new flash.display.Sprite ();
 				barA = new flash.display.Sprite ();
@@ -127,7 +127,7 @@ class ApplicationMain {
 				}
 				
 			},
-			1024, 640, 
+			1024, 608, 
 			60, 
 			0,
 			(true ? flash.Lib.HARDWARE : 0) |
@@ -248,7 +248,7 @@ class ScaledStage extends flash.display.Stage {
 	
 	private override function get_stageHeight ():Int {
 		
-		return 640;
+		return 608;
 	
 	}
 	
@@ -325,11 +325,11 @@ class ApplicationMain {
 		wx.App.boot (function () {
 			
 			
-			frame = wx.Frame.create (null, null, "Slipstreamers", null, { width: 1024, height: 640 });
+			frame = wx.Frame.create (null, null, "Slipstreamers", null, { width: 1024, height: 608 });
 			
 			
 			#if openfl
-			var stage = wx.NMEStage.create (frame, null, null, { width: 1024, height: 640 });
+			var stage = wx.NMEStage.create (frame, null, null, { width: 1024, height: 608 });
 			#end
 			
 			var hasMain = false;
@@ -515,7 +515,7 @@ class ApplicationMain {
 		
 		config = {
 			
-			build: "217",
+			build: "229",
 			company: "Aleman5",
 			file: "Slipstreamers",
 			fps: 60,
@@ -533,7 +533,7 @@ class ApplicationMain {
 					display: 0,
 					fullscreen: false,
 					hardware: true,
-					height: 640,
+					height: 608,
 					parameters: "{}",
 					resizable: true,
 					stencilBuffer: false,
@@ -549,7 +549,7 @@ class ApplicationMain {
 		
 		#if (js && html5)
 		#if (munit || utest)
-		openfl.Lib.embed (null, 1024, 640, "null");
+		openfl.Lib.embed (null, 1024, 608, "null");
 		#end
 		#else
 		create ();

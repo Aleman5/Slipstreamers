@@ -23,13 +23,17 @@ class LevelSelector extends FlxState
 		totalPlayers = 2;
 		
 		playersTxt = new FlxText(camera.width / 4, camera.height / 4, 0, "How much players: " + totalPlayers, 16, true);
+		
 		removePBtn = new FlxButton(playersTxt.x + 220, playersTxt.y, "--", removePlayer);
 		removePBtn.setGraphicSize(32, 32);
 		removePBtn.updateHitbox();
+		
 		addPBtn = new FlxButton(removePBtn.x + removePBtn.width + 2, playersTxt.y, "++", addPlayer);
 		addPBtn.setGraphicSize(32, 32);
 		addPBtn.updateHitbox();
+		
 		playBtn = new FlxButton(camera.width * 3 / 4, camera.height * 3 / 4, "Play!", playGame);
+		
 		menuBtn = new FlxButton(camera.width / 4, camera.height * 3 / 4, "Go back", returnToMenu);
 		// Setting text format
 		playersTxt.setFormat(AssetPaths.ELEMENTS__TTF, 16);

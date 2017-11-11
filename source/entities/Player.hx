@@ -5,12 +5,13 @@ import flixel.group.FlxGroup.FlxTypedGroup;
 import flixel.system.FlxAssets.FlxGraphicAsset;
 import flixel.FlxG;
 import flixel.FlxObject;
+import flixel.effects.FlxFlicker;
 
 /**
  * ...
  * @author Aleman5
  */
- enum States{ MOVE; SPACED; DEATH; }
+ enum States{ MOVE; SPACED; FLICKERING; DEATH; }
  enum StatesFaces{ UP; DOWN; LEFT; RIGHT; }
  
 class Player extends FlxSprite 
@@ -86,8 +87,11 @@ class Player extends FlxSprite
 	}
 	override public function update(elapsed:Float)
 	{
-		boolDurationTest();
-		stateFacesMachine();
+		if (currentState != States.FLICKERING)
+		{
+			boolDurationTest();
+			stateFacesMachine();
+		}
 		stateMachine();
 		super.update(elapsed);
 	}
@@ -189,6 +193,10 @@ class Player extends FlxSprite
 					currentState = States.MOVE;
 				}
 				checkBoundaries();
+			case States.FLICKERING:
+				velocity.set(0, 0);
+				if (!FlxFlicker.isFlickering(this))
+						currentState = States.MOVE;
 			case States.DEATH:
 				velocity.set(0, 0);
 				if (animation.name == "death" && animation.finished)
@@ -215,15 +223,38 @@ class Player extends FlxSprite
 	}
 	function checkBoundaries()
 	{
-		if (x <= 1)					 		die();
-		if (x >= camera.width - width)		die();
-		if (y <= 3)							die();
-		if (y >= camera.height - height)	die();
-	}
-	public function die()
-	{
-		currentState = States.DEATH;
-		animation.play("death");
+		if (x <= 1)
+		{
+			changeToFlickering();
+			currentStateFace = StatesFaces.RIGHT;
+			facing = FlxObject.RIGHT;
+			set_angle(0);
+			x += 5;
+		}
+		if (x >= camera.width - width)
+		{
+			changeToFlickering();
+			currentStateFace = StatesFaces.LEFT;
+			facing = FlxObject.LEFT;
+			set_angle(0);
+			x -= 5;
+		}
+		if (y <= 3)
+		{
+			changeToFlickering();
+			currentStateFace = StatesFaces.DOWN;
+			facing = FlxObject.RIGHT;
+			set_angle(90);
+			y += 5;
+		}
+		if (y >= camera.height - height)
+		{
+			changeToFlickering();
+			currentStateFace = StatesFaces.UP;
+			facing = FlxObject.LEFT;
+			set_angle(90);
+			y -= 5;
+		}
 	}
 	function movementAndOthers()
 	{
@@ -263,126 +294,83 @@ class Player extends FlxSprite
 	function movementPlayer1() // ↑ W 	↓ S 	← A 	→ D		 # Q
 	{
 		if (FlxG.keys.justPressed.D && currentStateFace != StatesFaces.LEFT)
-		{
-			currentStateFace = StatesFaces.RIGHT;
-			facing = FlxObject.RIGHT;
-			set_angle(0);
-			timer = 0;
-		}
+			moveRight();
 		if (FlxG.keys.justPressed.A && currentStateFace != StatesFaces.RIGHT)
-		{
-			currentStateFace = StatesFaces.LEFT;
-			facing = FlxObject.LEFT;
-			set_angle(0);
-			timer = 0;
-		}
+			moveLeft();
 		if (FlxG.keys.justPressed.W && currentStateFace != StatesFaces.DOWN)
-		{
-			currentStateFace = StatesFaces.UP;
-			facing = FlxObject.LEFT;
-			set_angle(90);
-			timer = 0;
-		}
+			moveUp();
 		if (FlxG.keys.justPressed.S && currentStateFace != StatesFaces.UP)
-		{
-			currentStateFace = StatesFaces.DOWN;
-			facing = FlxObject.RIGHT;
-			set_angle(90);
-			timer = 0;
-		}
+			moveDown();
 	}
 	function movementPlayer2() // ↑ UP 	↓ DOWN 	← LEFT 	→ RIGHT  # COMMA
 	{
 		if (FlxG.keys.justPressed.RIGHT && currentStateFace != StatesFaces.LEFT)
-		{
-			currentStateFace = StatesFaces.RIGHT;
-			facing = FlxObject.RIGHT;
-			set_angle(0);
-			timer = 0;
-		}
+			moveRight();
 		if (FlxG.keys.justPressed.LEFT && currentStateFace != StatesFaces.RIGHT)
-		{
-			currentStateFace = StatesFaces.LEFT;
-			facing = FlxObject.LEFT;
-			set_angle(0);
-			timer = 0;
-		}
+			moveLeft();
 		if (FlxG.keys.justPressed.UP && currentStateFace != StatesFaces.DOWN)
-		{
-			currentStateFace = StatesFaces.UP;
-			facing = FlxObject.LEFT;
-			set_angle(90);
-			timer = 0;
-		}
+			moveUp();
 		if (FlxG.keys.justPressed.DOWN && currentStateFace != StatesFaces.UP)
-		{
-			currentStateFace = StatesFaces.DOWN;
-			facing = FlxObject.RIGHT;
-			set_angle(90);
-			timer = 0;
-		}
+			moveDown();
 	}
 	function movementPlayer3() // ↑ U 	↓ J 	← H 	→ K		 # G
 	{
 		if (FlxG.keys.justPressed.K && currentStateFace != StatesFaces.LEFT)
-		{
-			currentStateFace = StatesFaces.RIGHT;
-			facing = FlxObject.RIGHT;
-			set_angle(0);
-			timer = 0;
-		}
+			moveRight();
 		if (FlxG.keys.justPressed.H && currentStateFace != StatesFaces.RIGHT)
-		{
-			currentStateFace = StatesFaces.LEFT;
-			facing = FlxObject.LEFT;
-			set_angle(0);
-			timer = 0;
-		}
+			moveLeft();
 		if (FlxG.keys.justPressed.U && currentStateFace != StatesFaces.DOWN)
-		{
-			currentStateFace = StatesFaces.UP;
-			facing = FlxObject.LEFT;
-			set_angle(90);
-			timer = 0;
-		}
+			moveUp();
 		if (FlxG.keys.justPressed.J && currentStateFace != StatesFaces.UP)
-		{
-			currentStateFace = StatesFaces.DOWN;
-			facing = FlxObject.RIGHT;
-			set_angle(90);
-			timer = 0;
-		}
+			moveDown();
 	}
 	function movementPlayer4() // ↑ 8 	↓ 5 	← 4 	→ 6 	 # 1		(from the 'pad')
 	{
 		if (FlxG.keys.justPressed.NUMPADSIX && currentStateFace != StatesFaces.LEFT)
-		{
-			currentStateFace = StatesFaces.RIGHT;
-			facing = FlxObject.RIGHT;
-			set_angle(0);
-			timer = 0;
-		}
+			moveRight();
 		if (FlxG.keys.justPressed.NUMPADFOUR && currentStateFace != StatesFaces.RIGHT)
-		{
-			currentStateFace = StatesFaces.LEFT;
-			facing = FlxObject.LEFT;
-			set_angle(0);
-			timer = 0;
-		}
+			moveLeft();
 		if (FlxG.keys.justPressed.NUMPADEIGHT && currentStateFace != StatesFaces.DOWN)
-		{
-			currentStateFace = StatesFaces.UP;
-			facing = FlxObject.LEFT;
-			set_angle(90);
-			timer = 0;
-		}
+			moveUp();
 		if (FlxG.keys.justPressed.NUMPADFIVE && currentStateFace != StatesFaces.UP)
-		{
-			currentStateFace = StatesFaces.DOWN;
-			facing = FlxObject.RIGHT;
-			set_angle(90);
-			timer = 0;
-		}
+			moveDown();
+	}
+	function moveRight()
+	{
+		currentStateFace = StatesFaces.RIGHT;
+		facing = FlxObject.RIGHT;
+		set_angle(0);
+		timer = 0;
+	}
+	function moveLeft()
+	{
+		currentStateFace = StatesFaces.LEFT;
+		facing = FlxObject.LEFT;
+		set_angle(0);
+		timer = 0;
+	}
+	function moveUp()
+	{
+		currentStateFace = StatesFaces.UP;
+		facing = FlxObject.LEFT;
+		set_angle(90);
+		timer = 0;
+	}
+	function moveDown()
+	{
+		currentStateFace = StatesFaces.DOWN;
+		facing = FlxObject.RIGHT;
+		set_angle(90);
+		timer = 0;
+	}
+	public function changeToFlickering()
+	{
+		currentState = States.FLICKERING;
+		animation.play("spaced");
+		boost = false;
+		unBoost = false;
+		shield = false;
+		FlxFlicker.flicker(this, 1, 0.1, true, true);
 	}
 	public function set_boost(value:Bool):Bool 
 	{
