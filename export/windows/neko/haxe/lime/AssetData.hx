@@ -16,12 +16,8 @@ class AssetData {
 		
 		if (!initialized) {
 			
-			path.set ("assets/images/blue.png", "assets/images/blue.png");
-			type.set ("assets/images/blue.png", Reflect.field (AssetType, "image".toUpperCase ()));
-			path.set ("assets/images/ELEMENTS.TTF", "assets/images/ELEMENTS.TTF");
-			type.set ("assets/images/ELEMENTS.TTF", Reflect.field (AssetType, "font".toUpperCase ()));
-			path.set ("assets/images/green.png", "assets/images/green.png");
-			type.set ("assets/images/green.png", Reflect.field (AssetType, "image".toUpperCase ()));
+			path.set ("assets/images/powerUps.png", "assets/images/powerUps.png");
+			type.set ("assets/images/powerUps.png", Reflect.field (AssetType, "image".toUpperCase ()));
 			path.set ("assets/images/player1.png", "assets/images/player1.png");
 			type.set ("assets/images/player1.png", Reflect.field (AssetType, "image".toUpperCase ()));
 			path.set ("assets/images/player2.png", "assets/images/player2.png");
@@ -30,10 +26,14 @@ class AssetData {
 			type.set ("assets/images/player3.png", Reflect.field (AssetType, "image".toUpperCase ()));
 			path.set ("assets/images/player4.png", "assets/images/player4.png");
 			type.set ("assets/images/player4.png", Reflect.field (AssetType, "image".toUpperCase ()));
-			path.set ("assets/images/powerUps.png", "assets/images/powerUps.png");
-			type.set ("assets/images/powerUps.png", Reflect.field (AssetType, "image".toUpperCase ()));
 			path.set ("assets/images/powerups2.png", "assets/images/powerups2.png");
 			type.set ("assets/images/powerups2.png", Reflect.field (AssetType, "image".toUpperCase ()));
+			path.set ("assets/images/blue.png", "assets/images/blue.png");
+			type.set ("assets/images/blue.png", Reflect.field (AssetType, "image".toUpperCase ()));
+			path.set ("assets/images/green.png", "assets/images/green.png");
+			type.set ("assets/images/green.png", Reflect.field (AssetType, "image".toUpperCase ()));
+			path.set ("assets/images/ELEMENTS.TTF", "assets/images/ELEMENTS.TTF");
+			type.set ("assets/images/ELEMENTS.TTF", Reflect.field (AssetType, "font".toUpperCase ()));
 			path.set ("assets/images/red.png", "assets/images/red.png");
 			type.set ("assets/images/red.png", Reflect.field (AssetType, "image".toUpperCase ()));
 			path.set ("assets/images/yellow.png", "assets/images/yellow.png");

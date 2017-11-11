@@ -50,6 +50,30 @@ class ApplicationMain {
 		types.push (lime.Assets.AssetType.IMAGE);
 		
 		
+		urls.push ("assets/images/powerups2.png");
+		types.push (lime.Assets.AssetType.IMAGE);
+		
+		
+		urls.push ("assets/images/blue.png");
+		types.push (lime.Assets.AssetType.IMAGE);
+		
+		
+		urls.push ("assets/images/green.png");
+		types.push (lime.Assets.AssetType.IMAGE);
+		
+		
+		urls.push ("BN Elements");
+		types.push (lime.Assets.AssetType.FONT);
+		
+		
+		urls.push ("assets/images/red.png");
+		types.push (lime.Assets.AssetType.IMAGE);
+		
+		
+		urls.push ("assets/images/yellow.png");
+		types.push (lime.Assets.AssetType.IMAGE);
+		
+		
 		urls.push ("flixel/sounds/beep.mp3");
 		types.push (lime.Assets.AssetType.MUSIC);
 		
@@ -135,7 +159,7 @@ class ApplicationMain {
 		
 		config = {
 			
-			build: "115",
+			build: "202",
 			company: "Aleman5",
 			file: "Slipstreamers",
 			fps: 60,
@@ -153,7 +177,7 @@ class ApplicationMain {
 					display: 0,
 					fullscreen: false,
 					hardware: true,
-					height: 768,
+					height: 640,
 					parameters: "{}",
 					resizable: true,
 					stencilBuffer: true,
@@ -177,7 +201,7 @@ class ApplicationMain {
 		
 		#if (js && html5)
 		#if (munit || utest)
-		openfl.Lib.embed (null, 1024, 768, "000000");
+		openfl.Lib.embed (null, 1024, 640, "000000");
 		#end
 		#else
 		create ();

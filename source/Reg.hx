@@ -7,8 +7,8 @@ import entities.Player;
  */
 class Reg 
 {
-	static public var speed = 130;
-	static public var speedBoost = 200; // 115% de la speed normal
-	static public var speedUnBoost = 30; // 85% de la speed normal
+	static public var speed = 120;
+	static public var speedBoost = 138; // 115% de la speed normal
+	static public var speedUnBoost = 102; // 85% de la speed normal
 	
 }

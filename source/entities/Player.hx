@@ -1,6 +1,7 @@
 package entities;
 
 import flixel.FlxSprite;
+import flixel.group.FlxGroup.FlxTypedGroup;
 import flixel.system.FlxAssets.FlxGraphicAsset;
 import flixel.FlxG;
 import flixel.FlxObject;
@@ -9,22 +10,18 @@ import flixel.FlxObject;
  * ...
  * @author Aleman5
  */
- enum States
- {
-	MOVE;
-	SPACED;
-	DEATH;
- }
+ enum States{ MOVE; SPACED; DEATH; }
+ enum StatesFaces{ UP; DOWN; LEFT; RIGHT; }
+ 
 class Player extends FlxSprite 
 {
 	// Player things
 	private var whichPlayer:Int; // Determines the Player we are talking about
-	private var movHor:Bool; 	 // Exists to ask if PlayerX change movement horizontal
-	private var movVer:Bool; 	 // 				 PlayerY				 vertical
-	private var velHor:Float; 	 // Receives the actually velocity.x
-	private var velVer:Float; 	 // 					  velocity.y
+	private var velHor:Float; 	 // Appears in ghosted()
+	private var velVer:Float; 	 // 
 	private var timer:Int; 		 // Used in States 'MOVE' and 'SPACED'
 	private var currentState:States;
+	private var currentStateFace:StatesFaces;
 	// Boost things
 	private var timerBoost:Int; 	// It´s the lifetime of 'boost'
 	private var timerUnBoost:Int; 	// 						'unBoost'
@@ -49,61 +46,88 @@ class Player extends FlxSprite
 		unBoost = false;
 		shield = false;
 		setFacingFlip(FlxObject.RIGHT, true, false);
-		setFacingFlip(FlxObject.LEFT, false, false);		
+		setFacingFlip(FlxObject.LEFT, false, false);
 		// Player creator
 		switch (whichPlayer) 
 		{
 			case 1:
 				loadGraphic(AssetPaths.red__png, true, 40, 32);
-				updateHitbox();
-				movHor = false;
-				movVer = true;
-				animation.play("move");
 				velocity.x = Reg.speed;
 				facing = FlxObject.RIGHT;
+				currentStateFace = StatesFaces.RIGHT;
 			case 2:
-				loadGraphic(AssetPaths.blue__png, true, 16, 8);
-				updateHitbox();
-				movHor = false;
-				movVer = true;
-				animation.play("move");
+				loadGraphic(AssetPaths.blue__png, true, 40, 32);
 				velocity.x = -Reg.speed;
 				facing = FlxObject.LEFT;
+				currentStateFace = StatesFaces.LEFT;
 			case 3:
-				loadGraphic(AssetPaths.green__png, true, 16, 8);
-				updateHitbox();
-				movHor = true;
-				movVer = false;
-				animation.play("move");
+				loadGraphic(AssetPaths.green__png, true, 40, 32);
 				velocity.y = Reg.speed;
 				facing = FlxObject.LEFT;
 				set_angle(90);
+				currentStateFace = StatesFaces.DOWN;
 			case 4:
-				loadGraphic(AssetPaths.yellow__png, true, 16, 8);
-				updateHitbox();
-				movHor = true;
-				movVer = false;
-				animation.play("move");
+				loadGraphic(AssetPaths.yellow__png, true, 40, 32);
 				velocity.y = -Reg.speed;
 				facing = FlxObject.RIGHT;
 				set_angle(90);
+				currentStateFace = StatesFaces.UP;
 		}
 		currentState = States.MOVE;
 		// Animation creator
-		animation.add("move", [7, 1, 20], 8, true); 	// Movement
+		animation.add("move", [7, 1, 20], 8, true);
 		animation.add("moveBoost", [21, 15, 9], 8, true);
 		animation.add("moveUnBoost", [10, 4, 23], 8, true);
 		animation.add("moveShield", [14, 8, 2], 8, true);
 		animation.add("moveShieldBoost", [3, 22, 16], 8, true);
 		animation.add("moveShieldUnBoost", [17, 11, 5], 8, true);
-		animation.add("spaced", [18], 6, false); 	// When State.SPACED is actived
-		animation.add("death", [12, 6, 0, 19, 13], 8, false);	// Death animation
+		animation.add("spaced", [18], 6, false);
+		animation.add("death", [12, 6, 0, 19, 13], 8, false);
 	}
 	override public function update(elapsed:Float)
 	{
 		boolDurationTest();
+		stateFacesMachine();
 		stateMachine();
 		super.update(elapsed);
+	}
+	function stateFacesMachine() 
+	{
+		switch (currentStateFace) 
+		{
+			case StatesFaces.RIGHT:
+				if (boost)
+					velocity.x = Reg.speedBoost;
+				else if (unBoost)
+					velocity.x = Reg.speedUnBoost;
+				else 
+					velocity.x = Reg.speed;
+				velocity.y = 0;
+			case StatesFaces.LEFT:
+				if (boost)
+					velocity.x = -Reg.speedBoost;
+				else if (unBoost)
+					velocity.x = -Reg.speedUnBoost;
+				else 
+					velocity.x = -Reg.speed;
+				velocity.y = 0;
+			case StatesFaces.DOWN:
+				velocity.x = 0;
+				if (boost)
+					velocity.y = Reg.speedBoost;
+				else if (unBoost)
+					velocity.y = Reg.speedUnBoost;
+				else 
+					velocity.y = Reg.speed;
+			case StatesFaces.UP:
+				velocity.x = 0;
+				if (boost)
+					velocity.y = -Reg.speedBoost;
+				else if (unBoost)
+					velocity.y = -Reg.speedUnBoost;
+				else 
+					velocity.y = -Reg.speed;
+		}
 	}
 	function boolDurationTest() 
 	{	
@@ -192,14 +216,13 @@ class Player extends FlxSprite
 	function checkBoundaries()
 	{
 		if (x <= 1)					 		die();
-		if (x >= camera.width - width - 2)	die();
+		if (x >= camera.width - width)		die();
 		if (y <= 3)							die();
-		if (y >= camera.height - height - 2)die();
+		if (y >= camera.height - height)	die();
 	}
 	public function die()
 	{
 		currentState = States.DEATH;
-		set_angle(0);
 		animation.play("death");
 	}
 	function movementAndOthers()
@@ -239,147 +262,127 @@ class Player extends FlxSprite
 	}
 	function movementPlayer1() // ↑ W 	↓ S 	← A 	→ D		 # Q
 	{
-		if (FlxG.keys.justPressed.D && movHor == true){
-			moveRight();
+		if (FlxG.keys.justPressed.D && currentStateFace != StatesFaces.LEFT)
+		{
+			currentStateFace = StatesFaces.RIGHT;
 			facing = FlxObject.RIGHT;
 			set_angle(0);
+			timer = 0;
 		}
-		if (FlxG.keys.justPressed.A && movHor == true){
-			moveLeft();
+		if (FlxG.keys.justPressed.A && currentStateFace != StatesFaces.RIGHT)
+		{
+			currentStateFace = StatesFaces.LEFT;
 			facing = FlxObject.LEFT;
 			set_angle(0);
+			timer = 0;
 		}
-		if (FlxG.keys.justPressed.W && movVer == true){
-			moveUp();
+		if (FlxG.keys.justPressed.W && currentStateFace != StatesFaces.DOWN)
+		{
+			currentStateFace = StatesFaces.UP;
 			facing = FlxObject.LEFT;
 			set_angle(90);
+			timer = 0;
 		}
-		if (FlxG.keys.justPressed.S && movVer == true){
-			moveDown();
+		if (FlxG.keys.justPressed.S && currentStateFace != StatesFaces.UP)
+		{
+			currentStateFace = StatesFaces.DOWN;
 			facing = FlxObject.RIGHT;
 			set_angle(90);
+			timer = 0;
 		}
 	}
 	function movementPlayer2() // ↑ UP 	↓ DOWN 	← LEFT 	→ RIGHT  # COMMA
 	{
-		if (FlxG.keys.justPressed.RIGHT && movHor == true){
-			moveRight();
+		if (FlxG.keys.justPressed.RIGHT && currentStateFace != StatesFaces.LEFT)
+		{
+			currentStateFace = StatesFaces.RIGHT;
 			facing = FlxObject.RIGHT;
 			set_angle(0);
+			timer = 0;
 		}
-		if (FlxG.keys.justPressed.LEFT && movHor == true){
-			moveLeft();
+		if (FlxG.keys.justPressed.LEFT && currentStateFace != StatesFaces.RIGHT)
+		{
+			currentStateFace = StatesFaces.LEFT;
 			facing = FlxObject.LEFT;
 			set_angle(0);
+			timer = 0;
 		}
-		if (FlxG.keys.justPressed.UP && movVer == true){
-			moveUp();
+		if (FlxG.keys.justPressed.UP && currentStateFace != StatesFaces.DOWN)
+		{
+			currentStateFace = StatesFaces.UP;
 			facing = FlxObject.LEFT;
 			set_angle(90);
+			timer = 0;
 		}
-		if (FlxG.keys.justPressed.DOWN && movVer == true){
-			moveDown();
+		if (FlxG.keys.justPressed.DOWN && currentStateFace != StatesFaces.UP)
+		{
+			currentStateFace = StatesFaces.DOWN;
 			facing = FlxObject.RIGHT;
 			set_angle(90);
+			timer = 0;
 		}
 	}
 	function movementPlayer3() // ↑ U 	↓ J 	← H 	→ K		 # G
 	{
-		if (FlxG.keys.justPressed.K && movHor == true){
-			moveRight();
+		if (FlxG.keys.justPressed.K && currentStateFace != StatesFaces.LEFT)
+		{
+			currentStateFace = StatesFaces.RIGHT;
 			facing = FlxObject.RIGHT;
 			set_angle(0);
+			timer = 0;
 		}
-		if (FlxG.keys.justPressed.H && movHor == true){
-			moveLeft();
+		if (FlxG.keys.justPressed.H && currentStateFace != StatesFaces.RIGHT)
+		{
+			currentStateFace = StatesFaces.LEFT;
 			facing = FlxObject.LEFT;
 			set_angle(0);
+			timer = 0;
 		}
-		if (FlxG.keys.justPressed.U && movVer == true){
-			moveUp();
+		if (FlxG.keys.justPressed.U && currentStateFace != StatesFaces.DOWN)
+		{
+			currentStateFace = StatesFaces.UP;
 			facing = FlxObject.LEFT;
 			set_angle(90);
+			timer = 0;
 		}
-		if (FlxG.keys.justPressed.J && movVer == true){
-			moveDown();
+		if (FlxG.keys.justPressed.J && currentStateFace != StatesFaces.UP)
+		{
+			currentStateFace = StatesFaces.DOWN;
 			facing = FlxObject.RIGHT;
 			set_angle(90);
+			timer = 0;
 		}
 	}
 	function movementPlayer4() // ↑ 8 	↓ 5 	← 4 	→ 6 	 # 1		(from the 'pad')
 	{
-		if (FlxG.keys.justPressed.NUMPADSIX && movHor == true){
-			moveRight();
+		if (FlxG.keys.justPressed.NUMPADSIX && currentStateFace != StatesFaces.LEFT)
+		{
+			currentStateFace = StatesFaces.RIGHT;
 			facing = FlxObject.RIGHT;
 			set_angle(0);
+			timer = 0;
 		}
-		if (FlxG.keys.justPressed.NUMPADFOUR && movHor == true){
-			moveLeft();
+		if (FlxG.keys.justPressed.NUMPADFOUR && currentStateFace != StatesFaces.RIGHT)
+		{
+			currentStateFace = StatesFaces.LEFT;
 			facing = FlxObject.LEFT;
 			set_angle(0);
+			timer = 0;
 		}
-		if (FlxG.keys.justPressed.NUMPADEIGHT && movVer == true){
-			moveUp();
+		if (FlxG.keys.justPressed.NUMPADEIGHT && currentStateFace != StatesFaces.DOWN)
+		{
+			currentStateFace = StatesFaces.UP;
 			facing = FlxObject.LEFT;
 			set_angle(90);
+			timer = 0;
 		}
-		if (FlxG.keys.justPressed.NUMPADFIVE && movVer == true){
-			moveDown();
+		if (FlxG.keys.justPressed.NUMPADFIVE && currentStateFace != StatesFaces.UP)
+		{
+			currentStateFace = StatesFaces.DOWN;
 			facing = FlxObject.RIGHT;
 			set_angle(90);
+			timer = 0;
 		}
-	}
-	function moveRight()
-	{
-		if (boost)
-			velocity.x = Reg.speedBoost;
-		else if (unBoost)
-			velocity.x = Reg.speedUnBoost;
-		else 
-			velocity.x = Reg.speed;
-		velocity.y = 0;
-		movVer = true;
-		movHor = false;
-		timer = 0;
-	}
-	function moveLeft()
-	{
-		if (boost)
-			velocity.x = -Reg.speedBoost;
-		else if (unBoost)
-			velocity.x = -Reg.speedUnBoost;
-		else 
-			velocity.x = -Reg.speed;
-		velocity.y = 0;
-		movVer = true;
-		movHor = false;
-		timer = 0;
-	}
-	function moveUp()
-	{
-		velocity.x = 0;
-		if (boost)
-			velocity.y = -Reg.speedBoost;
-		else if (unBoost)
-			velocity.y = -Reg.speedUnBoost;
-		else 
-			velocity.y = -Reg.speed;
-		movVer = false;
-		movHor = true;
-		timer = 0;
-	}
-	function moveDown()
-	{
-		velocity.x = 0;
-		if (boost)
-			velocity.y = Reg.speedBoost;
-		else if (unBoost)
-			velocity.y = Reg.speedUnBoost;
-		else 
-			velocity.y = Reg.speed;
-		movVer = false;
-		movHor = true;
-		timer = 0;
 	}
 	public function set_boost(value:Bool):Bool 
 	{
