@@ -1,4 +1,4 @@
-package;
+package screens;
 
 import flixel.FlxState;
 import flixel.FlxSprite;
@@ -26,8 +26,8 @@ class MenuState extends FlxState
 	
 	private function onNew(): Void
 	{
-		var playState:PlayState = new PlayState();
-		FlxG.switchState(playState);
+		var levelSelector:LevelSelector = new LevelSelector();
+		FlxG.switchState(levelSelector);
 	}
 	
 	override public function destroy():Void

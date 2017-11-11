@@ -63,13 +63,13 @@ class Player extends FlxSprite
 			case 3:
 				loadGraphic(AssetPaths.green__png, true, 40, 32);
 				velocity.y = Reg.speed;
-				facing = FlxObject.LEFT;
+				facing = FlxObject.RIGHT;
 				set_angle(90);
 				currentStateFace = StatesFaces.DOWN;
 			case 4:
 				loadGraphic(AssetPaths.yellow__png, true, 40, 32);
 				velocity.y = -Reg.speed;
-				facing = FlxObject.RIGHT;
+				facing = FlxObject.LEFT;
 				set_angle(90);
 				currentStateFace = StatesFaces.UP;
 		}
