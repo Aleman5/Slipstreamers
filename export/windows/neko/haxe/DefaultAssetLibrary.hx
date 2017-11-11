@@ -58,13 +58,19 @@ class DefaultAssetLibrary extends AssetLibrary {
 		
 		
 		
-		
-		
-		
-		
-		
-		
 		Font.registerFont (__ASSET__assets_images_elements_ttf);
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
 		
 		
 		
@@ -78,6 +84,12 @@ class DefaultAssetLibrary extends AssetLibrary {
 		#if (windows || mac || linux)
 		
 		var useManifest = false;
+		useManifest = true;
+		useManifest = true;
+		useManifest = true;
+		useManifest = true;
+		useManifest = true;
+		useManifest = true;
 		useManifest = true;
 		useManifest = true;
 		useManifest = true;
@@ -594,13 +606,19 @@ class DefaultAssetLibrary extends AssetLibrary {
 		
 		
 		
-		
-		
-		
-		
-		
-		
 		openfl.text.Font.registerFont (__ASSET__OPENFL__assets_images_elements_ttf);
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
 		
 		
 		
@@ -614,8 +632,22 @@ class DefaultAssetLibrary extends AssetLibrary {
 		
 		#if flash
 		
-		path.set ("assets/images/powerUps.png", "assets/images/powerUps.png");
-		type.set ("assets/images/powerUps.png", AssetType.IMAGE);
+		path.set ("assets/images/Background.png", "assets/images/Background.png");
+		type.set ("assets/images/Background.png", AssetType.IMAGE);
+		path.set ("assets/images/blue.png", "assets/images/blue.png");
+		type.set ("assets/images/blue.png", AssetType.IMAGE);
+		path.set ("assets/images/ELEMENTS.TTF", "assets/images/ELEMENTS.TTF");
+		type.set ("assets/images/ELEMENTS.TTF", AssetType.FONT);
+		path.set ("assets/images/green.png", "assets/images/green.png");
+		type.set ("assets/images/green.png", AssetType.IMAGE);
+		path.set ("assets/images/Mapa1.oel", "assets/images/Mapa1.oel");
+		type.set ("assets/images/Mapa1.oel", AssetType.TEXT);
+		path.set ("assets/images/Mapa2.oel", "assets/images/Mapa2.oel");
+		type.set ("assets/images/Mapa2.oel", AssetType.TEXT);
+		path.set ("assets/images/Mapa3.oel", "assets/images/Mapa3.oel");
+		type.set ("assets/images/Mapa3.oel", AssetType.TEXT);
+		path.set ("assets/images/Mapas.oep", "assets/images/Mapas.oep");
+		type.set ("assets/images/Mapas.oep", AssetType.TEXT);
 		path.set ("assets/images/player1.png", "assets/images/player1.png");
 		type.set ("assets/images/player1.png", AssetType.IMAGE);
 		path.set ("assets/images/player2.png", "assets/images/player2.png");
@@ -624,16 +656,14 @@ class DefaultAssetLibrary extends AssetLibrary {
 		type.set ("assets/images/player3.png", AssetType.IMAGE);
 		path.set ("assets/images/player4.png", "assets/images/player4.png");
 		type.set ("assets/images/player4.png", AssetType.IMAGE);
+		path.set ("assets/images/powerUps.png", "assets/images/powerUps.png");
+		type.set ("assets/images/powerUps.png", AssetType.IMAGE);
 		path.set ("assets/images/powerups2.png", "assets/images/powerups2.png");
 		type.set ("assets/images/powerups2.png", AssetType.IMAGE);
-		path.set ("assets/images/blue.png", "assets/images/blue.png");
-		type.set ("assets/images/blue.png", AssetType.IMAGE);
-		path.set ("assets/images/green.png", "assets/images/green.png");
-		type.set ("assets/images/green.png", AssetType.IMAGE);
-		path.set ("assets/images/ELEMENTS.TTF", "assets/images/ELEMENTS.TTF");
-		type.set ("assets/images/ELEMENTS.TTF", AssetType.FONT);
 		path.set ("assets/images/red.png", "assets/images/red.png");
 		type.set ("assets/images/red.png", AssetType.IMAGE);
+		path.set ("assets/images/tile.png", "assets/images/tile.png");
+		type.set ("assets/images/tile.png", AssetType.IMAGE);
 		path.set ("assets/images/yellow.png", "assets/images/yellow.png");
 		type.set ("assets/images/yellow.png", AssetType.IMAGE);
 		className.set ("flixel/sounds/beep.ogg", __ASSET__flixel_sounds_beep_ogg);
@@ -653,9 +683,30 @@ class DefaultAssetLibrary extends AssetLibrary {
 		#elseif html5
 		
 		var id;
-		id = "assets/images/powerUps.png";
+		id = "assets/images/Background.png";
 		path.set (id, id);
 		type.set (id, AssetType.IMAGE);
+		id = "assets/images/blue.png";
+		path.set (id, id);
+		type.set (id, AssetType.IMAGE);
+		id = "assets/images/ELEMENTS.TTF";
+		path.set (id, id);
+		type.set (id, AssetType.FONT);
+		id = "assets/images/green.png";
+		path.set (id, id);
+		type.set (id, AssetType.IMAGE);
+		id = "assets/images/Mapa1.oel";
+		path.set (id, id);
+		type.set (id, AssetType.TEXT);
+		id = "assets/images/Mapa2.oel";
+		path.set (id, id);
+		type.set (id, AssetType.TEXT);
+		id = "assets/images/Mapa3.oel";
+		path.set (id, id);
+		type.set (id, AssetType.TEXT);
+		id = "assets/images/Mapas.oep";
+		path.set (id, id);
+		type.set (id, AssetType.TEXT);
 		id = "assets/images/player1.png";
 		path.set (id, id);
 		type.set (id, AssetType.IMAGE);
@@ -668,19 +719,16 @@ class DefaultAssetLibrary extends AssetLibrary {
 		id = "assets/images/player4.png";
 		path.set (id, id);
 		type.set (id, AssetType.IMAGE);
+		id = "assets/images/powerUps.png";
+		path.set (id, id);
+		type.set (id, AssetType.IMAGE);
 		id = "assets/images/powerups2.png";
 		path.set (id, id);
 		type.set (id, AssetType.IMAGE);
-		id = "assets/images/blue.png";
-		path.set (id, id);
-		type.set (id, AssetType.IMAGE);
-		id = "assets/images/green.png";
-		path.set (id, id);
-		type.set (id, AssetType.IMAGE);
-		id = "assets/images/ELEMENTS.TTF";
-		path.set (id, id);
-		type.set (id, AssetType.FONT);
 		id = "assets/images/red.png";
+		path.set (id, id);
+		type.set (id, AssetType.IMAGE);
+		id = "assets/images/tile.png";
 		path.set (id, id);
 		type.set (id, AssetType.IMAGE);
 		id = "assets/images/yellow.png";
@@ -729,15 +777,21 @@ class DefaultAssetLibrary extends AssetLibrary {
 		var useManifest = false;
 		useManifest = true;
 		useManifest = true;
-		useManifest = true;
-		useManifest = true;
-		useManifest = true;
-		useManifest = true;
-		useManifest = true;
-		useManifest = true;
 		
 		className.set ("assets/images/ELEMENTS.TTF", __ASSET__assets_images_elements_ttf);
 		type.set ("assets/images/ELEMENTS.TTF", AssetType.FONT);
+		useManifest = true;
+		useManifest = true;
+		useManifest = true;
+		useManifest = true;
+		useManifest = true;
+		useManifest = true;
+		useManifest = true;
+		useManifest = true;
+		useManifest = true;
+		useManifest = true;
+		useManifest = true;
+		useManifest = true;
 		useManifest = true;
 		useManifest = true;
 		
@@ -1487,6 +1541,12 @@ class DefaultAssetLibrary extends AssetLibrary {
 
 
 
+
+
+
+
+
+
 @:keep @:bind #if display private #end class __ASSET__flixel_sounds_beep_ogg extends null { }
 @:keep @:bind #if display private #end class __ASSET__flixel_sounds_flixel_ogg extends null { }
 @:keep @:bind #if display private #end class __ASSET__flixel_fonts_nokiafc22_ttf extends null { }
@@ -1499,13 +1559,19 @@ class DefaultAssetLibrary extends AssetLibrary {
 
 
 
-
-
-
-
-
-
 @:keep #if display private #end class __ASSET__assets_images_elements_ttf extends lime.text.Font { public function new () { super (); name = "BN Elements"; } } 
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 

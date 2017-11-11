@@ -3,10 +3,15 @@ package;
 import entities.Player;
 import entities.PowerUp;
 import entities.Trail;
+import flixel.FlxObject;
+import flixel.FlxSprite;
 import flixel.FlxState;
 import flixel.FlxG;
+import flixel.addons.editors.ogmo.FlxOgmoLoader;
+import flixel.addons.tile.FlxTilemapExt;
 import flixel.math.FlxRandom;
 import flixel.group.FlxGroup.FlxTypedGroup;
+import flixel.tile.FlxTilemap;
 
 class PlayState extends FlxState
 {
@@ -26,10 +31,45 @@ class PlayState extends FlxState
 	private var r:FlxRandom;
 	private var pUp:PowerUp;
 	private var pUps:FlxTypedGroup<PowerUp>;
+	private var tilebase:FlxTilemap;
+	private var tilebase2:FlxTilemap;
+	private var tilebase3:FlxTilemap;
+	private var fondo:FlxSprite;
 	
 	override public function create():Void
 	{
 		super.create();
+		
+		fondo = new FlxSprite(0, 0, AssetPaths.Background__png);
+		
+		var loader:FlxOgmoLoader = new FlxOgmoLoader(AssetPaths.Mapa1__oel);			//NIVEL 1
+		tilebase = loader.loadTilemap(AssetPaths.tile__png, 32, 32, "TilesetBase");		
+		tilebase.setTileProperties(0, FlxObject.NONE);	//FONDO
+		tilebase.setTileProperties(1, FlxObject.ANY);	//PARED 1
+		tilebase.setTileProperties(2, FlxObject.ANY);	//PARED 2
+		tilebase.setTileProperties(3, FlxObject.ANY);	//PARED 3
+		tilebase.setTileProperties(4, FlxObject.ANY);	//PARED 4
+		tilebase.setTileProperties(5, FlxObject.ANY);	//PARED 5
+		tilebase.setTileProperties(6, FlxObject.ANY);	//PARED 6
+		var loader:FlxOgmoLoader = new FlxOgmoLoader(AssetPaths.Mapa2__oel);			//NIVEL 2
+		tilebase2 = loader.loadTilemap(AssetPaths.tile__png, 32, 32, "TilesetBase");		
+		tilebase2.setTileProperties(0, FlxObject.NONE);	//FONDO
+		tilebase2.setTileProperties(1, FlxObject.ANY);	//PARED 1
+		tilebase2.setTileProperties(2, FlxObject.ANY);	//PARED 2
+		tilebase2.setTileProperties(3, FlxObject.ANY);	//PARED 3
+		tilebase2.setTileProperties(4, FlxObject.ANY);	//PARED 4
+		tilebase2.setTileProperties(5, FlxObject.ANY);	//PARED 5
+		tilebase2.setTileProperties(6, FlxObject.ANY);	//PARED 6
+		var loader:FlxOgmoLoader = new FlxOgmoLoader(AssetPaths.Mapa1__oel);			//NIVEL 3
+		tilebase3 = loader.loadTilemap(AssetPaths.tile__png, 32, 32, "TilesetBase");		
+		tilebase3.setTileProperties(0, FlxObject.NONE);	//FONDO
+		tilebase3.setTileProperties(1, FlxObject.ANY);	//PARED 1
+		tilebase3.setTileProperties(2, FlxObject.ANY);	//PARED 2
+		tilebase3.setTileProperties(3, FlxObject.ANY);	//PARED 3
+		tilebase3.setTileProperties(4, FlxObject.ANY);	//PARED 4
+		tilebase3.setTileProperties(5, FlxObject.ANY);	//PARED 5
+		tilebase3.setTileProperties(6, FlxObject.ANY);	//PARED 6
+		
 		FlxG.camera.bgColor = 0xBB7744FF;
 		howMuchP = Reg.howMuch;
 		timer = 200;
@@ -43,32 +83,34 @@ class PlayState extends FlxState
 		switch (howMuchP) 
 		{
 			case 2:
-				player1 = new Player(camera.width / 4, camera.height / 4, 1);
-				player2 = new Player(camera.width * 3 / 4, camera.height * 3 / 4, 2);
+				player1 = new Player(camera.width / 4, camera.height / 4, tilebase, 1);
+				player2 = new Player(camera.width * 3 / 4, camera.height * 3 / 4, tilebase, 2);
 				players.add(player1);
 				players.add(player2);
 				
 			case 3:
-				player1 = new Player(camera.width / 4, camera.height / 4, 1);
-				player2 = new Player(camera.width * 3 / 4, camera.height * 3 / 4, 2);
-				player3 = new Player(camera.width * 3 / 4, camera.height / 4, 3);
+				player1 = new Player(camera.width / 4, camera.height / 4, tilebase, 1);
+				player2 = new Player(camera.width * 3 / 4, camera.height * 3 / 4, tilebase, 2);
+				player3 = new Player(camera.width * 3 / 4, camera.height / 4, tilebase, 3);
 				players.add(player1);
 				players.add(player2);
 				players.add(player3);
 				
 			case 4:
-				player1 = new Player(camera.width / 4, camera.height / 4, 1);
-				player2 = new Player(camera.width * 3 / 4, camera.height * 3 / 4, 2);
-				player3 = new Player(camera.width * 3 / 4, camera.height / 4, 3);
-				player4 = new Player(camera.width / 4, camera.height * 3 / 4, 4);
+				player1 = new Player(camera.width / 4, camera.height / 4, tilebase, 1);
+				player2 = new Player(camera.width * 3 / 4, camera.height * 3 / 4, tilebase, 2);
+				player3 = new Player(camera.width * 3 / 4, camera.height / 4, tilebase, 3);
+				player4 = new Player(camera.width / 4, camera.height * 3 / 4, tilebase, 4);
 				players.add(player1);
 				players.add(player2);
 				players.add(player3);
 				players.add(player4);
 				
 		}
+		add(fondo);
 		pUps = new FlxTypedGroup();
 		add(players);
+		add(tilebase);
 	}
 	override public function update(elapsed:Float):Void
 	{
@@ -87,8 +129,8 @@ class PlayState extends FlxState
 		timeTimed++;
 		if (timeTimed >= timer)
 		{
-			posX = r.int(3, 1005);
-			posY = r.int(3, 600);
+			posX = r.int(38, 970);
+			posY = r.int(38, 500);
 			whichPUp = r.int(0, 2);
 			pUp = new PowerUp(posX, posY, whichPUp);
 			pUps.add(pUp);
@@ -115,6 +157,8 @@ class PlayState extends FlxState
 	private function collisions() 
 	{
 		FlxG.overlap(players, pUps, powered);
+		
+		
 	}
 	
 }

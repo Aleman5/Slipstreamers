@@ -1,11 +1,13 @@
 package entities;
 
 import flixel.FlxSprite;
+import flixel.addons.tile.FlxTilemapExt;
 import flixel.group.FlxGroup.FlxTypedGroup;
 import flixel.system.FlxAssets.FlxGraphicAsset;
 import flixel.FlxG;
 import flixel.FlxObject;
 import flixel.effects.FlxFlicker;
+import flixel.tile.FlxTilemap;
 
 /**
  * ...
@@ -30,8 +32,9 @@ class Player extends FlxSprite
 	public var boost(default, set):Bool; 	// Determines if PowerUp 'boost' is actived
 	public var unBoost(default, set):Bool;  // 						 'unBoost'
 	public var shield(default, set):Bool; 	// 						 'shield'
+	public var mapa:FlxTilemap;
 	
-	public function new(?X:Float=0, ?Y:Float=0, WhichPlayer:Int) 
+	public function new(?X:Float=0, ?Y:Float=0, _Mapa:FlxTilemap , WhichPlayer:Int) 
 	{
 		super(X, Y);
 		
@@ -46,6 +49,7 @@ class Player extends FlxSprite
 		boost = false;
 		unBoost = false;
 		shield = false;
+		mapa = _Mapa;
 		setFacingFlip(FlxObject.RIGHT, true, false);
 		setFacingFlip(FlxObject.LEFT, false, false);
 		// Player creator
@@ -223,7 +227,7 @@ class Player extends FlxSprite
 	}
 	function checkBoundaries()
 	{
-		if (x <= 1)
+		if (x <=32 && FlxG.collide(this,mapa))
 		{
 			changeToFlickering();
 			currentStateFace = StatesFaces.RIGHT;
@@ -231,7 +235,7 @@ class Player extends FlxSprite
 			set_angle(0);
 			x += 5;
 		}
-		if (x >= camera.width - width)
+		if (x >= camera.width-width-32 && FlxG.collide(this,mapa))
 		{
 			changeToFlickering();
 			currentStateFace = StatesFaces.LEFT;
@@ -239,7 +243,7 @@ class Player extends FlxSprite
 			set_angle(0);
 			x -= 5;
 		}
-		if (y <= 3)
+		if (y <= 32 && FlxG.collide(this,mapa))
 		{
 			changeToFlickering();
 			currentStateFace = StatesFaces.DOWN;
@@ -247,7 +251,7 @@ class Player extends FlxSprite
 			set_angle(90);
 			y += 5;
 		}
-		if (y >= camera.height - height)
+		if (y >= camera.height-height-32 && FlxG.collide(this,mapa))
 		{
 			changeToFlickering();
 			currentStateFace = StatesFaces.UP;
