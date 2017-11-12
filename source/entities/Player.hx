@@ -22,7 +22,12 @@ class Player extends FlxSprite
 	private var velVer:Float; 	 // 
 	private var timer:Int; 		 // Used in States 'MOVE' and 'SPACED'
 	private var currentState:States;
-	private var currentStateFace:StatesFaces;
+	public var currentStateFace(get, null):StatesFaces;
+	public var gotHitByGoingRight(default, set):Bool;
+	public var gotHitByGoingLeft(default, set):Bool;
+	public var gotHitByGoingUp(default, set):Bool;
+	public var gotHitByGoingDown(default, set):Bool;
+	public var amICollide(get, null):Bool;
 	// Boost things
 	private var timerBoost:Int; 	// It´s the lifetime of 'boost'
 	private var timerUnBoost:Int; 	// 						'unBoost'
@@ -30,6 +35,8 @@ class Player extends FlxSprite
 	public var boost(default, set):Bool; 	// Determines if PowerUp 'boost' is actived
 	public var unBoost(default, set):Bool;  // 						 'unBoost'
 	public var shield(default, set):Bool; 	// 						 'shield'
+	// Points things
+	//public var score(default, set):Int;
 	
 	public function new(?X:Float=0, ?Y:Float=0, WhichPlayer:Int) 
 	{
@@ -40,12 +47,18 @@ class Player extends FlxSprite
 		velHor = 0;
 		velVer = 0;
 		timer = 0;
+		gotHitByGoingRight = false;
+		gotHitByGoingLeft = false;
+		gotHitByGoingUp = false;
+		gotHitByGoingDown = false;
+		amICollide = false;
 		timerBoost = 0;
 		timerUnBoost = 0;
 		timerShield = 0;
 		boost = false;
 		unBoost = false;
 		shield = false;
+		//score = 0;
 		setFacingFlip(FlxObject.RIGHT, true, false);
 		setFacingFlip(FlxObject.LEFT, false, false);
 		// Player creator
@@ -195,8 +208,12 @@ class Player extends FlxSprite
 				checkBoundaries();
 			case States.FLICKERING:
 				velocity.set(0, 0);
+				amICollide = true;
 				if (!FlxFlicker.isFlickering(this))
-						currentState = States.MOVE;
+				{
+					amICollide = false;
+					currentState = States.MOVE;
+				}
 			case States.DEATH:
 				velocity.set(0, 0);
 				if (animation.name == "death" && animation.finished)
@@ -223,37 +240,41 @@ class Player extends FlxSprite
 	}
 	function checkBoundaries()
 	{
-		if (x <= 1)
+		if (gotHitByGoingLeft)
 		{
 			changeToFlickering();
 			currentStateFace = StatesFaces.RIGHT;
 			facing = FlxObject.RIGHT;
 			set_angle(0);
-			x += 5;
+			x += 10;
+			gotHitByGoingLeft = false;
 		}
-		if (x >= camera.width - width)
+		if (gotHitByGoingRight)
 		{
 			changeToFlickering();
 			currentStateFace = StatesFaces.LEFT;
 			facing = FlxObject.LEFT;
 			set_angle(0);
-			x -= 5;
+			x -= 10;
+			gotHitByGoingRight = false;
 		}
-		if (y <= 3)
+		if (gotHitByGoingUp)
 		{
 			changeToFlickering();
 			currentStateFace = StatesFaces.DOWN;
 			facing = FlxObject.RIGHT;
 			set_angle(90);
-			y += 5;
+			y += 10;
+			gotHitByGoingUp = false;
 		}
-		if (y >= camera.height - height)
+		if (gotHitByGoingDown)
 		{
 			changeToFlickering();
 			currentStateFace = StatesFaces.UP;
 			facing = FlxObject.LEFT;
 			set_angle(90);
-			y -= 5;
+			y -= 10;
+			gotHitByGoingDown = false;
 		}
 	}
 	function movementAndOthers()
@@ -401,5 +422,35 @@ class Player extends FlxSprite
 			timerShield = 0;
 			return shield = value;
 		}
+	}
+	/*public function set_score(value:Int):Int 
+	{
+		if (shield)
+			value *= 2;
+		return score += value;
+	}*/
+	public function set_gotHitByGoingRight(?value:Bool = true):Bool 
+	{
+		return gotHitByGoingRight = value;
+	}
+	public function set_gotHitByGoingLeft(?value:Bool = true):Bool 
+	{
+		return gotHitByGoingLeft = value;
+	}
+	public function set_gotHitByGoingUp(?value:Bool = true):Bool 
+	{
+		return gotHitByGoingUp = value;
+	}
+	public function set_gotHitByGoingDown(?value:Bool = true):Bool 
+	{
+		return gotHitByGoingDown = value;
+	}
+	public function get_currentStateFace():StatesFaces 
+	{
+		return currentStateFace;
+	}
+	public function get_amICollide():Bool
+	{
+		return amICollide;
 	}
 }

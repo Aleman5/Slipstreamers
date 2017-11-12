@@ -515,7 +515,7 @@ class ApplicationMain {
 		
 		config = {
 			
-			build: "229",
+			build: "241",
 			company: "Aleman5",
 			file: "Slipstreamers",
 			fps: 60,

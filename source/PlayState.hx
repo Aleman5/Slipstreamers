@@ -1,7 +1,7 @@
 package;
 
 import entities.Player;
-import entities.PowerUp;
+import entities.Items;
 import entities.Trail;
 import flixel.FlxState;
 import flixel.FlxG;
@@ -24,8 +24,8 @@ class PlayState extends FlxState
 	private var timer:Int;
 	private var timeTimed:Int;
 	private var r:FlxRandom;
-	private var pUp:PowerUp;
-	private var pUps:FlxTypedGroup<PowerUp>;
+	private var pUp:Items;
+	private var pUps:FlxTypedGroup<Items>;
 	
 	override public function create():Void
 	{
@@ -77,12 +77,12 @@ class PlayState extends FlxState
 		collisions();
 		levelReset();
 	}
-	private function levelReset() 
+	private function levelReset():Void
 	{
 		if (FlxG.keys.justPressed.R)
 			FlxG.resetState();
 	}
-	private function powerUpCreator() 
+	private function powerUpCreator():Void
 	{
 		timeTimed++;
 		if (timeTimed >= timer)
@@ -90,7 +90,7 @@ class PlayState extends FlxState
 			posX = r.int(3, 1005);
 			posY = r.int(3, 600);
 			whichPUp = r.int(0, 2);
-			pUp = new PowerUp(posX, posY, whichPUp);
+			pUp = new Items(posX, posY, whichPUp);
 			pUps.add(pUp);
 			add(pUps);
 			
@@ -98,7 +98,7 @@ class PlayState extends FlxState
 			timer = r.int(150, 210);
 		}
 	}
-	private function powered(p:Player, pU:PowerUp):Void
+	private function powered(p:Player, pU:Items):Void
 	{
 		whichPUp = pU.get_whichPowerUp();
 		switch (whichPUp) 
@@ -109,12 +109,46 @@ class PlayState extends FlxState
 				p.set_unBoost(true);
 			case 2:
 				p.set_shield(true);
+			/*case 3:
+				p.set_score(20);
+			case 4:
+				p.set_score(50);
+			case 5:
+				p.set_score(100);
+			case 6:
+				p.set_score(-15);*/
 		}
 		pU.kill();
 	}
-	private function collisions() 
+	private function colTilemap(p:Player, dinopianito:Int) 
+	{
+		whatShouldIDo(p);
+	}
+	private function colBtwPlayers(p1:Player, p2:Player):Void
+	{
+		if(!p1.get_amICollide())
+			whatShouldIDo(p1);
+		if(!p2.get_amICollide())
+			whatShouldIDo(p2);
+	}
+	private function whatShouldIDo(p:Player):Void
+	{
+		switch (p.get_currentStateFace()) 
+		{
+			case StatesFaces.RIGHT:
+				p.set_gotHitByGoingRight();
+			case StatesFaces.LEFT:
+				p.set_gotHitByGoingLeft();
+			case StatesFaces.UP:
+				p.set_gotHitByGoingUp();
+			case StatesFaces.DOWN:
+				p.set_gotHitByGoingDown();
+		}
+	}
+	private function collisions():Void
 	{
 		FlxG.overlap(players, pUps, powered);
+		//FlxG.collide(players, tilemap, colTilemap);
+		FlxG.collide(players, players, colBtwPlayers);
 	}
-	
 }
