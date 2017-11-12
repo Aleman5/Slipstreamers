@@ -113,7 +113,6 @@ class PlayState extends FlxState
 		}
 		pUps = new FlxTypedGroup();
 		add(players);
-		
 	}
 	override public function update(elapsed:Float):Void
 	{
@@ -145,24 +144,7 @@ class PlayState extends FlxState
 	}
 	private function powered(p:Player, pU:Items):Void
 	{
-		whichPUp = pU.get_whichPowerUp();
-		switch (whichPUp) 
-		{
-			case 0:
-				p.set_boost(true);
-			case 1:
-				p.set_unBoost(true);
-			case 2:
-				p.set_shield(true);
-			case 3:
-				p.set_score(20);
-			case 4:
-				p.set_score(50);
-			case 5:
-				p.set_score(100);
-			case 6:
-				p.set_score(-15);
-		}
+		p.whichPwUp(pU.get_whichPowerUp());
 		pU.kill();
 	}
 	private function colTilemap(p:Player, dinopianito:Int) 

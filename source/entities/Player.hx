@@ -36,11 +36,13 @@ class Player extends FlxSprite
 	private var timerBoost:Int; 	// It´s the lifetime of 'boost'
 	private var timerUnBoost:Int; 	// 						'unBoost'
 	private var timerShield:Int; 	// 						'shield'
-	public var boost(default, set):Bool; 	// Determines if PowerUp 'boost' is actived
-	public var unBoost(default, set):Bool;  // 						 'unBoost'
-	public var shield(default, set):Bool; 	// 						 'shield'
+	private var timerX2:Int;
+	private var boost:Bool; 	// Determines if PowerUp 'boost' is actived
+	private var unBoost:Bool;  	// 						 'unBoost'
+	private var shield:Bool; 	// 						 'shield'
+	private var x2PwUp:Bool;	//						 'x2'
 	// Points things
-	public var score(default, set):Int;
+	private var score:Int;
 	private var scoreTxt:FlxText;
 	
 	public function new(?X:Float=0, ?Y:Float=0 , WhichPlayer:Int) 
@@ -60,10 +62,12 @@ class Player extends FlxSprite
 		timerBoost = 0;
 		timerUnBoost = 0;
 		timerShield = 0;
+		timerX2 = 0;
 		boost = false;
 		unBoost = false;
 		shield = false;
-		//score = 0;
+		x2PwUp = false;
+		score = 0;
 		setFacingFlip(FlxObject.RIGHT, true, false);
 		setFacingFlip(FlxObject.LEFT, false, false);
 		// Player creator
@@ -74,14 +78,14 @@ class Player extends FlxSprite
 				velocity.x = Reg.speed;
 				facing = FlxObject.RIGHT;
 				currentStateFace = StatesFaces.RIGHT;
-				scoreTxt = new FlxText(20, 10, 0, "Player 1: " + score, 16, true);
+				scoreTxt = new FlxText(20, 10, 0, "", 16, true);
 				scoreTxt.color = FlxColor.RED;
 			case 2:
 				loadGraphic(AssetPaths.blue__png, true, 40, 32);
 				velocity.x = -Reg.speed;
 				facing = FlxObject.LEFT;
 				currentStateFace = StatesFaces.LEFT;
-				scoreTxt = new FlxText(camera.width - 50, camera.height - 26, 0, "Player 2: " + score, 16, true);
+				scoreTxt = new FlxText(camera.width - 50, camera.height - 26, 0, "", 16, true);
 				scoreTxt.color = FlxColor.BLUE;
 			case 3:
 				loadGraphic(AssetPaths.green__png, true, 40, 32);
@@ -89,7 +93,7 @@ class Player extends FlxSprite
 				facing = FlxObject.RIGHT;
 				set_angle(90);
 				currentStateFace = StatesFaces.DOWN;
-				scoreTxt = new FlxText(20, camera.width - 20, 0, "Player 3: " + score, 16, true);
+				scoreTxt = new FlxText(20, camera.width - 20, 0, "", 16, true);
 				scoreTxt.color = FlxColor.GREEN;
 			case 4:
 				loadGraphic(AssetPaths.yellow__png, true, 40, 32);
@@ -97,7 +101,7 @@ class Player extends FlxSprite
 				facing = FlxObject.LEFT;
 				set_angle(90);
 				currentStateFace = StatesFaces.UP;
-				scoreTxt = new FlxText(20, camera.height - 26, 0, "Player 4: " + score, 16, true);
+				scoreTxt = new FlxText(20, camera.height - 26, 0, "", 16, true);
 				scoreTxt.color = FlxColor.YELLOW;
 		}
 		currentState = States.MOVE;
@@ -199,6 +203,16 @@ class Player extends FlxSprite
 			{
 				timerShield = 0;
 				shield = false;
+			}
+		}
+		// x2
+		if (x2PwUp)
+		{
+			timerX2++;
+			if (timerX2 >= 240)
+			{
+				timerX2 = 0;
+				x2PwUp = false;
 			}
 		}
 	}
@@ -408,45 +422,6 @@ class Player extends FlxSprite
 		shield = false;
 		FlxFlicker.flicker(this, 1, 0.1, true, true);
 	}
-	public function set_boost(value:Bool):Bool 
-	{
-		if (!boost)
-			return boost = value;
-		else
-		{
-			timerBoost = 0;
-			return boost = value;
-		}
-	}
-	public function set_unBoost(value:Bool):Bool 
-	{
-		if (!unBoost)
-			return unBoost = value;
-		else
-		{
-			timerUnBoost = 0;
-			return unBoost = value;
-		}
-	}
-	public function set_shield(value:Bool):Bool 
-	{
-		if(!shield)
-			return shield = value;
-		else 
-		{
-			timerShield = 0;
-			return shield = value;
-		}
-	}
-	public function set_score(value:Int):Int 
-	{
-		var sumador:Int;
-		sumador = value;
-		if (shield)
-			sumador *= 2;
-		sumador += score;
-		return score = sumador;
-	}
 	public function set_gotHitByGoingRight(?value:Bool = true):Bool 
 	{
 		return gotHitByGoingRight = value;
@@ -470,5 +445,47 @@ class Player extends FlxSprite
 	public function get_amICollide():Bool
 	{
 		return amICollide;
+	}
+	public function whichPwUp(value:Int):Void
+	{
+		switch (value) 
+		{
+			case 0:
+				if (boost)
+					timerBoost = 0;
+				boost = true;
+			case 1:
+				if (unBoost)
+					timerUnBoost = 0;
+				unBoost = true;
+			case 2:
+				if (shield)
+					timerShield = 0;
+				shield = true;
+			case 3:
+				if (x2PwUp)
+					score += 20;
+				else
+					score += 10;
+			case 4:
+				if (x2PwUp)
+					score += 50;
+				else
+					score += 25;
+			case 5:
+				if (x2PwUp)
+					score += 100;
+				else
+					score += 50;
+			case 6:
+				if (x2PwUp)
+					timerX2 = 0;
+				x2PwUp = true;
+			case 7:
+				if (x2PwUp)
+					score -= 20;
+				else
+					score -= 10;
+		}
 	}
 }

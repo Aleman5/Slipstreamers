@@ -22,6 +22,8 @@ class Items extends FlxSprite
 		animation.add("+10", [0], 8, true);
 		animation.add("+25", [1], 8, true);
 		animation.add("+50", [2], 8, true);
+		animation.add("x2", [3], 8, true);
+		animation.add("-10", [4], 8, true);
 		
 		switch (whichPowerUp) 
 		{
@@ -37,6 +39,10 @@ class Items extends FlxSprite
 				animation.play("+25");
 			case 5:
 				animation.play("+50");
+			case 6:
+				animation.play("x2");
+			case 7:
+				animation.play("-10");
 		}
 		updateHitbox();
 	}
