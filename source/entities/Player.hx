@@ -40,8 +40,8 @@ class Player extends FlxSprite
 	public var unBoost(default, set):Bool;  // 						 'unBoost'
 	public var shield(default, set):Bool; 	// 						 'shield'
 	// Points things
-	//public var score(default, set):Int;
-	//private var scoreTxt:FlxText;
+	public var score(default, set):Int;
+	private var scoreTxt:FlxText;
 	
 	public function new(?X:Float=0, ?Y:Float=0 , WhichPlayer:Int) 
 	{
@@ -74,35 +74,35 @@ class Player extends FlxSprite
 				velocity.x = Reg.speed;
 				facing = FlxObject.RIGHT;
 				currentStateFace = StatesFaces.RIGHT;
-				//scoreTxt = new FlxText(20, 10, 0, "Player 1: " + score, 16, true);
-				//scoreTxt.color = FlxColor.RED;
+				scoreTxt = new FlxText(20, 10, 0, "Player 1: " + score, 16, true);
+				scoreTxt.color = FlxColor.RED;
 			case 2:
 				loadGraphic(AssetPaths.blue__png, true, 40, 32);
 				velocity.x = -Reg.speed;
 				facing = FlxObject.LEFT;
 				currentStateFace = StatesFaces.LEFT;
-				//scoreTxt = new FlxText(camera.width - 50, camera.height - 26, 0, "Player 2: " + score, 16, true);
-				//scoreTxt.color = FlxColor.BLUE;
+				scoreTxt = new FlxText(camera.width - 50, camera.height - 26, 0, "Player 2: " + score, 16, true);
+				scoreTxt.color = FlxColor.BLUE;
 			case 3:
 				loadGraphic(AssetPaths.green__png, true, 40, 32);
 				velocity.y = Reg.speed;
 				facing = FlxObject.RIGHT;
 				set_angle(90);
 				currentStateFace = StatesFaces.DOWN;
-				//scoreTxt = new FlxText(20, camera.width - 20, 0, "Player 3: " + score, 16, true);
-				//scoreTxt.color = FlxColor.GREEN;
+				scoreTxt = new FlxText(20, camera.width - 20, 0, "Player 3: " + score, 16, true);
+				scoreTxt.color = FlxColor.GREEN;
 			case 4:
 				loadGraphic(AssetPaths.yellow__png, true, 40, 32);
 				velocity.y = -Reg.speed;
 				facing = FlxObject.LEFT;
 				set_angle(90);
 				currentStateFace = StatesFaces.UP;
-				//scoreTxt = new FlxText(20, camera.height - 26, 0, "Player 4: " + score, 16, true);
-				//scoreTxt.color = FlxColor.YELLOW;
+				scoreTxt = new FlxText(20, camera.height - 26, 0, "Player 4: " + score, 16, true);
+				scoreTxt.color = FlxColor.YELLOW;
 		}
 		currentState = States.MOVE;
-		//FlxG.state.add(scoreTxt);
-		// Animation creator
+		FlxG.state.add(scoreTxt);
+		//	Animation creator
 		animation.add("move", [7, 1, 20], 8, true);
 		animation.add("moveBoost", [21, 15, 9], 8, true);
 		animation.add("moveUnBoost", [10, 4, 23], 8, true);
@@ -118,7 +118,7 @@ class Player extends FlxSprite
 		{
 			boolDurationTest();
 			stateFacesMachine();
-			//scoreTxt.text = "Player " + whichPlayer + ": " + score;
+			scoreTxt.text = "Player " + whichPlayer + ": " + score;
 		}
 		stateMachine();
 		super.update(elapsed);
@@ -438,7 +438,7 @@ class Player extends FlxSprite
 			return shield = value;
 		}
 	}
-	/*public function set_score(value:Int):Int 
+	public function set_score(value:Int):Int 
 	{
 		var sumador:Int;
 		sumador = value;
@@ -446,7 +446,7 @@ class Player extends FlxSprite
 			sumador *= 2;
 		sumador += score;
 		return score = sumador;
-	}*/
+	}
 	public function set_gotHitByGoingRight(?value:Bool = true):Bool 
 	{
 		return gotHitByGoingRight = value;

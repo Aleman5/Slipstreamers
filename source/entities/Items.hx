@@ -15,10 +15,14 @@ class Items extends FlxSprite
 	{
 		super(X, Y);
 		whichPowerUp = WhichPowerUp;
-		loadGraphic(AssetPaths.powerups2__png, true, 32, 32);
-		animation.add("maxSpeed", [0,1,2],6,true);
-		animation.add("minSpeed", [3,4,5],6,true);
-		animation.add("shield", [6,7,8],6,true);
+		loadGraphic(AssetPaths.newPowerups__png, true, 32, 32);
+		animation.add("maxSpeed", [5,6,7],8,true);
+		animation.add("minSpeed", [8],6,true);
+		animation.add("shield", [9, 10, 11], 8, true);
+		animation.add("+10", [0], 8, true);
+		animation.add("+25", [1], 8, true);
+		animation.add("+50", [2], 8, true);
+		
 		switch (whichPowerUp) 
 		{
 			case 0:
@@ -27,6 +31,12 @@ class Items extends FlxSprite
 				animation.play("minSpeed");
 			case 2:
 				animation.play("shield");
+			case 3:
+				animation.play("+10");
+			case 4:
+				animation.play("+25");
+			case 5:
+				animation.play("+50");
 		}
 		updateHitbox();
 	}

@@ -134,7 +134,7 @@ class PlayState extends FlxState
 		{
 			posX = r.int(38, 970);
 			posY = r.int(38, 500);
-			whichPUp = r.int(0, 2);
+			whichPUp = r.int(0, 6);
 			pUp = new Items(posX, posY, whichPUp);
 			pUps.add(pUp);
 			add(pUps);
@@ -154,14 +154,14 @@ class PlayState extends FlxState
 				p.set_unBoost(true);
 			case 2:
 				p.set_shield(true);
-			/*case 3:
+			case 3:
 				p.set_score(20);
 			case 4:
 				p.set_score(50);
 			case 5:
 				p.set_score(100);
 			case 6:
-				p.set_score(-15);*/
+				p.set_score(-15);
 		}
 		pU.kill();
 	}

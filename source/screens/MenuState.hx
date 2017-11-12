@@ -3,8 +3,8 @@ package screens;
 import flixel.FlxState;
 import flixel.FlxSprite;
 import flixel.FlxG;
+import flixel.addons.ui.FlxButtonPlus;
 import flixel.text.FlxText;
-import flixel.ui.FlxButton;
 
 class MenuState extends FlxState 
 {
@@ -15,13 +15,10 @@ class MenuState extends FlxState
 	{
 		super.create();
 		
-		var init_x:Int = Math.floor(FlxG.width / 2 - 40);
-		var title = new FlxText(175, 200, 0, "SLIPSTREAMERS", 75, true); //Titulo en pantalla
-		var butonNew = new FlxButton(init_x, 375, "Start!", onNew); //Boton de inicio
-		title.setFormat(AssetPaths.ELEMENTS__TTF,75); //Formato de texto
-		butonNew.setGraphicSize(250, 75); //Tamaño de boton
+		var fondo:FlxSprite = new FlxSprite (0, 0, AssetPaths.PORTADA__png);
+		var butonNew = new FlxButtonPlus(649, 455, onNew, "Start!",230,65); //Boton de inicio
 		add(butonNew);
-		add(title);
+		add(fondo);
 	}
 	
 	private function onNew(): Void

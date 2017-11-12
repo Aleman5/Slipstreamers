@@ -1,5 +1,6 @@
 package screens;
 
+import flixel.FlxSprite;
 import flixel.FlxState;
 import flixel.text.FlxText;
 import flixel.ui.FlxButton;
@@ -29,6 +30,7 @@ class LevelSelector extends FlxState
 		// Player things
 		totalPlayers = 2;
 		
+		var fondo:FlxSprite = new FlxSprite(0, 0, AssetPaths.Selectmenu__png);
 		playersTxt = new FlxText(camera.width / 4, camera.height / 4, 0, "How much players: " + totalPlayers, 16, true);
 		
 		removePBtn = new FlxButton(playersTxt.x + 220, playersTxt.y, "--", removePlayer);
@@ -44,11 +46,11 @@ class LevelSelector extends FlxState
 		
 		levelTxt = new FlxText(camera.width / 4, camera.height / 2, 0, "Level: Spacemap1", 16, true);
 		
-		removeLBtn = new FlxButton(levelTxt.x + 180, levelTxt.y, "--", removeTilemap);
+		removeLBtn = new FlxButton(levelTxt.x + 180, levelTxt.y, " ", removeTilemap);
 		removeLBtn.setGraphicSize(32, 32);
 		removeLBtn.updateHitbox();
 		
-		addLBtn = new FlxButton(removePBtn.x + removePBtn.width + 2, levelTxt.y, "++", addTilemap);
+		addLBtn = new FlxButton(removePBtn.x + removePBtn.width + 2, levelTxt.y, " ", addTilemap);
 		addLBtn.setGraphicSize(32, 32);
 		addLBtn.updateHitbox();
 		// State changers
@@ -60,6 +62,7 @@ class LevelSelector extends FlxState
 		playersTxt.setFormat(AssetPaths.ELEMENTS__TTF, 16);
 		levelTxt.setFormat(AssetPaths.ELEMENTS__TTF, 16);
 		// Adding
+		add(fondo);
 		add(playersTxt);
 		add(addPBtn);
 		add(removePBtn);

@@ -32,6 +32,8 @@ class AssetData {
 			type.set ("assets/images/Mapa3.oel", Reflect.field (AssetType, "text".toUpperCase ()));
 			path.set ("assets/images/Mapas.oep", "assets/images/Mapas.oep");
 			type.set ("assets/images/Mapas.oep", Reflect.field (AssetType, "text".toUpperCase ()));
+			path.set ("assets/images/newPowerups.png", "assets/images/newPowerups.png");
+			type.set ("assets/images/newPowerups.png", Reflect.field (AssetType, "image".toUpperCase ()));
 			path.set ("assets/images/player1.png", "assets/images/player1.png");
 			type.set ("assets/images/player1.png", Reflect.field (AssetType, "image".toUpperCase ()));
 			path.set ("assets/images/player2.png", "assets/images/player2.png");
@@ -40,12 +42,16 @@ class AssetData {
 			type.set ("assets/images/player3.png", Reflect.field (AssetType, "image".toUpperCase ()));
 			path.set ("assets/images/player4.png", "assets/images/player4.png");
 			type.set ("assets/images/player4.png", Reflect.field (AssetType, "image".toUpperCase ()));
+			path.set ("assets/images/PORTADA.png", "assets/images/PORTADA.png");
+			type.set ("assets/images/PORTADA.png", Reflect.field (AssetType, "image".toUpperCase ()));
 			path.set ("assets/images/powerUps.png", "assets/images/powerUps.png");
 			type.set ("assets/images/powerUps.png", Reflect.field (AssetType, "image".toUpperCase ()));
 			path.set ("assets/images/powerups2.png", "assets/images/powerups2.png");
 			type.set ("assets/images/powerups2.png", Reflect.field (AssetType, "image".toUpperCase ()));
 			path.set ("assets/images/red.png", "assets/images/red.png");
 			type.set ("assets/images/red.png", Reflect.field (AssetType, "image".toUpperCase ()));
+			path.set ("assets/images/Selectmenu.png", "assets/images/Selectmenu.png");
+			type.set ("assets/images/Selectmenu.png", Reflect.field (AssetType, "image".toUpperCase ()));
 			path.set ("assets/images/tile.png", "assets/images/tile.png");
 			type.set ("assets/images/tile.png", Reflect.field (AssetType, "image".toUpperCase ()));
 			path.set ("assets/images/yellow.png", "assets/images/yellow.png");
