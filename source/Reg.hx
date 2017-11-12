@@ -12,6 +12,7 @@ class Reg
 	static public var speedBoost = 138; // 115% de la speed normal
 	static public var speedUnBoost = 102; // 85% de la speed normal
 	// PlayState
-	static public var howMuch;
+	static public var howMuch:Int;
+	static public var whichlevel:Int;
 	
 }
