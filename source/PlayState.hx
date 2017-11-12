@@ -190,7 +190,7 @@ class PlayState extends FlxState
 	private function collisions():Void
 	{
 		FlxG.overlap(players, pUps, powered);
-		//FlxG.collide(players, tilemap, colTilemap);
+		FlxG.collide(players, tilebase, colTilemap);
 		FlxG.collide(players, players, colBtwPlayers);
 	}
 }
