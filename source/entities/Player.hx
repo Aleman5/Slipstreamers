@@ -1,11 +1,13 @@
 package entities;
 
 import flixel.FlxSprite;
+import flixel.addons.tile.FlxTilemapExt;
 import flixel.group.FlxGroup.FlxTypedGroup;
 import flixel.system.FlxAssets.FlxGraphicAsset;
 import flixel.FlxG;
 import flixel.FlxObject;
 import flixel.effects.FlxFlicker;
+import flixel.tile.FlxTilemap;
 
 /**
  * ...
@@ -35,10 +37,11 @@ class Player extends FlxSprite
 	public var boost(default, set):Bool; 	// Determines if PowerUp 'boost' is actived
 	public var unBoost(default, set):Bool;  // 						 'unBoost'
 	public var shield(default, set):Bool; 	// 						 'shield'
+	public var mapa:FlxTilemap;
 	// Points things
 	//public var score(default, set):Int;
 	
-	public function new(?X:Float=0, ?Y:Float=0, WhichPlayer:Int) 
+	public function new(?X:Float=0, ?Y:Float=0, _Mapa:FlxTilemap , WhichPlayer:Int) 
 	{
 		super(X, Y);
 		
@@ -58,6 +61,7 @@ class Player extends FlxSprite
 		boost = false;
 		unBoost = false;
 		shield = false;
+		mapa = _Mapa;
 		//score = 0;
 		setFacingFlip(FlxObject.RIGHT, true, false);
 		setFacingFlip(FlxObject.LEFT, false, false);
