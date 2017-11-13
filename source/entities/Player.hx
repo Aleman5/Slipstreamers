@@ -85,7 +85,7 @@ class Player extends FlxSprite
 				velocity.x = -Reg.speed;
 				facing = FlxObject.LEFT;
 				currentStateFace = StatesFaces.LEFT;
-				scoreTxt = new FlxText(camera.width - 50, camera.height - 26, 0, "", 16, true);
+				scoreTxt = new FlxText(camera.width - 200, camera.height - 32, 0, "", 16, true);
 				scoreTxt.color = FlxColor.BLUE;
 			case 3:
 				loadGraphic(AssetPaths.green__png, true, 40, 32);
@@ -93,15 +93,15 @@ class Player extends FlxSprite
 				facing = FlxObject.RIGHT;
 				set_angle(90);
 				currentStateFace = StatesFaces.DOWN;
-				scoreTxt = new FlxText(20, camera.width - 20, 0, "", 16, true);
-				scoreTxt.color = FlxColor.GREEN;
+				scoreTxt = new FlxText(camera.width -200, 10, 0, "", 16, true);
+				scoreTxt.color = FlxColor.LIME;
 			case 4:
 				loadGraphic(AssetPaths.yellow__png, true, 40, 32);
 				velocity.y = -Reg.speed;
 				facing = FlxObject.LEFT;
 				set_angle(90);
 				currentStateFace = StatesFaces.UP;
-				scoreTxt = new FlxText(20, camera.height - 26, 0, "", 16, true);
+				scoreTxt = new FlxText(20, camera.height - 32, 0, "", 16, true);
 				scoreTxt.color = FlxColor.YELLOW;
 		}
 		currentState = States.MOVE;

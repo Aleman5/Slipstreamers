@@ -5,6 +5,7 @@ import flixel.FlxSprite;
 import flixel.FlxG;
 import flixel.addons.ui.FlxButtonPlus;
 import flixel.text.FlxText;
+import flixel.ui.FlxButton;
 
 class MenuState extends FlxState 
 {
@@ -16,9 +17,11 @@ class MenuState extends FlxState
 		super.create();
 		
 		var fondo:FlxSprite = new FlxSprite (0, 0, AssetPaths.PORTADA__png);
-		var butonNew = new FlxButtonPlus(649, 455, onNew, "Start!",230,65); //Boton de inicio
-		add(butonNew);
+		var butonNew:FlxButton = new FlxButton(675, 435," ",onNew); //Boton de inicio
+		butonNew.loadGraphic(AssetPaths.boton__png, true, 216, 100);
+		
 		add(fondo);
+		add(butonNew);
 	}
 	
 	private function onNew(): Void

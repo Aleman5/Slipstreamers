@@ -84,6 +84,8 @@ class PlayState extends FlxState
 				tilebase.setTileProperties(6, FlxObject.ANY);	//PARED 6
 				add(tilebase);
 		}
+		var marco:FlxSprite = new FlxSprite(0, 0, AssetPaths.marco__png);
+		add(marco);
 		// Variable initialization
 		howMuchP = Reg.howMuch;
 		timer = 200;

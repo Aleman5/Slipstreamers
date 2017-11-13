@@ -31,32 +31,35 @@ class LevelSelector extends FlxState
 		totalPlayers = 2;
 		
 		var fondo:FlxSprite = new FlxSprite(0, 0, AssetPaths.Selectmenu__png);
-		playersTxt = new FlxText(camera.width / 4, camera.height / 4, 0, "How much players: " + totalPlayers, 16, true);
+		playersTxt = new FlxText(170, 100, 0, "How much players: " + totalPlayers, 32, true);
+		playersTxt.scale.set(2, 2);
+		playersTxt.y = 100;
 		
-		removePBtn = new FlxButton(playersTxt.x + 220, playersTxt.y, "--", removePlayer);
-		removePBtn.setGraphicSize(32, 32);
-		removePBtn.updateHitbox();
+		removePBtn = new FlxButton(playersTxt.x + 350, playersTxt.y-15, " ", removePlayer);
+		removePBtn.loadGraphic(AssetPaths.menos__png, true, 62, 69);
 		
-		addPBtn = new FlxButton(removePBtn.x + removePBtn.width + 2, playersTxt.y, "++", addPlayer);
-		addPBtn.setGraphicSize(32, 32);
-		addPBtn.updateHitbox();
+		addPBtn = new FlxButton(removePBtn.x + removePBtn.width + 10, playersTxt.y-15, " ", addPlayer);
+		addPBtn.loadGraphic(AssetPaths.mas__png, true, 62, 69);
 		
 		// Tilemap things
 		whichTilemap = 1;
 		
-		levelTxt = new FlxText(camera.width / 4, camera.height / 2, 0, "Level: Spacemap1", 16, true);
+		levelTxt = new FlxText(150, 300, 0, "Level: Spacemap 1", 32, true);
+		levelTxt.scale.set(2, 2);
+		levelTxt.y = 300;
 		
-		removeLBtn = new FlxButton(levelTxt.x + 180, levelTxt.y, " ", removeTilemap);
-		removeLBtn.setGraphicSize(32, 32);
-		removeLBtn.updateHitbox();
+		removeLBtn = new FlxButton(playersTxt.x + 350, levelTxt.y-15, " ", removeTilemap);
+		removeLBtn.loadGraphic(AssetPaths.menos__png, true, 62, 69);
 		
-		addLBtn = new FlxButton(removePBtn.x + removePBtn.width + 2, levelTxt.y, " ", addTilemap);
-		addLBtn.setGraphicSize(32, 32);
-		addLBtn.updateHitbox();
+		addLBtn = new FlxButton(removeLBtn.x + removeLBtn.width+10, levelTxt.y-15, " ", addTilemap);
+		addLBtn.loadGraphic(AssetPaths.mas__png, true, 62, 69);
+		
 		// State changers
-		playBtn = new FlxButton(camera.width * 3 / 4, camera.height * 3 / 4, "Play!", playGame);
+		playBtn = new FlxButton(460, 470, " ", playGame);
+		playBtn.loadGraphic(AssetPaths.start__png, true, 189, 52);
 		
-		menuBtn = new FlxButton(camera.width / 4, camera.height * 3 / 4, "Go back", returnToMenu);
+		menuBtn = new FlxButton(70, 470, " ", returnToMenu);
+		menuBtn.loadGraphic(AssetPaths.goback__png, true, 231, 52);
 		
 		// Setting text format
 		playersTxt.setFormat(AssetPaths.ELEMENTS__TTF, 16);
@@ -80,11 +83,11 @@ class LevelSelector extends FlxState
 		switch (whichTilemap) 
 		{
 			case 1:
-				levelTxt.text = "Level: Spacemap1";
+				levelTxt.text = "Level: Spacemap 1";
 			case 2:
-				levelTxt.text = "Level: Spacemap2";
+				levelTxt.text = "Level: Spacemap 2";
 			case 3:
-				levelTxt.text = "Level: Spacemap3";
+				levelTxt.text = "Level: Spacemap 3";
 		}
 	}
 	private function removePlayer() 

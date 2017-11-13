@@ -14,5 +14,9 @@ class Reg
 	// PlayState
 	static public var howMuch:Int;
 	static public var whichlevel:Int;
-	
+	// EndGame
+	static public var p1Score:Int;
+	static public var p2Score:Int;
+	static public var p3Score:Int;
+	static public var p4Score:Int;
 }
