@@ -78,14 +78,14 @@ class Player extends FlxSprite
 				velocity.x = Reg.speed;
 				facing = FlxObject.RIGHT;
 				currentStateFace = StatesFaces.RIGHT;
-				scoreTxt = new FlxText(20, 10, 0, "", 16, true);
+				scoreTxt = new FlxText(18, 8, 0, "", 16, true);
 				scoreTxt.color = FlxColor.RED;
 			case 2:
 				loadGraphic(AssetPaths.blue__png, true, 40, 32);
 				velocity.x = -Reg.speed;
 				facing = FlxObject.LEFT;
 				currentStateFace = StatesFaces.LEFT;
-				scoreTxt = new FlxText(camera.width - 50, camera.height - 26, 0, "", 16, true);
+				scoreTxt = new FlxText(camera.width - 135, camera.height - 26, 0, "", 16, true);
 				scoreTxt.color = FlxColor.BLUE;
 			case 3:
 				loadGraphic(AssetPaths.green__png, true, 40, 32);
@@ -93,7 +93,7 @@ class Player extends FlxSprite
 				facing = FlxObject.RIGHT;
 				set_angle(90);
 				currentStateFace = StatesFaces.DOWN;
-				scoreTxt = new FlxText(20, camera.width - 20, 0, "", 16, true);
+				scoreTxt = new FlxText(camera.width - 135, 8, 0, "", 16, true);
 				scoreTxt.color = FlxColor.GREEN;
 			case 4:
 				loadGraphic(AssetPaths.yellow__png, true, 40, 32);
@@ -101,7 +101,7 @@ class Player extends FlxSprite
 				facing = FlxObject.LEFT;
 				set_angle(90);
 				currentStateFace = StatesFaces.UP;
-				scoreTxt = new FlxText(20, camera.height - 26, 0, "", 16, true);
+				scoreTxt = new FlxText(18, camera.height - 26, 0, "", 16, true);
 				scoreTxt.color = FlxColor.YELLOW;
 		}
 		currentState = States.MOVE;
@@ -118,7 +118,7 @@ class Player extends FlxSprite
 	}
 	override public function update(elapsed:Float)
 	{
-		if (currentState != States.FLICKERING)
+		if (currentState != States.FLICKERING || !Reg.paused)
 		{
 			boolDurationTest();
 			stateFacesMachine();

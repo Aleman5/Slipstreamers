@@ -2,7 +2,6 @@ package;
 
 import entities.Player;
 import entities.Items;
-import entities.Trail;
 import flixel.FlxObject;
 import flixel.FlxSprite;
 import flixel.FlxState;
@@ -11,8 +10,8 @@ import flixel.addons.editors.ogmo.FlxOgmoLoader;
 import flixel.addons.tile.FlxTilemapExt;
 import flixel.math.FlxRandom;
 import flixel.group.FlxGroup.FlxTypedGroup;
-import flixel.util.FlxTimer;
 import flixel.text.FlxText;
+import flixel.util.FlxColor;
 import flixel.tile.FlxTilemap;
 
 class PlayState extends FlxState
@@ -38,8 +37,9 @@ class PlayState extends FlxState
 	private var tilebase:FlxTilemap;
 	private var fondo:FlxSprite;
 	// Time
-	private var minutes:Int;
-	private var seconds:FlxTimer;
+	private var howMuchTime:Int;
+	private var timeTxt:FlxText;
+	private var counter:Int;
 	
 	override public function create():Void
 	{
@@ -85,7 +85,7 @@ class PlayState extends FlxState
 				add(tilebase);
 		}
 		// Variable initialization
-		howMuchP = Reg.howMuch;
+		howMuchP = Reg.howMuchPlayers;
 		timer = 200;
 		timeTimed = 0;
 		posX = 0;
@@ -93,9 +93,12 @@ class PlayState extends FlxState
 		whichPUp = 0;
 		r = new FlxRandom();
 		players = new FlxTypedGroup();
-		minutes = 1;
-		//seconds.start(59, null, 2);
-		
+		// Time
+		howMuchTime = Reg.howMuchTime * 30 + 29;
+		timeTxt = new FlxText(camera.width / 2 - 25, 8, 0, "", 22, true);
+		timeTxt.color = FlxColor.BLACK;
+		add(timeTxt);
+		counter = 0;
 		// Player initialization
 		player1 = new Player(camera.width / 4, camera.height / 4, 1);
 		player2 = new Player(camera.width * 3 / 4, camera.height * 3 / 4, 2);
@@ -114,17 +117,41 @@ class PlayState extends FlxState
 		pUps = new FlxTypedGroup();
 		add(players);
 	}
+	
+	
 	override public function update(elapsed:Float):Void
 	{
-		super.update(elapsed);
-		powerUpCreator();
+		if (!Reg.paused)
+		{
+			super.update(elapsed);
+			powerUpCreator();
+			checkTime();
+		}
 		collisions();
-		levelReset();
+		levelResetOrPause();
 	}
-	private function levelReset():Void
+	private function checkTime() 
+	{
+		counter++;
+		if (counter > 59)
+		{
+			howMuchTime--;
+			counter = 0;
+		}
+		timeTxt.text = "Time left: " + howMuchTime;
+		
+		if (howMuchTime == 0)
+		{
+			trace("Game Finished"); // Acá se pondría el subEstado de victoria
+			Reg.paused = true;
+		}
+	}
+	private function levelResetOrPause():Void
 	{
 		if (FlxG.keys.justPressed.R)
 			FlxG.resetState();
+		if (FlxG.keys.justPressed.ENTER)
+			Reg.paused = !Reg.paused;
 	}
 	private function powerUpCreator():Void
 	{
