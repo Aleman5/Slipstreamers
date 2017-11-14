@@ -14,6 +14,7 @@ import flixel.group.FlxGroup.FlxTypedGroup;
 import flixel.util.FlxTimer;
 import flixel.text.FlxText;
 import flixel.tile.FlxTilemap;
+import screens.EndGame;
 
 class PlayState extends FlxState
 {
@@ -122,6 +123,12 @@ class PlayState extends FlxState
 		powerUpCreator();
 		collisions();
 		levelReset();
+		if (FlxG.keys.justPressed.SPACE)
+		{
+			var end:EndGame = new EndGame();
+			FlxG.switchState(end);
+		}
+		
 	}
 	private function levelReset():Void
 	{

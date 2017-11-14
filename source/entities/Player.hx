@@ -124,8 +124,23 @@ class Player extends FlxSprite
 			stateFacesMachine();
 			scoreTxt.text = "Player " + whichPlayer + ": " + score;
 		}
+		setScoreReg();
 		stateMachine();
 		super.update(elapsed);
+		
+	}
+	function setScoreReg()
+	{
+		switch (whichPlayer){
+			case 1:
+				Reg.p1Score = score;
+			case 2:
+				Reg.p2Score = score;
+			case 3:
+				Reg.p3Score = score;
+			case 4:
+				Reg.p4Score = score;
+		}
 	}
 	function stateFacesMachine() 
 	{
