@@ -84,6 +84,13 @@ class DefaultAssetLibrary extends AssetLibrary {
 		
 		
 		
+		
+		
+		
+		
+		
+		
+		
 		Font.registerFont (__ASSET__flixel_fonts_nokiafc22_ttf);
 		Font.registerFont (__ASSET__flixel_fonts_monsterrat_ttf);
 		
@@ -93,6 +100,13 @@ class DefaultAssetLibrary extends AssetLibrary {
 		#if (windows || mac || linux)
 		
 		var useManifest = false;
+		useManifest = true;
+		useManifest = true;
+		useManifest = true;
+		useManifest = true;
+		useManifest = true;
+		useManifest = true;
+		useManifest = true;
 		useManifest = true;
 		useManifest = true;
 		useManifest = true;
@@ -650,6 +664,13 @@ class DefaultAssetLibrary extends AssetLibrary {
 		
 		
 		
+		
+		
+		
+		
+		
+		
+		
 		openfl.text.Font.registerFont (__ASSET__OPENFL__flixel_fonts_nokiafc22_ttf);
 		openfl.text.Font.registerFont (__ASSET__OPENFL__flixel_fonts_monsterrat_ttf);
 		
@@ -703,14 +724,28 @@ class DefaultAssetLibrary extends AssetLibrary {
 		type.set ("assets/images/powerups2.png", AssetType.IMAGE);
 		path.set ("assets/images/red.png", "assets/images/red.png");
 		type.set ("assets/images/red.png", AssetType.IMAGE);
-		path.set ("assets/images/Selectmenu.png", "assets/images/Selectmenu.png");
-		type.set ("assets/images/Selectmenu.png", AssetType.IMAGE);
 		path.set ("assets/images/start.png", "assets/images/start.png");
 		type.set ("assets/images/start.png", AssetType.IMAGE);
 		path.set ("assets/images/tile.png", "assets/images/tile.png");
 		type.set ("assets/images/tile.png", AssetType.IMAGE);
+		path.set ("assets/images/Win.psd", "assets/images/Win.psd");
+		type.set ("assets/images/Win.psd", AssetType.BINARY);
+		path.set ("assets/images/Winp1.png", "assets/images/Winp1.png");
+		type.set ("assets/images/Winp1.png", AssetType.IMAGE);
+		path.set ("assets/images/Winp2.png", "assets/images/Winp2.png");
+		type.set ("assets/images/Winp2.png", AssetType.IMAGE);
+		path.set ("assets/images/Winp3.png", "assets/images/Winp3.png");
+		type.set ("assets/images/Winp3.png", AssetType.IMAGE);
+		path.set ("assets/images/Winp4.png", "assets/images/Winp4.png");
+		type.set ("assets/images/Winp4.png", AssetType.IMAGE);
 		path.set ("assets/images/yellow.png", "assets/images/yellow.png");
 		type.set ("assets/images/yellow.png", AssetType.IMAGE);
+		path.set ("assets/images/WinA.png", "assets/images/WinA.png");
+		type.set ("assets/images/WinA.png", AssetType.IMAGE);
+		path.set ("assets/images/Selectmenu.png", "assets/images/Selectmenu.png");
+		type.set ("assets/images/Selectmenu.png", AssetType.IMAGE);
+		path.set ("assets/images/retry.png", "assets/images/retry.png");
+		type.set ("assets/images/retry.png", AssetType.IMAGE);
 		className.set ("flixel/sounds/beep.ogg", __ASSET__flixel_sounds_beep_ogg);
 		type.set ("flixel/sounds/beep.ogg", AssetType.SOUND);
 		className.set ("flixel/sounds/flixel.ogg", __ASSET__flixel_sounds_flixel_ogg);
@@ -794,16 +829,37 @@ class DefaultAssetLibrary extends AssetLibrary {
 		id = "assets/images/red.png";
 		path.set (id, id);
 		type.set (id, AssetType.IMAGE);
-		id = "assets/images/Selectmenu.png";
-		path.set (id, id);
-		type.set (id, AssetType.IMAGE);
 		id = "assets/images/start.png";
 		path.set (id, id);
 		type.set (id, AssetType.IMAGE);
 		id = "assets/images/tile.png";
 		path.set (id, id);
 		type.set (id, AssetType.IMAGE);
+		id = "assets/images/Win.psd";
+		path.set (id, id);
+		type.set (id, AssetType.BINARY);
+		id = "assets/images/Winp1.png";
+		path.set (id, id);
+		type.set (id, AssetType.IMAGE);
+		id = "assets/images/Winp2.png";
+		path.set (id, id);
+		type.set (id, AssetType.IMAGE);
+		id = "assets/images/Winp3.png";
+		path.set (id, id);
+		type.set (id, AssetType.IMAGE);
+		id = "assets/images/Winp4.png";
+		path.set (id, id);
+		type.set (id, AssetType.IMAGE);
 		id = "assets/images/yellow.png";
+		path.set (id, id);
+		type.set (id, AssetType.IMAGE);
+		id = "assets/images/WinA.png";
+		path.set (id, id);
+		type.set (id, AssetType.IMAGE);
+		id = "assets/images/Selectmenu.png";
+		path.set (id, id);
+		type.set (id, AssetType.IMAGE);
+		id = "assets/images/retry.png";
 		path.set (id, id);
 		type.set (id, AssetType.IMAGE);
 		id = "flixel/sounds/beep.ogg";
@@ -853,6 +909,13 @@ class DefaultAssetLibrary extends AssetLibrary {
 		
 		className.set ("assets/images/ELEMENTS.TTF", __ASSET__assets_images_elements_ttf);
 		type.set ("assets/images/ELEMENTS.TTF", AssetType.FONT);
+		useManifest = true;
+		useManifest = true;
+		useManifest = true;
+		useManifest = true;
+		useManifest = true;
+		useManifest = true;
+		useManifest = true;
 		useManifest = true;
 		useManifest = true;
 		useManifest = true;
@@ -1637,6 +1700,13 @@ class DefaultAssetLibrary extends AssetLibrary {
 
 
 
+
+
+
+
+
+
+
 @:keep @:bind #if display private #end class __ASSET__flixel_sounds_beep_ogg extends null { }
 @:keep @:bind #if display private #end class __ASSET__flixel_sounds_flixel_ogg extends null { }
 @:keep @:bind #if display private #end class __ASSET__flixel_fonts_nokiafc22_ttf extends null { }
@@ -1651,6 +1721,13 @@ class DefaultAssetLibrary extends AssetLibrary {
 
 
 @:keep #if display private #end class __ASSET__assets_images_elements_ttf extends lime.text.Font { public function new () { super (); name = "BN Elements"; } } 
+
+
+
+
+
+
+
 
 
 

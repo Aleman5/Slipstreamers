@@ -157,8 +157,9 @@ class PlayState extends FlxState
 		
 		if (howMuchTime == 0)
 		{
-			trace("Game Finished"); // Acá se pondría el subEstado de victoria
-			Reg.paused = true;
+			trace("Game Finished");
+			var endGame:EndGame = new EndGame();
+			FlxG.switchState(endGame);
 		}
 	}
 	private function levelResetOrPause():Void

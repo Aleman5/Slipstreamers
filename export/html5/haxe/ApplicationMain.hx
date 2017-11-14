@@ -30,6 +30,62 @@ class ApplicationMain {
 		var types = [];
 		
 		
+		urls.push ("assets/images/Background.png");
+		types.push (lime.Assets.AssetType.IMAGE);
+		
+		
+		urls.push ("assets/images/blue.png");
+		types.push (lime.Assets.AssetType.IMAGE);
+		
+		
+		urls.push ("assets/images/boton.png");
+		types.push (lime.Assets.AssetType.IMAGE);
+		
+		
+		urls.push ("BN Elements");
+		types.push (lime.Assets.AssetType.FONT);
+		
+		
+		urls.push ("assets/images/goback.png");
+		types.push (lime.Assets.AssetType.IMAGE);
+		
+		
+		urls.push ("assets/images/green.png");
+		types.push (lime.Assets.AssetType.IMAGE);
+		
+		
+		urls.push ("assets/images/Mapa1.oel");
+		types.push (lime.Assets.AssetType.TEXT);
+		
+		
+		urls.push ("assets/images/Mapa2.oel");
+		types.push (lime.Assets.AssetType.TEXT);
+		
+		
+		urls.push ("assets/images/Mapa3.oel");
+		types.push (lime.Assets.AssetType.TEXT);
+		
+		
+		urls.push ("assets/images/Mapas.oep");
+		types.push (lime.Assets.AssetType.TEXT);
+		
+		
+		urls.push ("assets/images/marco.png");
+		types.push (lime.Assets.AssetType.IMAGE);
+		
+		
+		urls.push ("assets/images/mas.png");
+		types.push (lime.Assets.AssetType.IMAGE);
+		
+		
+		urls.push ("assets/images/menos.png");
+		types.push (lime.Assets.AssetType.IMAGE);
+		
+		
+		urls.push ("assets/images/newPowerups.png");
+		types.push (lime.Assets.AssetType.IMAGE);
+		
+		
 		urls.push ("assets/images/player1.png");
 		types.push (lime.Assets.AssetType.IMAGE);
 		
@@ -46,11 +102,55 @@ class ApplicationMain {
 		types.push (lime.Assets.AssetType.IMAGE);
 		
 		
+		urls.push ("assets/images/PORTADA.png");
+		types.push (lime.Assets.AssetType.IMAGE);
+		
+		
 		urls.push ("assets/images/powerUps.png");
 		types.push (lime.Assets.AssetType.IMAGE);
 		
 		
+		urls.push ("assets/images/powerups2.png");
+		types.push (lime.Assets.AssetType.IMAGE);
+		
+		
 		urls.push ("assets/images/red.png");
+		types.push (lime.Assets.AssetType.IMAGE);
+		
+		
+		urls.push ("assets/images/Selectmenu.png");
+		types.push (lime.Assets.AssetType.IMAGE);
+		
+		
+		urls.push ("assets/images/start.png");
+		types.push (lime.Assets.AssetType.IMAGE);
+		
+		
+		urls.push ("assets/images/tile.png");
+		types.push (lime.Assets.AssetType.IMAGE);
+		
+		
+		urls.push ("assets/images/Win.psd");
+		types.push (lime.Assets.AssetType.BINARY);
+		
+		
+		urls.push ("assets/images/Winp1.png");
+		types.push (lime.Assets.AssetType.IMAGE);
+		
+		
+		urls.push ("assets/images/Winp2.png");
+		types.push (lime.Assets.AssetType.IMAGE);
+		
+		
+		urls.push ("assets/images/Winp3.png");
+		types.push (lime.Assets.AssetType.IMAGE);
+		
+		
+		urls.push ("assets/images/Winp4.png");
+		types.push (lime.Assets.AssetType.IMAGE);
+		
+		
+		urls.push ("assets/images/yellow.png");
 		types.push (lime.Assets.AssetType.IMAGE);
 		
 		
@@ -139,7 +239,7 @@ class ApplicationMain {
 		
 		config = {
 			
-			build: "125",
+			build: "344",
 			company: "Aleman5",
 			file: "Slipstreamers",
 			fps: 60,
@@ -157,7 +257,7 @@ class ApplicationMain {
 					display: 0,
 					fullscreen: false,
 					hardware: false,
-					height: 768,
+					height: 608,
 					parameters: "{}",
 					resizable: false,
 					stencilBuffer: true,
@@ -181,7 +281,7 @@ class ApplicationMain {
 		
 		#if (js && html5)
 		#if (munit || utest)
-		openfl.Lib.embed (null, 1024, 768, "000000");
+		openfl.Lib.embed (null, 1024, 608, "000000");
 		#end
 		#else
 		create ();

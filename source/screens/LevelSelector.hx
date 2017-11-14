@@ -36,11 +36,9 @@ class LevelSelector extends FlxState
 		totalPlayers = 2;
 		
 		var fondo:FlxSprite = new FlxSprite(0, 0, AssetPaths.Selectmenu__png);
-		playersTxt = new FlxText(170, 100, 0, "How much players: " + totalPlayers, 32, true);
-		playersTxt.scale.set(2, 2);
-		playersTxt.y = 100;
+		playersTxt = new FlxText(70, 100, 0, "How much players: " + totalPlayers, 32, true);
 		
-		removePBtn = new FlxButton(playersTxt.x + 350, playersTxt.y-15, " ", removePlayer);
+		removePBtn = new FlxButton(playersTxt.x + 500, playersTxt.y-15, " ", removePlayer);
 		removePBtn.loadGraphic(AssetPaths.menos__png, true, 62, 69);
 		
 		addPBtn = new FlxButton(removePBtn.x + removePBtn.width + 10, playersTxt.y-15, " ", addPlayer);
@@ -49,11 +47,9 @@ class LevelSelector extends FlxState
 		// Tilemap things
 		whichTilemap = 1;
 		
-		levelTxt = new FlxText(150, 300, 0, "Level: Spacemap 1", 32, true);
-		levelTxt.scale.set(2, 2);
-		levelTxt.y = 300;
+		levelTxt = new FlxText(70, 200, 0, "Level: Spacemap 1", 32, true);
 		
-		removeLBtn = new FlxButton(playersTxt.x + 350, levelTxt.y-15, " ", removeTilemap);
+		removeLBtn = new FlxButton(playersTxt.x + 500, levelTxt.y-15, " ", removeTilemap);
 		removeLBtn.loadGraphic(AssetPaths.menos__png, true, 62, 69);
 		
 		addLBtn = new FlxButton(removeLBtn.x + removeLBtn.width+10, levelTxt.y-15, " ", addTilemap);
@@ -62,15 +58,13 @@ class LevelSelector extends FlxState
 		// Time things
 		howMuchTime = 1;
 		
-		timeTxt = new FlxText(camera.width / 4, camera.height / 2 + 40, 0, "", 16, true);
+		timeTxt = new FlxText(70, 270 + 40, 0, "", 32, true);
 		
-		removeTBtn = new FlxButton(timeTxt.x + 180, timeTxt.y + 30, "", removeTime);
-		removeTBtn.setGraphicSize(32, 32);
-		removeTBtn.updateHitbox();
+		removeTBtn = new FlxButton(playersTxt.x+500, timeTxt.y -15, "", removeTime);
+		removeTBtn.loadGraphic(AssetPaths.menos__png, true, 62, 69);
 		
-		addTBtn = new FlxButton(removeTBtn.x + removeTBtn.width + 2, timeTxt.y, "", addTime);
-		addTBtn.setGraphicSize(32, 32);
-		addTBtn.updateHitbox();
+		addTBtn = new FlxButton(removeTBtn.x + removeTBtn.width+10 + 2, timeTxt.y-15, "", addTime);
+		addTBtn.loadGraphic(AssetPaths.mas__png, true, 62, 69);
 		
 		// State changers
 		playBtn = new FlxButton(460, 470, " ", playGame);
@@ -80,8 +74,9 @@ class LevelSelector extends FlxState
 		menuBtn.loadGraphic(AssetPaths.goback__png, true, 231, 52);
 		
 		// Setting text format
-		playersTxt.setFormat(AssetPaths.ELEMENTS__TTF, 16);
-		levelTxt.setFormat(AssetPaths.ELEMENTS__TTF, 16);
+		playersTxt.setFormat(AssetPaths.ELEMENTS__TTF, 32);
+		levelTxt.setFormat(AssetPaths.ELEMENTS__TTF, 32);
+		timeTxt.setFormat(AssetPaths.ELEMENTS__TTF,32);
 		// Adding
 		add(fondo);
 		add(playersTxt);

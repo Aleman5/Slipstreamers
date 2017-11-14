@@ -4,6 +4,8 @@ import flixel.FlxSprite;
 import flixel.FlxState;
 import flixel.text.FlxText;
 import flixel.util.FlxColor;
+import flixel.ui.FlxButton;
+import flixel.FlxG;
 
 
 class EndGame extends FlxState 
@@ -18,6 +20,7 @@ class EndGame extends FlxState
 	var scoreGreen:FlxText;
 	var scoreYellow:FlxText;
 	var fondo:FlxSprite;
+	var retry:FlxButton;
 
 	override public function create():Void
 	{
@@ -25,7 +28,7 @@ class EndGame extends FlxState
 		p2S = Reg.p2Score;
 		p3S = Reg.p3Score;
 		p4S = Reg.p4Score;
-		playersCant = Reg.howMuch;
+		playersCant = Reg.howMuchPlayers;
 		
 		scoreRed = new FlxText(650, 260, 0, "", 32, true);
 		scoreRed.setFormat(AssetPaths.ELEMENTS__TTF,32);
@@ -46,6 +49,7 @@ class EndGame extends FlxState
 		scoreYellow.setFormat(AssetPaths.ELEMENTS__TTF,32);
 		scoreYellow.color = FlxColor.YELLOW;
 		scoreYellow.text = "Player 4 : " + p4S;
+		
 		switch (playersCant)
 		{
 			case 2:
@@ -59,6 +63,13 @@ class EndGame extends FlxState
 				if (p2S > p1S)
 				{
 					fondo = new FlxSprite(0, 0, AssetPaths.Winp2__png);
+					add(fondo);
+					add(scoreRed);
+					add(scoreBlue);
+				}
+				if (p1S == p2S)
+				{
+					fondo = new FlxSprite(0, 0, AssetPaths.WinA__png);
 					add(fondo);
 					add(scoreRed);
 					add(scoreBlue);
@@ -83,6 +94,14 @@ class EndGame extends FlxState
 				if (p3S > p1S && p3S > p2S)
 				{
 					fondo = new FlxSprite(0, 0, AssetPaths.Winp3__png);
+					add(fondo);
+					add(scoreRed);
+					add(scoreBlue);
+					add(scoreGreen);
+				}
+				if (p1S == p2S || p1S == p3S || p2S == p3S)
+				{
+					fondo = new FlxSprite(0, 0, AssetPaths.WinA__png);
 					add(fondo);
 					add(scoreRed);
 					add(scoreBlue);
@@ -125,7 +144,26 @@ class EndGame extends FlxState
 					add(scoreGreen);
 					add(scoreYellow);
 				}
+				if (p1S == p2S || p1S == p3S || p1S == p4S || p2S == p3S || p2S == p4S || p3S == p4S)
+				{
+					fondo = new FlxSprite(0, 0, AssetPaths.WinA__png);
+					add(fondo);
+					add(scoreRed);
+					add(scoreBlue);
+					add(scoreGreen);
+					add(scoreYellow);
+				}
 		}
+	
+		retry = new FlxButton(460, 470, " ", Retry);
+		retry.loadGraphic(AssetPaths.retry__png, true, 189, 52);
+		
+		add(retry);
+	}
+	private function Retry() 
+	{
+		var menuState:MenuState = new MenuState();
+		FlxG.switchState(menuState);
 	}
 	
 }

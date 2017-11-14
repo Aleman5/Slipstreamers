@@ -42,7 +42,7 @@ class Player extends FlxSprite
 	private var shield:Bool; 	// 						 'shield'
 	private var x2PwUp:Bool;	//						 'x2'
 	// Points things
-	private var score:Int;
+	public var score(get, null):Int;
 	private var scoreTxt:FlxText;
 	
 	public function new(?X:Float=0, ?Y:Float=0 , WhichPlayer:Int) 
@@ -513,4 +513,9 @@ class Player extends FlxSprite
 					score -= 10;
 		}
 	}
+	public function get_score():Int 
+	{
+		return score;
+	}
+	
 }

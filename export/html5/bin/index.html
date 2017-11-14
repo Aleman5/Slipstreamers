@@ -24,8 +24,17 @@
 	
 	<style>
 		html,body { margin: 0; padding: 0; height: 100%; overflow: hidden; background: black; }
-		#openfl-content { margin: 0 auto; width: 1024px; height: 768px; }
+		#openfl-content { margin: 0 auto; width: 1024px; height: 608px; }
 		
+		@font-face {
+			font-family: 'BN Elements';
+			src: url('assets/images/ELEMENTS.eot');
+			src: url('assets/images/ELEMENTS.eot?#iefix') format('embedded-opentype'),
+			url('assets/images/ELEMENTS.svg#my-font-family') format('svg'),
+			url('assets/images/ELEMENTS.ttf') format('truetype');
+			font-weight: normal;
+			font-style: normal;
+		}
 		@font-face {
 			font-family: 'Nokia Cellphone FC Small';
 			src: url('flixel/fonts/nokiafc22.eot');
@@ -54,7 +63,7 @@
 	<div id="openfl-content"></div>
 	
 	<script type="text/javascript">
-		lime.embed ("openfl-content", 1024, 768, "000000");
+		lime.embed ("openfl-content", 1024, 608, "000000");
 	</script>
 	
 </body>
