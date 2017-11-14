@@ -271,7 +271,7 @@ class Player extends FlxSprite
 	{
 		if (gotHitByGoingLeft)
 		{
-			changeToFlickering();
+			isShielded();
 			currentStateFace = StatesFaces.RIGHT;
 			facing = FlxObject.RIGHT;
 			set_angle(0);
@@ -280,7 +280,7 @@ class Player extends FlxSprite
 		}
 		if (gotHitByGoingRight)
 		{
-			changeToFlickering();
+			isShielded();
 			currentStateFace = StatesFaces.LEFT;
 			facing = FlxObject.LEFT;
 			set_angle(0);
@@ -289,7 +289,7 @@ class Player extends FlxSprite
 		}
 		if (gotHitByGoingUp)
 		{
-			changeToFlickering();
+			isShielded();
 			currentStateFace = StatesFaces.DOWN;
 			facing = FlxObject.RIGHT;
 			set_angle(90);
@@ -298,7 +298,7 @@ class Player extends FlxSprite
 		}
 		if (gotHitByGoingDown)
 		{
-			changeToFlickering();
+			isShielded();
 			currentStateFace = StatesFaces.UP;
 			facing = FlxObject.LEFT;
 			set_angle(90);
@@ -413,7 +413,17 @@ class Player extends FlxSprite
 		set_angle(90);
 		timer = 0;
 	}
-	public function changeToFlickering()
+	function isShielded() 
+	{
+		if (!shield)
+			changeToFlickering();
+		else
+		{
+			timerShield = 0;
+			shield = false;
+		}
+	}
+	function changeToFlickering()
 	{
 		currentState = States.FLICKERING;
 		animation.play("spaced");

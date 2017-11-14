@@ -40,6 +40,9 @@ class PlayState extends FlxState
 	private var howMuchTime:Int;
 	private var timeTxt:FlxText;
 	private var counter:Int;
+	// Sounds
+	private var playSounds:Bool;
+	private var playTheme:Bool;
 	
 	override public function create():Void
 	{
@@ -101,6 +104,9 @@ class PlayState extends FlxState
 		timeTxt.color = FlxColor.BLACK;
 		add(timeTxt);
 		counter = 0;
+		// Sounds
+		playSounds = true;
+		playTheme = true;
 		// Player initialization
 		player1 = new Player(camera.width / 4, camera.height / 4, 1);
 		player2 = new Player(camera.width * 3 / 4, camera.height * 3 / 4, 2);
@@ -119,8 +125,6 @@ class PlayState extends FlxState
 		pUps = new FlxTypedGroup();
 		add(players);
 	}
-	
-	
 	override public function update(elapsed:Float):Void
 	{
 		if (!Reg.paused)
@@ -129,8 +133,16 @@ class PlayState extends FlxState
 			powerUpCreator();
 			checkTime();
 		}
+		checkSound();
 		collisions();
 		levelResetOrPause();
+	}
+	function checkSound() 
+	{
+		if (FlxG.keys.justPressed.O)
+			playSounds = !playSounds;
+		if (FlxG.keys.justPressed.P)
+			playTheme = !playTheme;
 	}
 	private function checkTime() 
 	{
