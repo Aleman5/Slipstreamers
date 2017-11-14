@@ -352,8 +352,8 @@ class Player extends FlxSprite
 	function ghosted()
 	{
 		timer = 0;
-		velHor = velocity.x;
-		velVer = velocity.y;
+		velHor = velocity.x * 1.5;
+		velVer = velocity.y * 1.5;
 		currentState = States.SPACED;
 	}
 	function movementPlayer1() // ↑ W 	↓ S 	← A 	→ D		 # Q

@@ -8,16 +8,16 @@ import flixel.util.FlxColor;
 
 class EndGame extends FlxState 
 {
-	var p1S:Int;
-	var p2S:Int;
-	var p3S:Int;
-	var p4S:Int;
-	var playersCant:Int;
-	var scoreRed:FlxText;
-	var scoreBlue:FlxText;
-	var scoreGreen:FlxText;
-	var scoreYellow:FlxText;
-	var fondo:FlxSprite;
+	private var p1S:Int;
+	private var p2S:Int;
+	private var p3S:Int;
+	private var p4S:Int;
+	private var playersCant:Int;
+	private var scoreRed:FlxText;
+	private var scoreBlue:FlxText;
+	private var scoreGreen:FlxText;
+	private var scoreYellow:FlxText;
+	private var fondo:FlxSprite;
 
 	override public function create():Void
 	{
@@ -25,7 +25,7 @@ class EndGame extends FlxState
 		p2S = Reg.p2Score;
 		p3S = Reg.p3Score;
 		p4S = Reg.p4Score;
-		playersCant = Reg.howMuch;
+		playersCant = Reg.howMuchPlayers;
 		
 		scoreRed = new FlxText(650, 260, 0, "", 32, true);
 		scoreRed.setFormat(AssetPaths.ELEMENTS__TTF,32);
@@ -40,7 +40,7 @@ class EndGame extends FlxState
 		scoreGreen = new FlxText(650, scoreBlue.y+40, 0, "", 32, true);
 		scoreGreen.setFormat(AssetPaths.ELEMENTS__TTF,32);
 		scoreGreen.color = FlxColor.LIME;
-		scoreGreen.text = "Player 2 : " + p3S;
+		scoreGreen.text = "Player 3 : " + p3S;
 		
 		scoreYellow = new FlxText(650, scoreGreen.y+40, 0, "", 32, true);
 		scoreYellow.setFormat(AssetPaths.ELEMENTS__TTF,32);

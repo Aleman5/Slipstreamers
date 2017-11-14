@@ -7,13 +7,13 @@ import flixel.FlxSprite;
 import flixel.FlxState;
 import flixel.FlxG;
 import flixel.addons.editors.ogmo.FlxOgmoLoader;
-import flixel.addons.tile.FlxTilemapExt;
 import flixel.math.FlxRandom;
 import flixel.group.FlxGroup.FlxTypedGroup;
 import flixel.text.FlxText;
 import flixel.util.FlxColor;
 import flixel.tile.FlxTilemap;
 import screens.EndGame;
+import screens.MenuState;
 
 class PlayState extends FlxState
 {
@@ -92,7 +92,7 @@ class PlayState extends FlxState
 		add(marco);
 		// Variable initialization
 		howMuchP = Reg.howMuchPlayers;
-		timer = 200;
+		timer = 100;
 		timeTimed = 0;
 		posX = 0;
 		posY = 0;
@@ -163,8 +163,11 @@ class PlayState extends FlxState
 	}
 	private function levelResetOrPause():Void
 	{
-		if (FlxG.keys.justPressed.R)
-			FlxG.resetState();
+		if (FlxG.keys.justPressed.ESCAPE)
+		{
+			var menuState:MenuState = new MenuState();
+			FlxG.switchState(menuState);
+		}
 		if (FlxG.keys.justPressed.ENTER)
 			Reg.paused = !Reg.paused;
 	}
@@ -181,7 +184,7 @@ class PlayState extends FlxState
 			add(pUps);
 			
 			timeTimed = 0;
-			timer = r.int(150, 210);
+			timer = r.int(80, 115);
 		}
 	}
 	private function powered(p:Player, pU:Items):Void
