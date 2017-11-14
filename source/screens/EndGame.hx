@@ -43,7 +43,7 @@ class EndGame extends FlxState
 		scoreGreen = new FlxText(650, scoreBlue.y+40, 0, "", 32, true);
 		scoreGreen.setFormat(AssetPaths.ELEMENTS__TTF,32);
 		scoreGreen.color = FlxColor.LIME;
-		scoreGreen.text = "Player 2 : " + p3S;
+		scoreGreen.text = "Player 3 : " + p3S;
 		
 		scoreYellow = new FlxText(650, scoreGreen.y+40, 0, "", 32, true);
 		scoreYellow.setFormat(AssetPaths.ELEMENTS__TTF,32);

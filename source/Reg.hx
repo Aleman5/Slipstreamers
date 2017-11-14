@@ -1,5 +1,4 @@
 package;
-import entities.Player;
 
 /**
  * ...
@@ -9,9 +8,9 @@ class Reg
 {
 	static public var paused:Bool = false;
 	// Naves
-	static public var speed:Int = 120;
-	static public var speedBoost:Int = 138; // 115% de la speed normal
-	static public var speedUnBoost:Int = 102; // 85% de la speed normal
+	static public var speed:Int = 150;
+	static public var speedBoost:Int = 210;
+	static public var speedUnBoost:Int = 115;
 	// PlayState
 	static public var howMuchPlayers:Int;
 	static public var whichlevel:Int;
