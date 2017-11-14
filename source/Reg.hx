@@ -7,13 +7,15 @@ import entities.Player;
  */
 class Reg 
 {
+	static public var paused:Bool = false;
 	// Naves
-	static public var speed = 120;
-	static public var speedBoost = 138; // 115% de la speed normal
-	static public var speedUnBoost = 102; // 85% de la speed normal
+	static public var speed:Int = 120;
+	static public var speedBoost:Int = 138; // 115% de la speed normal
+	static public var speedUnBoost:Int = 102; // 85% de la speed normal
 	// PlayState
-	static public var howMuch:Int;
+	static public var howMuchPlayers:Int;
 	static public var whichlevel:Int;
+	static public var howMuchTime:Int;
 	// EndGame
 	static public var p1Score:Int;
 	static public var p2Score:Int;

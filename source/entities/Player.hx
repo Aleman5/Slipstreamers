@@ -78,14 +78,14 @@ class Player extends FlxSprite
 				velocity.x = Reg.speed;
 				facing = FlxObject.RIGHT;
 				currentStateFace = StatesFaces.RIGHT;
-				scoreTxt = new FlxText(20, 10, 0, "", 16, true);
+				scoreTxt = new FlxText(18, 8, 0, "", 16, true);
 				scoreTxt.color = FlxColor.RED;
 			case 2:
 				loadGraphic(AssetPaths.blue__png, true, 40, 32);
 				velocity.x = -Reg.speed;
 				facing = FlxObject.LEFT;
 				currentStateFace = StatesFaces.LEFT;
-				scoreTxt = new FlxText(camera.width - 200, camera.height - 32, 0, "", 16, true);
+				scoreTxt = new FlxText(camera.width - 135, camera.height - 26, 0, "", 16, true);
 				scoreTxt.color = FlxColor.BLUE;
 			case 3:
 				loadGraphic(AssetPaths.green__png, true, 40, 32);
@@ -93,15 +93,15 @@ class Player extends FlxSprite
 				facing = FlxObject.RIGHT;
 				set_angle(90);
 				currentStateFace = StatesFaces.DOWN;
-				scoreTxt = new FlxText(camera.width -200, 10, 0, "", 16, true);
-				scoreTxt.color = FlxColor.LIME;
+				scoreTxt = new FlxText(camera.width - 135, 8, 0, "", 16, true);
+				scoreTxt.color = FlxColor.GREEN;
 			case 4:
 				loadGraphic(AssetPaths.yellow__png, true, 40, 32);
 				velocity.y = -Reg.speed;
 				facing = FlxObject.LEFT;
 				set_angle(90);
 				currentStateFace = StatesFaces.UP;
-				scoreTxt = new FlxText(20, camera.height - 32, 0, "", 16, true);
+				scoreTxt = new FlxText(18, camera.height - 26, 0, "", 16, true);
 				scoreTxt.color = FlxColor.YELLOW;
 		}
 		currentState = States.MOVE;
@@ -118,7 +118,7 @@ class Player extends FlxSprite
 	}
 	override public function update(elapsed:Float)
 	{
-		if (currentState != States.FLICKERING)
+		if (currentState != States.FLICKERING || !Reg.paused)
 		{
 			boolDurationTest();
 			stateFacesMachine();
@@ -286,7 +286,7 @@ class Player extends FlxSprite
 	{
 		if (gotHitByGoingLeft)
 		{
-			changeToFlickering();
+			isShielded();
 			currentStateFace = StatesFaces.RIGHT;
 			facing = FlxObject.RIGHT;
 			set_angle(0);
@@ -295,7 +295,7 @@ class Player extends FlxSprite
 		}
 		if (gotHitByGoingRight)
 		{
-			changeToFlickering();
+			isShielded();
 			currentStateFace = StatesFaces.LEFT;
 			facing = FlxObject.LEFT;
 			set_angle(0);
@@ -304,7 +304,7 @@ class Player extends FlxSprite
 		}
 		if (gotHitByGoingUp)
 		{
-			changeToFlickering();
+			isShielded();
 			currentStateFace = StatesFaces.DOWN;
 			facing = FlxObject.RIGHT;
 			set_angle(90);
@@ -313,7 +313,7 @@ class Player extends FlxSprite
 		}
 		if (gotHitByGoingDown)
 		{
-			changeToFlickering();
+			isShielded();
 			currentStateFace = StatesFaces.UP;
 			facing = FlxObject.LEFT;
 			set_angle(90);
@@ -428,7 +428,17 @@ class Player extends FlxSprite
 		set_angle(90);
 		timer = 0;
 	}
-	public function changeToFlickering()
+	function isShielded() 
+	{
+		if (!shield)
+			changeToFlickering();
+		else
+		{
+			timerShield = 0;
+			shield = false;
+		}
+	}
+	function changeToFlickering()
 	{
 		currentState = States.FLICKERING;
 		animation.play("spaced");

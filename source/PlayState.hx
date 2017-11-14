@@ -2,7 +2,6 @@ package;
 
 import entities.Player;
 import entities.Items;
-import entities.Trail;
 import flixel.FlxObject;
 import flixel.FlxSprite;
 import flixel.FlxState;
@@ -11,8 +10,8 @@ import flixel.addons.editors.ogmo.FlxOgmoLoader;
 import flixel.addons.tile.FlxTilemapExt;
 import flixel.math.FlxRandom;
 import flixel.group.FlxGroup.FlxTypedGroup;
-import flixel.util.FlxTimer;
 import flixel.text.FlxText;
+import flixel.util.FlxColor;
 import flixel.tile.FlxTilemap;
 import screens.EndGame;
 
@@ -39,8 +38,12 @@ class PlayState extends FlxState
 	private var tilebase:FlxTilemap;
 	private var fondo:FlxSprite;
 	// Time
-	private var minutes:Int;
-	private var seconds:FlxTimer;
+	private var howMuchTime:Int;
+	private var timeTxt:FlxText;
+	private var counter:Int;
+	// Sounds
+	private var playSounds:Bool;
+	private var playTheme:Bool;
 	
 	override public function create():Void
 	{
@@ -88,7 +91,7 @@ class PlayState extends FlxState
 		var marco:FlxSprite = new FlxSprite(0, 0, AssetPaths.marco__png);
 		add(marco);
 		// Variable initialization
-		howMuchP = Reg.howMuch;
+		howMuchP = Reg.howMuchPlayers;
 		timer = 200;
 		timeTimed = 0;
 		posX = 0;
@@ -96,9 +99,15 @@ class PlayState extends FlxState
 		whichPUp = 0;
 		r = new FlxRandom();
 		players = new FlxTypedGroup();
-		minutes = 1;
-		//seconds.start(59, null, 2);
-		
+		// Time
+		howMuchTime = Reg.howMuchTime * 30 + 29;
+		timeTxt = new FlxText(camera.width / 2 - 25, 8, 0, "", 22, true);
+		timeTxt.color = FlxColor.BLACK;
+		add(timeTxt);
+		counter = 0;
+		// Sounds
+		playSounds = true;
+		playTheme = true;
 		// Player initialization
 		player1 = new Player(camera.width / 4, camera.height / 4, 1);
 		player2 = new Player(camera.width * 3 / 4, camera.height * 3 / 4, 2);
@@ -119,21 +128,45 @@ class PlayState extends FlxState
 	}
 	override public function update(elapsed:Float):Void
 	{
-		super.update(elapsed);
-		powerUpCreator();
-		collisions();
-		levelReset();
-		if (FlxG.keys.justPressed.SPACE)
+		if (!Reg.paused)
 		{
-			var end:EndGame = new EndGame();
-			FlxG.switchState(end);
+			super.update(elapsed);
+			powerUpCreator();
+			checkTime();
 		}
-		
+		checkSound();
+		collisions();
+		levelResetOrPause();
 	}
-	private function levelReset():Void
+	private function checkSound() 
+	{
+		if (FlxG.keys.justPressed.O)
+			playSounds = !playSounds;
+		if (FlxG.keys.justPressed.P)
+			playTheme = !playTheme;
+	}
+	private function checkTime() 
+	{
+		counter++;
+		if (counter > 59)
+		{
+			howMuchTime--;
+			counter = 0;
+		}
+		timeTxt.text = "Time left: " + howMuchTime;
+		
+		if (howMuchTime == 0)
+		{
+			trace("Game Finished"); // Acá se pondría el subEstado de victoria
+			Reg.paused = true;
+		}
+	}
+	private function levelResetOrPause():Void
 	{
 		if (FlxG.keys.justPressed.R)
 			FlxG.resetState();
+		if (FlxG.keys.justPressed.ENTER)
+			Reg.paused = !Reg.paused;
 	}
 	private function powerUpCreator():Void
 	{
@@ -156,7 +189,7 @@ class PlayState extends FlxState
 		p.whichPwUp(pU.get_whichPowerUp());
 		pU.kill();
 	}
-	private function colTilemap(p:Player, dinopianito:Int) 
+	private function colTilemap(p:Player, dinopianito:Bool) 
 	{
 		whatShouldIDo(p);
 	}

@@ -21,6 +21,11 @@ class LevelSelector extends FlxState
 	private var levelTxt:FlxText;
 	private var addLBtn:FlxButton;
 	private var removeLBtn:FlxButton;
+	// Time things
+	private var howMuchTime:Int;
+	private var timeTxt:FlxText;
+	private var addTBtn:FlxButton;
+	private var removeTBtn:FlxButton;
 	// States changers
 	private var playBtn:FlxButton;
 	private var menuBtn:FlxButton;
@@ -54,6 +59,19 @@ class LevelSelector extends FlxState
 		addLBtn = new FlxButton(removeLBtn.x + removeLBtn.width+10, levelTxt.y-15, " ", addTilemap);
 		addLBtn.loadGraphic(AssetPaths.mas__png, true, 62, 69);
 		
+		// Time things
+		howMuchTime = 1;
+		
+		timeTxt = new FlxText(camera.width / 4, camera.height / 2 + 40, 0, "", 16, true);
+		
+		removeTBtn = new FlxButton(timeTxt.x + 180, timeTxt.y + 30, "", removeTime);
+		removeTBtn.setGraphicSize(32, 32);
+		removeTBtn.updateHitbox();
+		
+		addTBtn = new FlxButton(removeTBtn.x + removeTBtn.width + 2, timeTxt.y, "", addTime);
+		addTBtn.setGraphicSize(32, 32);
+		addTBtn.updateHitbox();
+		
 		// State changers
 		playBtn = new FlxButton(460, 470, " ", playGame);
 		playBtn.loadGraphic(AssetPaths.start__png, true, 189, 52);
@@ -72,6 +90,9 @@ class LevelSelector extends FlxState
 		add(levelTxt);
 		add(addLBtn);
 		add(removeLBtn);
+		add(timeTxt);
+		add(addTBtn);
+		add(removeTBtn);
 		add(playBtn);
 		add(menuBtn);
 	}
@@ -88,6 +109,15 @@ class LevelSelector extends FlxState
 				levelTxt.text = "Level: Spacemap 2";
 			case 3:
 				levelTxt.text = "Level: Spacemap 3";
+		}
+		switch (howMuchTime) 
+		{
+			case 1:
+				timeTxt.text = "Time: 59 seconds";
+			case 2:
+				timeTxt.text = "Time: 1 minute 30 seconds";
+			case 3:
+				timeTxt.text = "Time: 1 minute 59 seconds";
 		}
 	}
 	private function removePlayer() 
@@ -110,10 +140,21 @@ class LevelSelector extends FlxState
 		if (whichTilemap < 3)
 			whichTilemap++;
 	}
+	private function removeTime() 
+	{
+		if (howMuchTime > 1)
+			howMuchTime--;
+	}
+	private function addTime() 
+	{
+		if (howMuchTime < 3)
+			howMuchTime++;
+	}
 	private function playGame() 
 	{
-		Reg.howMuch = totalPlayers;
+		Reg.howMuchPlayers = totalPlayers;
 		Reg.whichlevel = whichTilemap;
+		Reg.howMuchTime = howMuchTime;
 		var playState:PlayState = new PlayState();
 		FlxG.switchState(playState);
 	}
