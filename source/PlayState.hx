@@ -137,7 +137,7 @@ class PlayState extends FlxState
 		collisions();
 		levelResetOrPause();
 	}
-	function checkSound() 
+	private function checkSound() 
 	{
 		if (FlxG.keys.justPressed.O)
 			playSounds = !playSounds;
@@ -188,7 +188,7 @@ class PlayState extends FlxState
 		p.whichPwUp(pU.get_whichPowerUp());
 		pU.kill();
 	}
-	private function colTilemap(p:Player, dinopianito:Int) 
+	private function colTilemap(p:Player, dinopianito:Bool) 
 	{
 		whatShouldIDo(p);
 	}
