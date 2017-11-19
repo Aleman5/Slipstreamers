@@ -109,8 +109,8 @@ class PlayState extends FlxState
 		playSounds = true;
 		playTheme = true;
 		// Player initialization
-		player1 = new Player(camera.width / 4, camera.height / 4, 1);
-		player2 = new Player(camera.width * 3 / 4, camera.height * 3 / 4, 2);
+		player1 = new Player(camera.width / 4, camera.height / 4 + 16, 1);
+		player2 = new Player(camera.width * 3 / 4, camera.height * 3 / 4 - 44, 2);
 		players.add(player1);
 		players.add(player2);
 		if (howMuchP >= 3)
@@ -120,7 +120,7 @@ class PlayState extends FlxState
 		}
 		if (howMuchP == 4)
 		{
-			player4 = new Player(camera.width / 4, camera.height * 3 / 4, 4);
+			player4 = new Player(camera.width / 4, camera.height * 3 / 4 - 16, 4);
 			players.add(player4);
 		}
 		pUps = new FlxTypedGroup();
@@ -183,9 +183,16 @@ class PlayState extends FlxState
 			pUp = new Items(posX, posY, whichPUp);
 			pUps.add(pUp);
 			add(pUps);
-			
 			timeTimed = 0;
-			timer = r.int(80, 115);
+			switch (howMuchP)
+			{
+				case 2:
+					timer = r.int(80, 115);
+				case 3:
+					timer = r.int(70, 95);
+				case 4:
+					timer = r.int(50, 75);
+			}
 		}
 	}
 	private function powered(p:Player, pU:Items):Void

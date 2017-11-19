@@ -41,6 +41,7 @@ class Player extends FlxSprite
 	private var unBoost:Bool;  	// 						 'unBoost'
 	private var shield:Bool; 	// 						 'shield'
 	private var x2PwUp:Bool;	//						 'x2'
+	private var timerGhosted:Int;
 	// Points things
 	public var score(get, null):Int;
 	private var scoreTxt:FlxText;
@@ -67,6 +68,7 @@ class Player extends FlxSprite
 		unBoost = false;
 		shield = false;
 		x2PwUp = false;
+		timerGhosted = 0;
 		score = 0;
 		setFacingFlip(FlxObject.RIGHT, true, false);
 		setFacingFlip(FlxObject.LEFT, false, false);
@@ -324,7 +326,7 @@ class Player extends FlxSprite
 	function movementAndOthers()
 	{
 		timer++;
-		
+		timerGhosted++;
 		switch (whichPlayer) 
 		{
 			case 1:
@@ -351,10 +353,14 @@ class Player extends FlxSprite
 	}
 	function ghosted()
 	{
-		timer = 0;
-		velHor = velocity.x * 1.5;
-		velVer = velocity.y * 1.5;
-		currentState = States.SPACED;
+		if (timerGhosted > 25)
+		{
+			timerGhosted = 0;
+			timer = 0;
+			velHor = velocity.x * 1.5;
+			velVer = velocity.y * 1.5;
+			currentState = States.SPACED;
+		}
 	}
 	function movementPlayer1() // ↑ W 	↓ S 	← A 	→ D		 # Q
 	{

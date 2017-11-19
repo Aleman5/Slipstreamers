@@ -60,14 +60,14 @@ class EndGame extends FlxState
 					add(scoreRed);
 					add(scoreBlue);
 				}
-				if (p2S > p1S)
+				else if (p2S > p1S)
 				{
 					fondo = new FlxSprite(0, 0, AssetPaths.Winp2__png);
 					add(fondo);
 					add(scoreRed);
 					add(scoreBlue);
 				}
-				if (p1S == p2S)
+				else if (p1S == p2S)
 				{
 					fondo = new FlxSprite(0, 0, AssetPaths.WinA__png);
 					add(fondo);
@@ -83,7 +83,7 @@ class EndGame extends FlxState
 					add(scoreBlue);
 					add(scoreGreen);
 				}
-				if (p2S > p1S && p2S > p3S)
+				else if (p2S > p1S && p2S > p3S)
 				{
 					fondo = new FlxSprite(0, 0, AssetPaths.Winp2__png);
 					add(fondo);
@@ -91,7 +91,7 @@ class EndGame extends FlxState
 					add(scoreBlue);
 					add(scoreGreen);
 				}
-				if (p3S > p1S && p3S > p2S)
+				else if (p3S > p1S && p3S > p2S)
 				{
 					fondo = new FlxSprite(0, 0, AssetPaths.Winp3__png);
 					add(fondo);
@@ -99,7 +99,7 @@ class EndGame extends FlxState
 					add(scoreBlue);
 					add(scoreGreen);
 				}
-				if (p1S == p2S || p1S == p3S || p2S == p3S)
+				else if (p1S == p2S || p1S == p3S || p2S == p3S)
 				{
 					fondo = new FlxSprite(0, 0, AssetPaths.WinA__png);
 					add(fondo);
@@ -117,7 +117,7 @@ class EndGame extends FlxState
 					add(scoreGreen);
 					add(scoreYellow);
 				}
-				if (p2S > p1S && p2S > p3S && p2S > p4S)
+				else if (p2S > p1S && p2S > p3S && p2S > p4S)
 				{
 					fondo = new FlxSprite(0, 0, AssetPaths.Winp2__png);
 					add(fondo);
@@ -126,7 +126,7 @@ class EndGame extends FlxState
 					add(scoreGreen);
 					add(scoreYellow);
 				}
-				if (p3S > p1S && p3S > p2S && p3S > p4S)
+				else if (p3S > p1S && p3S > p2S && p3S > p4S)
 				{
 					fondo = new FlxSprite(0, 0, AssetPaths.Winp3__png);
 					add(fondo);
@@ -135,7 +135,7 @@ class EndGame extends FlxState
 					add(scoreGreen);
 					add(scoreYellow);
 				}
-				if (p4S > p1S && p4S > p2S && p4S > p3S)
+				else if (p4S > p1S && p4S > p2S && p4S > p3S)
 				{
 					fondo = new FlxSprite(0, 0, AssetPaths.Winp4__png);
 					add(fondo);
@@ -144,7 +144,7 @@ class EndGame extends FlxState
 					add(scoreGreen);
 					add(scoreYellow);
 				}
-				if (p1S == p2S || p1S == p3S || p1S == p4S || p2S == p3S || p2S == p4S || p3S == p4S)
+				else if (p1S == p2S || p1S == p3S || p1S == p4S || p2S == p3S || p2S == p4S || p3S == p4S)
 				{
 					fondo = new FlxSprite(0, 0, AssetPaths.WinA__png);
 					add(fondo);
