@@ -64,7 +64,25 @@ class DefaultAssetLibrary extends AssetLibrary {
 		
 		
 		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		Font.registerFont (__ASSET__assets_images_digital_ttf);
 		Font.registerFont (__ASSET__assets_images_elements_ttf);
+		
+		
+		
+		
+		
+		
 		
 		
 		
@@ -100,6 +118,24 @@ class DefaultAssetLibrary extends AssetLibrary {
 		#if (windows || mac || linux)
 		
 		var useManifest = false;
+		useManifest = true;
+		useManifest = true;
+		useManifest = true;
+		useManifest = true;
+		useManifest = true;
+		useManifest = true;
+		useManifest = true;
+		useManifest = true;
+		useManifest = true;
+		useManifest = true;
+		useManifest = true;
+		useManifest = true;
+		useManifest = true;
+		useManifest = true;
+		useManifest = true;
+		useManifest = true;
+		useManifest = true;
+		useManifest = true;
 		useManifest = true;
 		useManifest = true;
 		useManifest = true;
@@ -565,12 +601,14 @@ class DefaultAssetLibrary extends AssetLibrary {
 
 
 
+@:keep class __ASSET__assets_images_digital_ttf extends openfl.text.Font { public function new () { super (); __fontPath = "assets/images/digital.ttf"; fontName = "Digital-7"; }}
 @:keep class __ASSET__assets_images_elements_ttf extends openfl.text.Font { public function new () { super (); __fontPath = "assets/images/ELEMENTS.TTF"; fontName = "BN Elements"; }}
 
 
 #else
 
 
+class __ASSET__assets_images_digital_ttf extends openfl.text.Font { public function new () { super (); __fontPath = "assets/images/digital.ttf"; fontName = "Digital-7";  }}
 class __ASSET__assets_images_elements_ttf extends openfl.text.Font { public function new () { super (); __fontPath = "assets/images/ELEMENTS.TTF"; fontName = "BN Elements";  }}
 class __ASSET__flixel_fonts_nokiafc22_ttf extends openfl.text.Font { public function new () { super (); __fontPath = "flixel/fonts/nokiafc22.ttf"; fontName = "Nokia Cellphone FC Small";  }}
 class __ASSET__flixel_fonts_monsterrat_ttf extends openfl.text.Font { public function new () { super (); __fontPath = "flixel/fonts/monsterrat.ttf"; fontName = "Monsterrat";  }}
@@ -644,7 +682,25 @@ class DefaultAssetLibrary extends AssetLibrary {
 		
 		
 		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		openfl.text.Font.registerFont (__ASSET__OPENFL__assets_images_digital_ttf);
 		openfl.text.Font.registerFont (__ASSET__OPENFL__assets_images_elements_ttf);
+		
+		
+		
+		
+		
+		
 		
 		
 		
@@ -680,54 +736,64 @@ class DefaultAssetLibrary extends AssetLibrary {
 		
 		#if flash
 		
-		path.set ("assets/images/powerUps.png", "assets/images/powerUps.png");
-		type.set ("assets/images/powerUps.png", AssetType.IMAGE);
-		path.set ("assets/images/player1.png", "assets/images/player1.png");
-		type.set ("assets/images/player1.png", AssetType.IMAGE);
-		path.set ("assets/images/player2.png", "assets/images/player2.png");
-		type.set ("assets/images/player2.png", AssetType.IMAGE);
-		path.set ("assets/images/player3.png", "assets/images/player3.png");
-		type.set ("assets/images/player3.png", AssetType.IMAGE);
-		path.set ("assets/images/player4.png", "assets/images/player4.png");
-		type.set ("assets/images/player4.png", AssetType.IMAGE);
-		path.set ("assets/images/powerups2.png", "assets/images/powerups2.png");
-		type.set ("assets/images/powerups2.png", AssetType.IMAGE);
+		path.set ("assets/audio/Apeirogon100.wav", "assets/audio/Apeirogon100.wav");
+		type.set ("assets/audio/Apeirogon100.wav", AssetType.SOUND);
+		path.set ("assets/audio/badgem.wav", "assets/audio/badgem.wav");
+		type.set ("assets/audio/badgem.wav", AssetType.SOUND);
+		path.set ("assets/audio/boost.wav", "assets/audio/boost.wav");
+		type.set ("assets/audio/boost.wav", AssetType.SOUND);
+		path.set ("assets/audio/button.mp3", "assets/audio/button.mp3");
+		type.set ("assets/audio/button.mp3", AssetType.MUSIC);
+		path.set ("assets/audio/button.wav", "assets/audio/button.wav");
+		type.set ("assets/audio/button.wav", AssetType.SOUND);
+		path.set ("assets/audio/collision.wav", "assets/audio/collision.wav");
+		type.set ("assets/audio/collision.wav", AssetType.SOUND);
+		path.set ("assets/audio/Diamond Sound Effect.mp3", "assets/audio/Diamond Sound Effect.mp3");
+		type.set ("assets/audio/Diamond Sound Effect.mp3", AssetType.MUSIC);
+		path.set ("assets/audio/FlatteringShape130.wav", "assets/audio/FlatteringShape130.wav");
+		type.set ("assets/audio/FlatteringShape130.wav", AssetType.SOUND);
+		path.set ("assets/audio/gem1.wav", "assets/audio/gem1.wav");
+		type.set ("assets/audio/gem1.wav", AssetType.SOUND);
+		path.set ("assets/audio/gem2.wav", "assets/audio/gem2.wav");
+		type.set ("assets/audio/gem2.wav", AssetType.SOUND);
+		path.set ("assets/audio/gem3.wav", "assets/audio/gem3.wav");
+		type.set ("assets/audio/gem3.wav", AssetType.SOUND);
+		path.set ("assets/audio/multiplier.wav", "assets/audio/multiplier.wav");
+		type.set ("assets/audio/multiplier.wav", AssetType.SOUND);
+		path.set ("assets/audio/oildrop.wav", "assets/audio/oildrop.wav");
+		type.set ("assets/audio/oildrop.wav", AssetType.SOUND);
+		path.set ("assets/audio/SeconDimension200.wav", "assets/audio/SeconDimension200.wav");
+		type.set ("assets/audio/SeconDimension200.wav", AssetType.SOUND);
+		path.set ("assets/audio/selecc.wav", "assets/audio/selecc.wav");
+		type.set ("assets/audio/selecc.wav", AssetType.SOUND);
+		path.set ("assets/audio/shield.wav", "assets/audio/shield.wav");
+		type.set ("assets/audio/shield.wav", AssetType.SOUND);
+		path.set ("assets/images/Background.png", "assets/images/Background.png");
+		type.set ("assets/images/Background.png", AssetType.IMAGE);
 		path.set ("assets/images/blue.png", "assets/images/blue.png");
 		type.set ("assets/images/blue.png", AssetType.IMAGE);
-		path.set ("assets/images/green.png", "assets/images/green.png");
-		type.set ("assets/images/green.png", AssetType.IMAGE);
+		path.set ("assets/images/boton.png", "assets/images/boton.png");
+		type.set ("assets/images/boton.png", AssetType.IMAGE);
+		path.set ("assets/images/digital.ttf", "assets/images/digital.ttf");
+		type.set ("assets/images/digital.ttf", AssetType.FONT);
 		path.set ("assets/images/ELEMENTS.TTF", "assets/images/ELEMENTS.TTF");
 		type.set ("assets/images/ELEMENTS.TTF", AssetType.FONT);
-		path.set ("assets/images/red.png", "assets/images/red.png");
-		type.set ("assets/images/red.png", AssetType.IMAGE);
-		path.set ("assets/images/yellow.png", "assets/images/yellow.png");
-		type.set ("assets/images/yellow.png", AssetType.IMAGE);
+		path.set ("assets/images/goback.png", "assets/images/goback.png");
+		type.set ("assets/images/goback.png", AssetType.IMAGE);
+		path.set ("assets/images/green.png", "assets/images/green.png");
+		type.set ("assets/images/green.png", AssetType.IMAGE);
 		path.set ("assets/images/Mapa1.oel", "assets/images/Mapa1.oel");
 		type.set ("assets/images/Mapa1.oel", AssetType.TEXT);
 		path.set ("assets/images/Mapa2.oel", "assets/images/Mapa2.oel");
 		type.set ("assets/images/Mapa2.oel", AssetType.TEXT);
 		path.set ("assets/images/Mapa3.oel", "assets/images/Mapa3.oel");
 		type.set ("assets/images/Mapa3.oel", AssetType.TEXT);
-		path.set ("assets/images/Background.png", "assets/images/Background.png");
-		type.set ("assets/images/Background.png", AssetType.IMAGE);
 		path.set ("assets/images/Mapas.oep", "assets/images/Mapas.oep");
 		type.set ("assets/images/Mapas.oep", AssetType.TEXT);
-		path.set ("assets/images/tile.png", "assets/images/tile.png");
-		type.set ("assets/images/tile.png", AssetType.IMAGE);
-		path.set ("assets/images/newPowerups.png", "assets/images/newPowerups.png");
-		type.set ("assets/images/newPowerups.png", AssetType.IMAGE);
-		path.set ("assets/images/Selectmenu.png", "assets/images/Selectmenu.png");
-		type.set ("assets/images/Selectmenu.png", AssetType.IMAGE);
-		path.set ("assets/images/PORTADA.png", "assets/images/PORTADA.png");
-		type.set ("assets/images/PORTADA.png", AssetType.IMAGE);
 		path.set ("assets/images/marco.png", "assets/images/marco.png");
 		type.set ("assets/images/marco.png", AssetType.IMAGE);
-		path.set ("assets/images/boton.png", "assets/images/boton.png");
-		type.set ("assets/images/boton.png", AssetType.IMAGE);
 		path.set ("assets/images/mas.png", "assets/images/mas.png");
 		type.set ("assets/images/mas.png", AssetType.IMAGE);
-		path.set ("assets/images/goback.png", "assets/images/goback.png");
-		type.set ("assets/images/goback.png", AssetType.IMAGE);
 		path.set ("assets/images/menos.png", "assets/images/menos.png");
 		type.set ("assets/images/menos.png", AssetType.IMAGE);
 		path.set ("assets/images/newPowerups.png", "assets/images/newPowerups.png");
@@ -748,12 +814,20 @@ class DefaultAssetLibrary extends AssetLibrary {
 		type.set ("assets/images/powerups2.png", AssetType.IMAGE);
 		path.set ("assets/images/red.png", "assets/images/red.png");
 		type.set ("assets/images/red.png", AssetType.IMAGE);
+		path.set ("assets/images/retry.png", "assets/images/retry.png");
+		type.set ("assets/images/retry.png", AssetType.IMAGE);
+		path.set ("assets/images/Selectmenu.png", "assets/images/Selectmenu.png");
+		type.set ("assets/images/Selectmenu.png", AssetType.IMAGE);
 		path.set ("assets/images/start.png", "assets/images/start.png");
 		type.set ("assets/images/start.png", AssetType.IMAGE);
 		path.set ("assets/images/tile.png", "assets/images/tile.png");
 		type.set ("assets/images/tile.png", AssetType.IMAGE);
+		path.set ("assets/images/timeup.png", "assets/images/timeup.png");
+		type.set ("assets/images/timeup.png", AssetType.IMAGE);
 		path.set ("assets/images/Win.psd", "assets/images/Win.psd");
 		type.set ("assets/images/Win.psd", AssetType.BINARY);
+		path.set ("assets/images/WinA.png", "assets/images/WinA.png");
+		type.set ("assets/images/WinA.png", AssetType.IMAGE);
 		path.set ("assets/images/Winp1.png", "assets/images/Winp1.png");
 		type.set ("assets/images/Winp1.png", AssetType.IMAGE);
 		path.set ("assets/images/Winp2.png", "assets/images/Winp2.png");
@@ -764,12 +838,6 @@ class DefaultAssetLibrary extends AssetLibrary {
 		type.set ("assets/images/Winp4.png", AssetType.IMAGE);
 		path.set ("assets/images/yellow.png", "assets/images/yellow.png");
 		type.set ("assets/images/yellow.png", AssetType.IMAGE);
-		path.set ("assets/images/WinA.png", "assets/images/WinA.png");
-		type.set ("assets/images/WinA.png", AssetType.IMAGE);
-		path.set ("assets/images/Selectmenu.png", "assets/images/Selectmenu.png");
-		type.set ("assets/images/Selectmenu.png", AssetType.IMAGE);
-		path.set ("assets/images/retry.png", "assets/images/retry.png");
-		type.set ("assets/images/retry.png", AssetType.IMAGE);
 		className.set ("flixel/sounds/beep.ogg", __ASSET__flixel_sounds_beep_ogg);
 		type.set ("flixel/sounds/beep.ogg", AssetType.SOUND);
 		className.set ("flixel/sounds/flixel.ogg", __ASSET__flixel_sounds_flixel_ogg);
@@ -787,7 +855,97 @@ class DefaultAssetLibrary extends AssetLibrary {
 		#elseif html5
 		
 		var id;
-		id = "assets/images/powerUps.png";
+		id = "assets/audio/Apeirogon100.wav";
+		path.set (id, id);
+		type.set (id, AssetType.SOUND);
+		id = "assets/audio/badgem.wav";
+		path.set (id, id);
+		type.set (id, AssetType.SOUND);
+		id = "assets/audio/boost.wav";
+		path.set (id, id);
+		type.set (id, AssetType.SOUND);
+		id = "assets/audio/button.mp3";
+		path.set (id, id);
+		type.set (id, AssetType.MUSIC);
+		id = "assets/audio/button.wav";
+		path.set (id, id);
+		type.set (id, AssetType.SOUND);
+		id = "assets/audio/collision.wav";
+		path.set (id, id);
+		type.set (id, AssetType.SOUND);
+		id = "assets/audio/Diamond Sound Effect.mp3";
+		path.set (id, id);
+		type.set (id, AssetType.MUSIC);
+		id = "assets/audio/FlatteringShape130.wav";
+		path.set (id, id);
+		type.set (id, AssetType.SOUND);
+		id = "assets/audio/gem1.wav";
+		path.set (id, id);
+		type.set (id, AssetType.SOUND);
+		id = "assets/audio/gem2.wav";
+		path.set (id, id);
+		type.set (id, AssetType.SOUND);
+		id = "assets/audio/gem3.wav";
+		path.set (id, id);
+		type.set (id, AssetType.SOUND);
+		id = "assets/audio/multiplier.wav";
+		path.set (id, id);
+		type.set (id, AssetType.SOUND);
+		id = "assets/audio/oildrop.wav";
+		path.set (id, id);
+		type.set (id, AssetType.SOUND);
+		id = "assets/audio/SeconDimension200.wav";
+		path.set (id, id);
+		type.set (id, AssetType.SOUND);
+		id = "assets/audio/selecc.wav";
+		path.set (id, id);
+		type.set (id, AssetType.SOUND);
+		id = "assets/audio/shield.wav";
+		path.set (id, id);
+		type.set (id, AssetType.SOUND);
+		id = "assets/images/Background.png";
+		path.set (id, id);
+		type.set (id, AssetType.IMAGE);
+		id = "assets/images/blue.png";
+		path.set (id, id);
+		type.set (id, AssetType.IMAGE);
+		id = "assets/images/boton.png";
+		path.set (id, id);
+		type.set (id, AssetType.IMAGE);
+		id = "assets/images/digital.ttf";
+		path.set (id, id);
+		type.set (id, AssetType.FONT);
+		id = "assets/images/ELEMENTS.TTF";
+		path.set (id, id);
+		type.set (id, AssetType.FONT);
+		id = "assets/images/goback.png";
+		path.set (id, id);
+		type.set (id, AssetType.IMAGE);
+		id = "assets/images/green.png";
+		path.set (id, id);
+		type.set (id, AssetType.IMAGE);
+		id = "assets/images/Mapa1.oel";
+		path.set (id, id);
+		type.set (id, AssetType.TEXT);
+		id = "assets/images/Mapa2.oel";
+		path.set (id, id);
+		type.set (id, AssetType.TEXT);
+		id = "assets/images/Mapa3.oel";
+		path.set (id, id);
+		type.set (id, AssetType.TEXT);
+		id = "assets/images/Mapas.oep";
+		path.set (id, id);
+		type.set (id, AssetType.TEXT);
+		id = "assets/images/marco.png";
+		path.set (id, id);
+		type.set (id, AssetType.IMAGE);
+		id = "assets/images/mas.png";
+		path.set (id, id);
+		type.set (id, AssetType.IMAGE);
+		id = "assets/images/menos.png";
+		path.set (id, id);
+		type.set (id, AssetType.IMAGE);
+		id = "assets/images/newPowerups.png";
 		path.set (id, id);
 		type.set (id, AssetType.IMAGE);
 		id = "assets/images/player1.png";
@@ -802,67 +960,22 @@ class DefaultAssetLibrary extends AssetLibrary {
 		id = "assets/images/player4.png";
 		path.set (id, id);
 		type.set (id, AssetType.IMAGE);
-		id = "assets/images/powerups2.png";
-		path.set (id, id);
-		type.set (id, AssetType.IMAGE);
-		id = "assets/images/blue.png";
-		path.set (id, id);
-		type.set (id, AssetType.IMAGE);
-		id = "assets/images/green.png";
-		path.set (id, id);
-		type.set (id, AssetType.IMAGE);
-		id = "assets/images/ELEMENTS.TTF";
-		path.set (id, id);
-		type.set (id, AssetType.FONT);
-		id = "assets/images/red.png";
-		path.set (id, id);
-		type.set (id, AssetType.IMAGE);
-		id = "assets/images/yellow.png";
-		path.set (id, id);
-		type.set (id, AssetType.IMAGE);
-		id = "assets/images/Mapa1.oel";
-		path.set (id, id);
-		type.set (id, AssetType.TEXT);
-		id = "assets/images/Mapa2.oel";
-		path.set (id, id);
-		type.set (id, AssetType.TEXT);
-		id = "assets/images/Mapa3.oel";
-		path.set (id, id);
-		type.set (id, AssetType.TEXT);
-		id = "assets/images/Background.png";
-		path.set (id, id);
-		type.set (id, AssetType.IMAGE);
-		id = "assets/images/Mapas.oep";
-		path.set (id, id);
-		type.set (id, AssetType.TEXT);
-		id = "assets/images/tile.png";
-		path.set (id, id);
-		type.set (id, AssetType.IMAGE);
-		id = "assets/images/newPowerups.png";
-		path.set (id, id);
-		type.set (id, AssetType.IMAGE);
-		id = "assets/images/Selectmenu.png";
-		path.set (id, id);
-		type.set (id, AssetType.IMAGE);
 		id = "assets/images/PORTADA.png";
 		path.set (id, id);
 		type.set (id, AssetType.IMAGE);
-		id = "assets/images/marco.png";
+		id = "assets/images/powerUps.png";
 		path.set (id, id);
 		type.set (id, AssetType.IMAGE);
-		id = "assets/images/boton.png";
-		path.set (id, id);
-		type.set (id, AssetType.IMAGE);
-		id = "assets/images/mas.png";
-		path.set (id, id);
-		type.set (id, AssetType.IMAGE);
-		id = "assets/images/goback.png";
-		path.set (id, id);
-		type.set (id, AssetType.IMAGE);
-		id = "assets/images/menos.png";
+		id = "assets/images/powerups2.png";
 		path.set (id, id);
 		type.set (id, AssetType.IMAGE);
 		id = "assets/images/red.png";
+		path.set (id, id);
+		type.set (id, AssetType.IMAGE);
+		id = "assets/images/retry.png";
+		path.set (id, id);
+		type.set (id, AssetType.IMAGE);
+		id = "assets/images/Selectmenu.png";
 		path.set (id, id);
 		type.set (id, AssetType.IMAGE);
 		id = "assets/images/start.png";
@@ -871,9 +984,15 @@ class DefaultAssetLibrary extends AssetLibrary {
 		id = "assets/images/tile.png";
 		path.set (id, id);
 		type.set (id, AssetType.IMAGE);
+		id = "assets/images/timeup.png";
+		path.set (id, id);
+		type.set (id, AssetType.IMAGE);
 		id = "assets/images/Win.psd";
 		path.set (id, id);
 		type.set (id, AssetType.BINARY);
+		id = "assets/images/WinA.png";
+		path.set (id, id);
+		type.set (id, AssetType.IMAGE);
 		id = "assets/images/Winp1.png";
 		path.set (id, id);
 		type.set (id, AssetType.IMAGE);
@@ -887,15 +1006,6 @@ class DefaultAssetLibrary extends AssetLibrary {
 		path.set (id, id);
 		type.set (id, AssetType.IMAGE);
 		id = "assets/images/yellow.png";
-		path.set (id, id);
-		type.set (id, AssetType.IMAGE);
-		id = "assets/images/WinA.png";
-		path.set (id, id);
-		type.set (id, AssetType.IMAGE);
-		id = "assets/images/Selectmenu.png";
-		path.set (id, id);
-		type.set (id, AssetType.IMAGE);
-		id = "assets/images/retry.png";
 		path.set (id, id);
 		type.set (id, AssetType.IMAGE);
 		id = "flixel/sounds/beep.ogg";
@@ -947,9 +1057,29 @@ class DefaultAssetLibrary extends AssetLibrary {
 		useManifest = true;
 		useManifest = true;
 		useManifest = true;
+		useManifest = true;
+		useManifest = true;
+		useManifest = true;
+		useManifest = true;
+		useManifest = true;
+		useManifest = true;
+		useManifest = true;
+		useManifest = true;
+		useManifest = true;
+		useManifest = true;
+		useManifest = true;
+		
+		className.set ("assets/images/digital.ttf", __ASSET__assets_images_digital_ttf);
+		type.set ("assets/images/digital.ttf", AssetType.FONT);
 		
 		className.set ("assets/images/ELEMENTS.TTF", __ASSET__assets_images_elements_ttf);
 		type.set ("assets/images/ELEMENTS.TTF", AssetType.FONT);
+		useManifest = true;
+		useManifest = true;
+		useManifest = true;
+		useManifest = true;
+		useManifest = true;
+		useManifest = true;
 		useManifest = true;
 		useManifest = true;
 		useManifest = true;
@@ -1743,6 +1873,24 @@ class DefaultAssetLibrary extends AssetLibrary {
 
 
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 @:keep @:bind #if display private #end class __ASSET__flixel_sounds_beep_ogg extends null { }
 @:keep @:bind #if display private #end class __ASSET__flixel_sounds_flixel_ogg extends null { }
 @:keep @:bind #if display private #end class __ASSET__flixel_fonts_nokiafc22_ttf extends null { }
@@ -1761,7 +1909,25 @@ class DefaultAssetLibrary extends AssetLibrary {
 
 
 
+
+
+
+
+
+
+
+
+
+
+
+@:keep #if display private #end class __ASSET__assets_images_digital_ttf extends lime.text.Font { public function new () { super (); name = "Digital-7"; } } 
 @:keep #if display private #end class __ASSET__assets_images_elements_ttf extends lime.text.Font { public function new () { super (); name = "BN Elements"; } } 
+
+
+
+
+
+
 
 
 
@@ -1796,6 +1962,7 @@ class DefaultAssetLibrary extends AssetLibrary {
 
 #else
 
+@:keep #if display private #end class __ASSET__assets_images_digital_ttf extends lime.text.Font { public function new () { __fontPath = #if ios "assets/" + #end "assets/images/digital.ttf"; name = "Digital-7"; super (); }}
 @:keep #if display private #end class __ASSET__assets_images_elements_ttf extends lime.text.Font { public function new () { __fontPath = #if ios "assets/" + #end "assets/images/ELEMENTS.TTF"; name = "BN Elements"; super (); }}
 
 
@@ -1815,6 +1982,7 @@ class DefaultAssetLibrary extends AssetLibrary {
 #end
 
 #if (openfl && !flash)
+@:keep #if display private #end class __ASSET__OPENFL__assets_images_digital_ttf extends openfl.text.Font { public function new () { __fontPath = #if ios "assets/" + #end "assets/images/digital.ttf"; name = "Digital-7"; super (); }}
 @:keep #if display private #end class __ASSET__OPENFL__assets_images_elements_ttf extends openfl.text.Font { public function new () { __fontPath = #if ios "assets/" + #end "assets/images/ELEMENTS.TTF"; name = "BN Elements"; super (); }}
 @:keep #if display private #end class __ASSET__OPENFL__flixel_fonts_nokiafc22_ttf extends openfl.text.Font { public function new () { var font = new __ASSET__flixel_fonts_nokiafc22_ttf (); src = font.src; name = font.name; super (); }}
 @:keep #if display private #end class __ASSET__OPENFL__flixel_fonts_monsterrat_ttf extends openfl.text.Font { public function new () { var font = new __ASSET__flixel_fonts_monsterrat_ttf (); src = font.src; name = font.name; super (); }}

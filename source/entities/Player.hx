@@ -87,7 +87,7 @@ class Player extends FlxSprite
 				velocity.x = -Reg.speed;
 				facing = FlxObject.LEFT;
 				currentStateFace = StatesFaces.LEFT;
-				scoreTxt = new FlxText(camera.width - 135, camera.height - 26, 0, "", 16, true);
+				scoreTxt = new FlxText(790,575, 0, "", 16, true);
 				scoreTxt.color = FlxColor.BLUE;
 			case 3:
 				loadGraphic(AssetPaths.green__png, true, 40, 32);
@@ -95,7 +95,7 @@ class Player extends FlxSprite
 				facing = FlxObject.RIGHT;
 				set_angle(90);
 				currentStateFace = StatesFaces.DOWN;
-				scoreTxt = new FlxText(camera.width - 135, 8, 0, "", 16, true);
+				scoreTxt = new FlxText(790, 8, 0, "", 16, true);
 				scoreTxt.color = FlxColor.GREEN;
 			case 4:
 				loadGraphic(AssetPaths.yellow__png, true, 40, 32);
@@ -103,7 +103,7 @@ class Player extends FlxSprite
 				facing = FlxObject.LEFT;
 				set_angle(90);
 				currentStateFace = StatesFaces.UP;
-				scoreTxt = new FlxText(18, camera.height - 26, 0, "", 16, true);
+				scoreTxt = new FlxText(18, 575, 0, "", 16, true);
 				scoreTxt.color = FlxColor.YELLOW;
 		}
 		currentState = States.MOVE;
@@ -446,6 +446,7 @@ class Player extends FlxSprite
 	}
 	function changeToFlickering()
 	{
+		FlxG.sound.play(AssetPaths.collision__wav);
 		currentState = States.FLICKERING;
 		animation.play("spaced");
 		boost = false;
@@ -482,41 +483,52 @@ class Player extends FlxSprite
 		switch (value) 
 		{
 			case 0:
+				FlxG.sound.play(AssetPaths.boost__wav);
 				if (boost)
 					timerBoost = 0;
 				boost = true;
 			case 1:
+				FlxG.sound.play(AssetPaths.oildrop__wav);
 				if (unBoost)
 					timerUnBoost = 0;
 				unBoost = true;
 			case 2:
+				FlxG.sound.play(AssetPaths.shield__wav);
 				if (shield)
 					timerShield = 0;
 				shield = true;
 			case 3:
+				FlxG.sound.play(AssetPaths.gem1__wav);
 				if (x2PwUp)
 					score += 20;
 				else
 					score += 10;
 			case 4:
+				FlxG.sound.play(AssetPaths.gem2__wav);
 				if (x2PwUp)
 					score += 50;
 				else
 					score += 25;
 			case 5:
+				FlxG.sound.play(AssetPaths.gem3__wav);
 				if (x2PwUp)
 					score += 100;
 				else
 					score += 50;
 			case 6:
+				FlxG.sound.play(AssetPaths.multiplier__wav);
 				if (x2PwUp)
 					timerX2 = 0;
 				x2PwUp = true;
 			case 7:
-				if (x2PwUp)
-					score -= 20;
-				else
-					score -= 10;
+				FlxG.sound.play(AssetPaths.badgem__wav);
+				if (score > 25)
+				{
+					if (x2PwUp && score>50)
+						score -= 50;
+					else
+						score -= 25;
+				}
 		}
 	}
 	public function get_score():Int 

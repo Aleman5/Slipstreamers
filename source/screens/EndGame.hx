@@ -155,7 +155,7 @@ class EndGame extends FlxState
 				}
 		}
 	
-		retry = new FlxButton(460, 470, " ", Retry);
+		retry = new FlxButton(675, 470, " ", Retry);
 		retry.loadGraphic(AssetPaths.retry__png, true, 189, 52);
 		
 		add(retry);

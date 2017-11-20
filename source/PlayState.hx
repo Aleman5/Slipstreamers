@@ -44,9 +44,11 @@ class PlayState extends FlxState
 	// Sounds
 	private var playSounds:Bool;
 	private var playTheme:Bool;
+	private var timesup:FlxSprite;
 	
 	override public function create():Void
 	{
+		FlxG.sound.play(AssetPaths.button__wav);
 		super.create();
 		whichlevel = Reg.whichlevel;
 		
@@ -65,6 +67,7 @@ class PlayState extends FlxState
 				tilebase.setTileProperties(5, FlxObject.ANY);	//PARED 5
 				tilebase.setTileProperties(6, FlxObject.ANY);	//PARED 6
 				add(tilebase);
+				FlxG.sound.play(AssetPaths.Apeirogon100__wav,0.5);
 			case 2:
 				var loader:FlxOgmoLoader = new FlxOgmoLoader(AssetPaths.Mapa2__oel);		 //NIVEL 2
 				tilebase = loader.loadTilemap(AssetPaths.tile__png, 32, 32, "TilesetBase");		
@@ -76,6 +79,7 @@ class PlayState extends FlxState
 				tilebase.setTileProperties(5, FlxObject.ANY);	//PARED 5
 				tilebase.setTileProperties(6, FlxObject.ANY);	//PARED 6
 				add(tilebase);
+				FlxG.sound.play(AssetPaths.FlatteringShape130__wav,0.5);
 			case 3:
 				var loader:FlxOgmoLoader = new FlxOgmoLoader(AssetPaths.Mapa3__oel);		 //NIVEL 3
 				tilebase = loader.loadTilemap(AssetPaths.tile__png, 32, 32, "TilesetBase");		
@@ -87,9 +91,11 @@ class PlayState extends FlxState
 				tilebase.setTileProperties(5, FlxObject.ANY);	//PARED 5
 				tilebase.setTileProperties(6, FlxObject.ANY);	//PARED 6
 				add(tilebase);
+				FlxG.sound.play(AssetPaths.SeconDimension200__wav,0.5);
 		}
 		var marco:FlxSprite = new FlxSprite(0, 0, AssetPaths.marco__png);
 		add(marco);
+		timesup = new FlxSprite( -1000, 232, AssetPaths.timeup__png);
 		// Variable initialization
 		howMuchP = Reg.howMuchPlayers;
 		timer = 100;
@@ -101,9 +107,8 @@ class PlayState extends FlxState
 		players = new FlxTypedGroup();
 		// Time
 		howMuchTime = Reg.howMuchTime * 30 + 29;
-		timeTxt = new FlxText(camera.width / 2 - 25, 8, 0, "", 22, true);
-		timeTxt.color = FlxColor.BLACK;
-		add(timeTxt);
+		timeTxt = new FlxText(450, 12, 0, "", 22, true);
+		timeTxt.setFormat(AssetPaths.digital__ttf, 22, FlxColor.CYAN);	
 		counter = 0;
 		// Sounds
 		playSounds = true;
@@ -125,6 +130,7 @@ class PlayState extends FlxState
 		}
 		pUps = new FlxTypedGroup();
 		add(players);
+		add(timeTxt);
 	}
 	override public function update(elapsed:Float):Void
 	{
@@ -155,13 +161,23 @@ class PlayState extends FlxState
 		}
 		timeTxt.text = "Time left: " + howMuchTime;
 		
-		if (howMuchTime == 0)
+		if (howMuchTime <= 0)
 		{
-			trace("Game Finished");
-			var endGame:EndGame = new EndGame();
-			FlxG.switchState(endGame);
+			add(timesup);
+			timesup.velocity.x = 450;
+			timeTxt.text = "Time's Over";
+			Reg.speed = 0;
+			Reg.speedBoost = 0;
+			Reg.speedUnBoost = 0;
+		}
+		
+		if (timesup.x == 200)
+		{
+			timesup.velocity.x = 0;
+			FlxG.camera.fade(FlxColor.BLACK, 1.5, false, finishGame);
 		}
 	}
+
 	private function levelResetOrPause():Void
 	{
 		if (FlxG.keys.justPressed.ESCAPE)
@@ -172,14 +188,19 @@ class PlayState extends FlxState
 		if (FlxG.keys.justPressed.ENTER)
 			Reg.paused = !Reg.paused;
 	}
+	private function finishGame():Void
+	{
+		var endGame:EndGame = new EndGame();
+		FlxG.switchState(endGame);
+	}
 	private function powerUpCreator():Void
 	{
 		timeTimed++;
 		if (timeTimed >= timer)
 		{
-			posX = r.int(38, 970);
-			posY = r.int(38, 500);
-			whichPUp = r.int(0, 6);
+			posX = r.int(45, 970);
+			posY = r.int(45, 540);
+			whichPUp = r.int(0, 7);
 			pUp = new Items(posX, posY, whichPUp);
 			pUps.add(pUp);
 			add(pUps);

@@ -32,6 +32,7 @@ class LevelSelector extends FlxState
 	
 	override public function create():Void
 	{
+		FlxG.sound.play(AssetPaths.button__wav); //que trucazo, no?
 		// Player things
 		totalPlayers = 2;
 		
@@ -67,7 +68,7 @@ class LevelSelector extends FlxState
 		addTBtn.loadGraphic(AssetPaths.mas__png, true, 62, 69);
 		
 		// State changers
-		playBtn = new FlxButton(460, 470, " ", playGame);
+		playBtn = new FlxButton(500, 470, " ", playGame);
 		playBtn.loadGraphic(AssetPaths.start__png, true, 189, 52);
 		
 		menuBtn = new FlxButton(70, 470, " ", returnToMenu);
@@ -117,31 +118,37 @@ class LevelSelector extends FlxState
 	}
 	private function removePlayer() 
 	{
+		FlxG.sound.play(AssetPaths.selecc__wav);
 		if (totalPlayers > 2)
 			totalPlayers--;
 	}
 	private function addPlayer() 
 	{
+		FlxG.sound.play(AssetPaths.selecc__wav);
 		if (totalPlayers < 4)
 			totalPlayers++;
 	}
 	private function removeTilemap() 
 	{
+		FlxG.sound.play(AssetPaths.selecc__wav);
 		if (whichTilemap > 1)
 			whichTilemap--;
 	}
 	private function addTilemap() 
 	{
+		FlxG.sound.play(AssetPaths.selecc__wav);
 		if (whichTilemap < 3)
 			whichTilemap++;
 	}
 	private function removeTime() 
 	{
+		FlxG.sound.play(AssetPaths.selecc__wav);
 		if (howMuchTime > 1)
 			howMuchTime--;
 	}
 	private function addTime() 
 	{
+		FlxG.sound.play(AssetPaths.selecc__wav);
 		if (howMuchTime < 3)
 			howMuchTime++;
 	}

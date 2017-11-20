@@ -9,8 +9,8 @@ class Reg
 	static public var paused:Bool = false;
 	// Naves
 	static public var speed:Int = 150;
-	static public var speedBoost:Int = 180;
-	static public var speedUnBoost:Int = 120;
+	static public var speedBoost:Int = 200;
+	static public var speedUnBoost:Int = 100;
 	// PlayState
 	static public var howMuchPlayers:Int;
 	static public var whichlevel:Int;
