@@ -182,6 +182,9 @@ class PlayState extends FlxState
 	{
 		if (FlxG.keys.justPressed.ESCAPE)
 		{
+			Reg.speed = 150;
+			Reg.speedBoost = 200;
+			Reg.speedUnBoost = 100;
 			var menuState:MenuState = new MenuState();
 			FlxG.switchState(menuState);
 		}
@@ -190,6 +193,9 @@ class PlayState extends FlxState
 	}
 	private function finishGame():Void
 	{
+		Reg.speed = 150;
+		Reg.speedBoost = 200;
+		Reg.speedUnBoost = 100;
 		var endGame:EndGame = new EndGame();
 		FlxG.switchState(endGame);
 	}
