@@ -110,11 +110,11 @@ class OnePlayerGame extends FlxState
 		marco = new FlxSprite(0, 0, AssetPaths.marcov2__png);
 		add(marco);
 		timesup = new FlxSprite( -1000, 232, AssetPaths.timeup__png);
-		completed = new FlxSprite(327, 363, AssetPaths.completed__png);
+		completed = new FlxSprite(327, 232, AssetPaths.completed__png);
 		gameOver = new FlxSprite(327, 363, AssetPaths.gameover__png);
 		
 		// Variable initialization
-		timer = 75;
+		timer = 50;
 		timeTimed = 0;
 		posX = 0;
 		posY = 0;
@@ -147,6 +147,7 @@ class OnePlayerGame extends FlxState
 		checkSound();
 		collisions();
 		levelResetOrPause();
+		scoreOverload();
 		if (Reg.p1Score >= Reg.need)
 		{
 			marco.loadGraphic(AssetPaths.marcov3__png);
@@ -157,6 +158,7 @@ class OnePlayerGame extends FlxState
 			marco.loadGraphic(AssetPaths.marcov2__png);
 			mission.color = FlxColor.RED;
 		}
+		
 	}
 	private function entityLoader (entityName:String, entityData: Xml) 
 	{
@@ -197,22 +199,33 @@ class OnePlayerGame extends FlxState
 		{
 			timesup.velocity.x = 0;
 			timer = 99999999;
-			
-			if (Reg.p1Score >= Reg.need)
-			{
-				add(completed);
-				if(timeTimed>100){
-				finishGame();
-				massacre();
-				create();}
-			}
-			else 
+			if (Reg.p1Score <= Reg.need)
 			{
 				add(gameOver);
-				if(timeTimed>100){
-				gOver();
-				var menuState:MenuState = new MenuState();
-				FlxG.switchState(menuState);}
+				if (timeTimed > 100)
+				{
+					gOver();
+					var menuState:MenuState = new MenuState();
+					FlxG.switchState(menuState);
+				}
+			}
+		}
+	}
+	private function scoreOverload():Void
+	{
+		if (Reg.p1Score >= Reg.need)
+		{
+			timer = 9999999;
+			add(completed);
+			timeTxt.text = "COMPLETED!";
+			Reg.speed = 0;
+			Reg.speedBoost = 0;
+			Reg.speedUnBoost = 0;
+			if (timeTimed > 100)
+			{
+				finishGame();
+				massacre();
+				create();
 			}
 		}
 	}

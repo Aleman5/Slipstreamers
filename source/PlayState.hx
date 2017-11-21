@@ -239,11 +239,11 @@ class PlayState extends FlxState
 			switch (howMuchP)
 			{
 				case 2:
-					timer = r.int(80, 115);
+					timer = r.int(35, 55);
 				case 3:
-					timer = r.int(70, 95);
+					timer = r.int(30, 50);
 				case 4:
-					timer = r.int(50, 75);
+					timer = r.int(10, 30);
 			}
 		}
 	}

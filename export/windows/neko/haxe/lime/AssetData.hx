@@ -92,18 +92,8 @@ class AssetData {
 			type.set ("assets/images/menos.png", Reflect.field (AssetType, "image".toUpperCase ()));
 			path.set ("assets/images/newPowerups.png", "assets/images/newPowerups.png");
 			type.set ("assets/images/newPowerups.png", Reflect.field (AssetType, "image".toUpperCase ()));
-			path.set ("assets/images/player1.png", "assets/images/player1.png");
-			type.set ("assets/images/player1.png", Reflect.field (AssetType, "image".toUpperCase ()));
-			path.set ("assets/images/player2.png", "assets/images/player2.png");
-			type.set ("assets/images/player2.png", Reflect.field (AssetType, "image".toUpperCase ()));
-			path.set ("assets/images/player3.png", "assets/images/player3.png");
-			type.set ("assets/images/player3.png", Reflect.field (AssetType, "image".toUpperCase ()));
-			path.set ("assets/images/player4.png", "assets/images/player4.png");
-			type.set ("assets/images/player4.png", Reflect.field (AssetType, "image".toUpperCase ()));
 			path.set ("assets/images/PORTADA.png", "assets/images/PORTADA.png");
 			type.set ("assets/images/PORTADA.png", Reflect.field (AssetType, "image".toUpperCase ()));
-			path.set ("assets/images/powerUps.png", "assets/images/powerUps.png");
-			type.set ("assets/images/powerUps.png", Reflect.field (AssetType, "image".toUpperCase ()));
 			path.set ("assets/images/powerups2.png", "assets/images/powerups2.png");
 			type.set ("assets/images/powerups2.png", Reflect.field (AssetType, "image".toUpperCase ()));
 			path.set ("assets/images/red.png", "assets/images/red.png");
@@ -120,8 +110,6 @@ class AssetData {
 			type.set ("assets/images/tile.png", Reflect.field (AssetType, "image".toUpperCase ()));
 			path.set ("assets/images/timeup.png", "assets/images/timeup.png");
 			type.set ("assets/images/timeup.png", Reflect.field (AssetType, "image".toUpperCase ()));
-			path.set ("assets/images/Win.psd", "assets/images/Win.psd");
-			type.set ("assets/images/Win.psd", Reflect.field (AssetType, "binary".toUpperCase ()));
 			path.set ("assets/images/WinA.png", "assets/images/WinA.png");
 			type.set ("assets/images/WinA.png", Reflect.field (AssetType, "image".toUpperCase ()));
 			path.set ("assets/images/Winp1.png", "assets/images/Winp1.png");
