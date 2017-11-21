@@ -24,6 +24,7 @@ class EndGame extends FlxState
 
 	override public function create():Void
 	{
+		FlxG.sound.play(AssetPaths.results__wav, 0.3);
 		p1S = Reg.p1Score;
 		p2S = Reg.p2Score;
 		p3S = Reg.p3Score;

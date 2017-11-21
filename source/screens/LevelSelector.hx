@@ -33,6 +33,7 @@ class LevelSelector extends FlxState
 	override public function create():Void
 	{
 		FlxG.sound.play(AssetPaths.button__wav); //que trucazo, no?
+		FlxG.sound.play(AssetPaths.levelSelect__wav, 0.5);
 		// Player things
 		totalPlayers = 2;
 		

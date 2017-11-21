@@ -1,5 +1,6 @@
 package;
 
+import entities.ColTile;
 import entities.Player;
 import entities.Items;
 import flixel.FlxObject;
@@ -37,6 +38,7 @@ class PlayState extends FlxState
 	private var whichlevel:Int;
 	private var tilebase:FlxTilemap;
 	private var fondo:FlxSprite;
+	private var collisionTile:FlxTypedGroup<ColTile>;
 	// Time
 	private var howMuchTime:Int;
 	private var timeTxt:FlxText;
@@ -51,13 +53,16 @@ class PlayState extends FlxState
 		FlxG.sound.play(AssetPaths.button__wav);
 		super.create();
 		whichlevel = Reg.whichlevel;
-		
 		fondo = new FlxSprite(0, 0, AssetPaths.Background__png);
 		add(fondo);
+		collisionTile = new FlxTypedGroup<ColTile>();
+		
 		switch (whichlevel) 
 		{
 			case 1:
 				var loader:FlxOgmoLoader = new FlxOgmoLoader(AssetPaths.Mapa1__oel);		 //NIVEL 1
+				loader.loadEntities(entityLoader, "collisionTile");
+				add(collisionTile);
 				tilebase = loader.loadTilemap(AssetPaths.tile__png, 32, 32, "TilesetBase");		
 				tilebase.setTileProperties(0, FlxObject.NONE);	//FONDO
 				tilebase.setTileProperties(1, FlxObject.ANY);	//PARED 1
@@ -70,6 +75,8 @@ class PlayState extends FlxState
 				FlxG.sound.play(AssetPaths.Apeirogon100__wav,0.5);
 			case 2:
 				var loader:FlxOgmoLoader = new FlxOgmoLoader(AssetPaths.Mapa2__oel);		 //NIVEL 2
+				loader.loadEntities(entityLoader, "collisionTile");
+				add(collisionTile);
 				tilebase = loader.loadTilemap(AssetPaths.tile__png, 32, 32, "TilesetBase");		
 				tilebase.setTileProperties(0, FlxObject.NONE);	//FONDO
 				tilebase.setTileProperties(1, FlxObject.ANY);	//PARED 1
@@ -82,6 +89,8 @@ class PlayState extends FlxState
 				FlxG.sound.play(AssetPaths.FlatteringShape130__wav,0.5);
 			case 3:
 				var loader:FlxOgmoLoader = new FlxOgmoLoader(AssetPaths.Mapa3__oel);		 //NIVEL 3
+				loader.loadEntities(entityLoader, "collisionTile");
+				add(collisionTile);
 				tilebase = loader.loadTilemap(AssetPaths.tile__png, 32, 32, "TilesetBase");		
 				tilebase.setTileProperties(0, FlxObject.NONE);	//FONDO
 				tilebase.setTileProperties(1, FlxObject.ANY);	//PARED 1
@@ -143,6 +152,15 @@ class PlayState extends FlxState
 		checkSound();
 		collisions();
 		levelResetOrPause();
+	}
+	private function entityLoader (entityName:String, entityData: Xml) 
+	{
+		var x:Int = Std.parseInt(entityData.get("x"));
+		var y:Int = Std.parseInt(entityData.get("y"));
+		var tile:ColTile = new ColTile();
+		tile.x = x;
+		tile.y = y;
+		collisionTile.add(tile);
 	}
 	private function checkSound() 
 	{
@@ -208,7 +226,14 @@ class PlayState extends FlxState
 			posY = r.int(45, 540);
 			whichPUp = r.int(0, 7);
 			pUp = new Items(posX, posY, whichPUp);
-			pUps.add(pUp);
+			if (FlxG.overlap(collisionTile, pUp)||FlxG.overlap(pUps, pUp))
+			{
+				pUp.kill;
+			}
+			else if (!FlxG.overlap(collisionTile, pUp)||!FlxG.overlap(pUps, pUp))
+			{
+				pUps.add(pUp);
+			}
 			add(pUps);
 			timeTimed = 0;
 			switch (howMuchP)

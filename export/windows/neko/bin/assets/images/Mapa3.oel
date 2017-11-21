@@ -1,21 +1,194 @@
 <level width="1024" height="608">
-  <TilesetBase tileset="TilesetBase" exportMode="CSV">1,1,2,2,1,1,1,4,1,1,4,1,1,1,1,1,5,1,1,1,6,1,3,1,1,2,1,4,1,1,1,1
+  <TilesetBase tileset="TilesetBase" exportMode="CSV">
+1,1,2,2,1,1,1,4,1,1,4,1,1,1,1,1,5,1,1,1,6,1,3,1,1,2,1,4,1,1,1,1
 1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1
 1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,2
 3,0,0,0,0,0,0,1,2,1,1,1,3,1,1,6,1,1,1,1,1,1,2,1,3,0,0,0,0,0,0,1
 1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1
 4,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1
-1,1,3,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,1,3,1
-6,1,1,3,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,1,1,1
-1,1,1,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,3,3,1,1
-1,1,6,1,0,0,0,0,0,0,0,0,6,1,1,3,1,1,1,2,0,0,0,0,0,0,0,0,1,1,1,6
-2,1,1,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,6,2,1,1
-1,3,1,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,1,1,5
-1,1,6,2,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,1,6,1
+1,1,3,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,3,1
+6,1,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,1,1
+1,1,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,3,1,1
+1,1,6,0,0,0,0,0,0,0,0,0,6,1,1,3,1,1,1,2,0,0,0,0,0,0,0,0,0,1,1,6
+2,1,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,2,1,1
+1,3,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,1,5
+1,1,6,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,6,1
 5,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1
 1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,2
 3,0,0,0,0,0,0,1,6,6,1,1,1,2,1,1,1,1,1,1,1,3,1,1,3,0,0,0,0,0,0,1
 1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1
 1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1
 1,6,1,2,1,1,1,4,1,1,3,1,1,1,1,5,6,1,1,1,1,1,1,1,1,3,1,1,3,1,1,1</TilesetBase>
+  <collisionTile>
+    <collisionTile id="98" x="0" y="0" />
+    <collisionTile id="98" x="32" y="0" />
+    <collisionTile id="98" x="64" y="0" />
+    <collisionTile id="98" x="96" y="0" />
+    <collisionTile id="98" x="128" y="0" />
+    <collisionTile id="98" x="192" y="0" />
+    <collisionTile id="98" x="160" y="0" />
+    <collisionTile id="98" x="224" y="0" />
+    <collisionTile id="98" x="256" y="0" />
+    <collisionTile id="98" x="288" y="0" />
+    <collisionTile id="98" x="320" y="0" />
+    <collisionTile id="98" x="352" y="0" />
+    <collisionTile id="98" x="384" y="0" />
+    <collisionTile id="98" x="416" y="0" />
+    <collisionTile id="98" x="448" y="0" />
+    <collisionTile id="98" x="480" y="0" />
+    <collisionTile id="98" x="512" y="0" />
+    <collisionTile id="98" x="544" y="0" />
+    <collisionTile id="98" x="576" y="0" />
+    <collisionTile id="98" x="608" y="0" />
+    <collisionTile id="98" x="640" y="0" />
+    <collisionTile id="98" x="672" y="0" />
+    <collisionTile id="98" x="704" y="0" />
+    <collisionTile id="98" x="736" y="0" />
+    <collisionTile id="98" x="768" y="0" />
+    <collisionTile id="98" x="800" y="0" />
+    <collisionTile id="98" x="832" y="0" />
+    <collisionTile id="98" x="864" y="0" />
+    <collisionTile id="98" x="896" y="0" />
+    <collisionTile id="98" x="928" y="0" />
+    <collisionTile id="98" x="960" y="0" />
+    <collisionTile id="98" x="992" y="0" />
+    <collisionTile id="98" x="992" y="32" />
+    <collisionTile id="98" x="992" y="64" />
+    <collisionTile id="98" x="992" y="96" />
+    <collisionTile id="98" x="992" y="128" />
+    <collisionTile id="98" x="992" y="160" />
+    <collisionTile id="98" x="992" y="192" />
+    <collisionTile id="98" x="992" y="224" />
+    <collisionTile id="98" x="992" y="256" />
+    <collisionTile id="98" x="992" y="288" />
+    <collisionTile id="98" x="992" y="320" />
+    <collisionTile id="98" x="992" y="352" />
+    <collisionTile id="98" x="992" y="384" />
+    <collisionTile id="98" x="992" y="416" />
+    <collisionTile id="98" x="992" y="448" />
+    <collisionTile id="98" x="992" y="480" />
+    <collisionTile id="98" x="992" y="512" />
+    <collisionTile id="98" x="992" y="544" />
+    <collisionTile id="98" x="992" y="576" />
+    <collisionTile id="98" x="960" y="576" />
+    <collisionTile id="98" x="928" y="576" />
+    <collisionTile id="98" x="896" y="576" />
+    <collisionTile id="98" x="864" y="576" />
+    <collisionTile id="98" x="832" y="576" />
+    <collisionTile id="98" x="800" y="576" />
+    <collisionTile id="98" x="768" y="576" />
+    <collisionTile id="98" x="736" y="576" />
+    <collisionTile id="98" x="704" y="576" />
+    <collisionTile id="98" x="672" y="576" />
+    <collisionTile id="98" x="640" y="576" />
+    <collisionTile id="98" x="608" y="576" />
+    <collisionTile id="98" x="576" y="576" />
+    <collisionTile id="98" x="544" y="576" />
+    <collisionTile id="98" x="512" y="576" />
+    <collisionTile id="98" x="480" y="576" />
+    <collisionTile id="98" x="448" y="576" />
+    <collisionTile id="98" x="416" y="576" />
+    <collisionTile id="98" x="384" y="576" />
+    <collisionTile id="98" x="352" y="576" />
+    <collisionTile id="98" x="320" y="576" />
+    <collisionTile id="98" x="288" y="576" />
+    <collisionTile id="98" x="256" y="576" />
+    <collisionTile id="98" x="224" y="576" />
+    <collisionTile id="98" x="192" y="576" />
+    <collisionTile id="98" x="160" y="576" />
+    <collisionTile id="98" x="128" y="576" />
+    <collisionTile id="98" x="96" y="576" />
+    <collisionTile id="98" x="64" y="576" />
+    <collisionTile id="98" x="32" y="576" />
+    <collisionTile id="98" x="0" y="576" />
+    <collisionTile id="98" x="0" y="544" />
+    <collisionTile id="98" x="0" y="512" />
+    <collisionTile id="98" x="0" y="480" />
+    <collisionTile id="98" x="0" y="448" />
+    <collisionTile id="98" x="0" y="416" />
+    <collisionTile id="98" x="0" y="384" />
+    <collisionTile id="98" x="0" y="352" />
+    <collisionTile id="98" x="0" y="320" />
+    <collisionTile id="98" x="0" y="288" />
+    <collisionTile id="98" x="0" y="256" />
+    <collisionTile id="98" x="0" y="224" />
+    <collisionTile id="98" x="0" y="192" />
+    <collisionTile id="98" x="0" y="160" />
+    <collisionTile id="98" x="0" y="128" />
+    <collisionTile id="98" x="0" y="96" />
+    <collisionTile id="98" x="0" y="64" />
+    <collisionTile id="98" x="0" y="32" />
+    <collisionTile id="0" x="32" y="192" />
+    <collisionTile id="1" x="64" y="192" />
+    <collisionTile id="2" x="64" y="224" />
+    <collisionTile id="3" x="32" y="224" />
+    <collisionTile id="4" x="32" y="256" />
+    <collisionTile id="5" x="32" y="320" />
+    <collisionTile id="6" x="32" y="288" />
+    <collisionTile id="7" x="32" y="352" />
+    <collisionTile id="8" x="32" y="384" />
+    <collisionTile id="9" x="64" y="384" />
+    <collisionTile id="10" x="64" y="352" />
+    <collisionTile id="11" x="64" y="320" />
+    <collisionTile id="12" x="64" y="288" />
+    <collisionTile id="13" x="64" y="256" />
+    <collisionTile id="14" x="960" y="192" />
+    <collisionTile id="15" x="928" y="192" />
+    <collisionTile id="16" x="928" y="224" />
+    <collisionTile id="17" x="960" y="224" />
+    <collisionTile id="18" x="960" y="256" />
+    <collisionTile id="19" x="928" y="256" />
+    <collisionTile id="20" x="928" y="288" />
+    <collisionTile id="21" x="960" y="288" />
+    <collisionTile id="22" x="960" y="320" />
+    <collisionTile id="23" x="928" y="320" />
+    <collisionTile id="24" x="928" y="352" />
+    <collisionTile id="25" x="960" y="352" />
+    <collisionTile id="26" x="960" y="384" />
+    <collisionTile id="27" x="928" y="384" />
+    <collisionTile id="28" x="224" y="96" />
+    <collisionTile id="29" x="256" y="96" />
+    <collisionTile id="30" x="288" y="96" />
+    <collisionTile id="31" x="320" y="96" />
+    <collisionTile id="32" x="352" y="96" />
+    <collisionTile id="33" x="384" y="96" />
+    <collisionTile id="34" x="416" y="96" />
+    <collisionTile id="35" x="448" y="96" />
+    <collisionTile id="36" x="480" y="96" />
+    <collisionTile id="37" x="512" y="96" />
+    <collisionTile id="38" x="544" y="96" />
+    <collisionTile id="39" x="576" y="96" />
+    <collisionTile id="40" x="608" y="96" />
+    <collisionTile id="41" x="640" y="96" />
+    <collisionTile id="42" x="672" y="96" />
+    <collisionTile id="43" x="704" y="96" />
+    <collisionTile id="44" x="736" y="96" />
+    <collisionTile id="45" x="768" y="96" />
+    <collisionTile id="46" x="608" y="288" />
+    <collisionTile id="47" x="576" y="288" />
+    <collisionTile id="48" x="544" y="288" />
+    <collisionTile id="49" x="512" y="288" />
+    <collisionTile id="50" x="480" y="288" />
+    <collisionTile id="51" x="448" y="288" />
+    <collisionTile id="52" x="416" y="288" />
+    <collisionTile id="53" x="384" y="288" />
+    <collisionTile id="54" x="224" y="480" />
+    <collisionTile id="55" x="256" y="480" />
+    <collisionTile id="56" x="288" y="480" />
+    <collisionTile id="57" x="320" y="480" />
+    <collisionTile id="58" x="352" y="480" />
+    <collisionTile id="59" x="384" y="480" />
+    <collisionTile id="60" x="416" y="480" />
+    <collisionTile id="61" x="448" y="480" />
+    <collisionTile id="62" x="480" y="480" />
+    <collisionTile id="63" x="512" y="480" />
+    <collisionTile id="64" x="544" y="480" />
+    <collisionTile id="65" x="576" y="480" />
+    <collisionTile id="66" x="608" y="480" />
+    <collisionTile id="67" x="640" y="480" />
+    <collisionTile id="68" x="672" y="480" />
+    <collisionTile id="69" x="704" y="480" />
+    <collisionTile id="70" x="736" y="480" />
+    <collisionTile id="71" x="768" y="480" />
+  </collisionTile>
 </level>
