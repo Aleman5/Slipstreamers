@@ -337,17 +337,17 @@ class Player extends FlxSprite
 			case 2:
 				if (timer >= 5)
 					movementPlayer2();
-				if (FlxG.keys.justPressed.COMMA)
+				if (FlxG.keys.justPressed.CONTROL)
 					ghosted();
 			case 3:
 				if(timer >= 5)
 					movementPlayer3();
-				if (FlxG.keys.justPressed.G)
+				if (FlxG.keys.justPressed.B)
 					ghosted();
 			case 4:
 				if (timer >= 5)
 					movementPlayer4();
-				if (FlxG.keys.justPressed.NUMPADONE)
+				if (FlxG.keys.justPressed.NUMPADNINE)
 					ghosted();
 		}
 	}
@@ -373,7 +373,7 @@ class Player extends FlxSprite
 		if (FlxG.keys.justPressed.S && currentStateFace != StatesFaces.UP)
 			moveDown();
 	}
-	function movementPlayer2() // ↑ UP 	↓ DOWN 	← LEFT 	→ RIGHT  # COMMA
+	function movementPlayer2() // ↑ UP 	↓ DOWN 	← LEFT 	→ RIGHT  # CONTROL
 	{
 		if (FlxG.keys.justPressed.RIGHT && currentStateFace != StatesFaces.LEFT)
 			moveRight();
@@ -384,18 +384,18 @@ class Player extends FlxSprite
 		if (FlxG.keys.justPressed.DOWN && currentStateFace != StatesFaces.UP)
 			moveDown();
 	}
-	function movementPlayer3() // ↑ U 	↓ J 	← H 	→ K		 # G
+	function movementPlayer3() // ↑ I 	↓ K 	← J 	→ L		 # B
 	{
-		if (FlxG.keys.justPressed.K && currentStateFace != StatesFaces.LEFT)
+		if (FlxG.keys.justPressed.L && currentStateFace != StatesFaces.LEFT)
 			moveRight();
-		if (FlxG.keys.justPressed.H && currentStateFace != StatesFaces.RIGHT)
+		if (FlxG.keys.justPressed.J && currentStateFace != StatesFaces.RIGHT)
 			moveLeft();
-		if (FlxG.keys.justPressed.U && currentStateFace != StatesFaces.DOWN)
+		if (FlxG.keys.justPressed.I && currentStateFace != StatesFaces.DOWN)
 			moveUp();
-		if (FlxG.keys.justPressed.J && currentStateFace != StatesFaces.UP)
+		if (FlxG.keys.justPressed.K && currentStateFace != StatesFaces.UP)
 			moveDown();
 	}
-	function movementPlayer4() // ↑ 8 	↓ 5 	← 4 	→ 6 	 # 1		(from the 'pad')
+	function movementPlayer4() // ↑ 8 	↓ 5 	← 4 	→ 6 	 # 9		(from the 'pad')
 	{
 		if (FlxG.keys.justPressed.NUMPADSIX && currentStateFace != StatesFaces.LEFT)
 			moveRight();
@@ -535,5 +535,4 @@ class Player extends FlxSprite
 	{
 		return score;
 	}
-	
 }
